@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Élite AutoHaus | Build it. Buy it. Drive it.</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+  </head>
+  <body>
+
+    <header>
+      <a href="#" class="brand">Élite AutoHaus</a>
+      <div class="menu-btn"></div>
+      <div class="navigation">
+        <div class="navigation-items">
+          <a href="#">Home</a>
+          <a href="#">About Us</a>
+          <a href="#">Inventory</a>
+          <a href="#">Login/Register</a>
+          <a href="#">Contact Us</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="home">
+      <video class="video-slide active" src="Video/1.mp4" autoplay muted loop></video>
+      <div class="content">
+        <h1>Welcome to <br>Élite Autohaus</span></h1>
+        <p>At Elite Autohaus, we don’t just sell cars — we curate driving experiences. With a deep-rooted passion for luxury,
+        performance, and style, we bring you a handpicked collection of the world’s finest automobiles.
+        Whether you’re in search of the thrill of a sports car, the elegance of a luxury sedan, or the reliability of a premium
+        SUV, our team is dedicated to matching you with the perfect vehicle. Backed by integrity, expertise, and a
+        customer-first approach, Elite Autohaus stands as your trusted partner in automotive excellence.
+        <br>
+        <br>
+        <b>
+        Experience the elite difference.</b><br><b>Welcome to your next drive.</b></p>
+
+
+        <a href="#">Explore</a>
+      </div>
+      <div class="media-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+    </section>
+ 
+    <script type="text/javascript">
+      const menuBtn = document.querySelector('.menu-btn');
+      const navigation = document.querySelector('.navigation');
+      
+      menuBtn.addEventListener('click',() => {
+        menuBtn.classList.toggle('active');
+        navigation.classList.toggle('active');
+      });
+    </script>
+      <div class="slider-navigation">
+        <div class="nav-btn active"></div>
+        <div class="nav-btn"></div>
+        <div class="nav-btn"></div>
+        <div class="nav-btn"></div>
+        <div class="nav-btn"></div>
+      </div>
+    </section>
+
+  </body>
+</html>
