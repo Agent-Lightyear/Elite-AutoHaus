@@ -68,7 +68,7 @@ section {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background: #181E26;
+  background: #181e27;
 }
 
 .home .content{
@@ -160,6 +160,76 @@ section {
   left: 0;
 }
 
+#about-us {
+    background-color: #181e27; /* Dark background for contrast */
+    color: #fff; /* White text */
+    padding: 50px 20px;
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.about-left {
+    flex: 1;
+    max-width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-left .about-logo {
+    width: 500px; /* Adjust the size of the logo */
+}
+
+.about-right {
+    flex: 1;
+    max-width: 50%;
+}
+
+.about-right h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.about-right p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.about-right ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.about-right ul li {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color:#c9a55b;
+}
+
+.about-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffffff; /* Button color */
+    color: #000000;
+    text-decoration: none;
+    font-size: 1em;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.about-button:hover {
+    background-color: #c9a55b; /* Button hover color */
+    color: #ffffff; /* Button text color on hover */
+}
 
 @media (max-width: 1040px){
   header{
