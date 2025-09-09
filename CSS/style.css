@@ -21,12 +21,20 @@ header{
 }
 
 header .brand{
+  display: flex;
+  align-items: center;
   color: #c9a55b;
   font-size: 1.5rem;
   text-transform: uppercase;  
   font-weight: 700;
   text-decoration: none;
 } 
+
+header .brand img{
+  margin-right: 10px;
+  height: 100px;
+  width: auto;
+}
 
 header .navigation {
   position: relative;
