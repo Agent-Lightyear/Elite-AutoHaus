@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elite AutoHaus | Cars</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .hero-slide { display: none; }
+    .hero-slide.active { display: block; }
+  </style>
+</head>
+<body class="bg-white text-white">
+
+  <!-- NAVBAR -->
+  <header class="fixed w-full bg-[#181E26] text-white shadow-md z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2 text-xl font-bold">
+        <img src="IMG/logo.png" alt="Elite AutoHaus Logo" class="h-8">
+        Elite AutoHaus
+      </a>
+
+      <!-- Desktop Menu -->
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="#" class="hover:text-[#c9a55b]">Home</a>
+        <a href="#collection" class="hover:text-[#c9a55b]">Cars</a>
+        <a href="#about" class="hover:text-[#c9a55b]">About</a>
+        <a href="#contact" class="hover:text-[#c9a55b]">Contact</a>
+        <a href="login.html" class="bg-[#c9a55b] px-4 py-2 rounded-lg font-semibold hover:bg-[#b08e4c]">Login</a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="menu-btn" class="md:hidden text-2xl">☰</button>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="menu" class="hidden flex-col bg-[#181E26] md:hidden px-4 pb-4">
+      <a href="#" class="block py-2 hover:text-[#c9a55b]">Home</a>
+      <a href="#collection" class="block py-2 hover:text-[#c9a55b]">Cars</a>
+      <a href="#about" class="block py-2 hover:text-[#c9a55b]">About</a>
+      <a href="#contact" class="block py-2 hover:text-[#c9a55b]">Contact</a>
+      <a href="login.html" class="block py-2 bg-[#c9a55b] rounded-lg text-center mt-2">Login</a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION WITH SLIDER -->
+  <section class="relative w-full h-[80vh] overflow-hidden pt-16">
+    <!-- Slides -->
+    <div class="hero-slide active absolute inset-0">
+      <img src="IMG/luxury.png" class="w-full h-full object-cover" alt="Slide 1">
+      <div class="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-center px-4">
+        <h1 class="text-4xl md:text-6xl font-bold">Luxury Cars</h1>
+        <p class="mt-4 text-lg md:text-xl">Experience premium comfort and style</p>
+        <button class="mt-6 bg-[#c9a55b] px-6 py-3 rounded-lg font-semibold hover:bg-[#b08e4c]">Explore Now</button>
+      </div>
+    </div>
+    <div class="hero-slide absolute inset-0">
+      <img src="IMG/sports.jpg" class="w-full h-full object-cover" alt="Slide 2">
+      <div class="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-center px-4">
+        <h1 class="text-4xl md:text-6xl font-bold">Sports Cars</h1>
+        <p class="mt-4 text-lg md:text-xl">Unleash speed and performance</p>
+        <button class="mt-6 bg-[#c9a55b] px-6 py-3 rounded-lg font-semibold hover:bg-[#b08e4c]">Book a Test Drive</button>
+      </div>
+    </div>
+    <div class="hero-slide absolute inset-0">
+      <img src="IMG/ev.png" class="w-full h-full object-cover" alt="Slide 3">
+      <div class="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-center px-4">
+        <h1 class="text-4xl md:text-6xl font-bold">Electric Vehicles</h1>
+        <p class="mt-4 text-lg md:text-xl">Future of sustainable driving</p>
+        <button class="mt-6 bg-[#c9a55b] px-6 py-3 rounded-lg font-semibold hover:bg-[#b08e4c]">Discover EVs</button>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <button id="prev" class="absolute top-1/2 left-4 -translate-y-1/2 bg-black/40 text-white px-3 py-2 rounded-full">❮</button>
+    <button id="next" class="absolute top-1/2 right-4 -translate-y-1/2 bg-black/40 text-white px-3 py-2 rounded-full">❯</button>
+
+    <!-- Dots -->
+    <div class="absolute bottom-6 w-full flex justify-center space-x-2">
+      <span class="dot w-3 h-3 bg-gray-300 rounded-full cursor-pointer"></span>
+      <span class="dot w-3 h-3 bg-gray-300 rounded-full cursor-pointer"></span>
+      <span class="dot w-3 h-3 bg-gray-300 rounded-full cursor-pointer"></span>
+    </div>
+  </section>
+
+  <!-- CAR GRID SECTION -->
+
+  <!-- ...existing code... -->
+<!-- CAR GRID SECTION -->
+<section class="pt-10 pb-20 bg-white">
+  <h2 class="text-3xl font-bold text-center text-black mb-10">Our Collection</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4">
+    <!-- Example Car Card -->
+    <div class="bg-[#181E26] rounded-2xl shadow-lg p-0 text-white flex flex-col">
+  <div class="border-2 border-[#c9a55b] rounded-t-2xl shadow-md bg-white">
+    <img class="w-full p-3 rounded-t-2xl" src="IMG/x5.png" alt="BMW X5">
+  </div>
+  <div class="px-6 py-4 flex-1 flex flex-col">
+    <h2 class="text-xl font-bold">BMW X5</h2>
+    <p class="text-gray-300 text-sm">Luxury SUV • Automatic</p>
+    <p class="text-[#c9a55b] font-semibold mt-2">₹75,00,000</p>
+    <span class="inline-block bg-gray-700 text-white text-xs font-semibold px-3 py-1 rounded mt-2">Diesel</span>
+    <div class="mt-4 flex gap-3">
+      <button class="flex-1 px-4 py-2 border rounded-lg hover:bg-[#c9a55b] hover:text-black transition" style="border-color:#C9a55b; color:#C9a55b;">Add to Wishlist</button>
+      <button class="flex-1 px-4 py-2 font-semibold rounded-lg transition" style="background-color:#C9a55b; color:black;" onmouseover="this.style.backgroundColor='#b08a3e'" onmouseout="this.style.backgroundColor='#C9a55b'">Book Now</button>
+    </div>
+  </div>
+</div>
+
+    <div class="bg-[#181E26] rounded-2xl shadow-lg p-0 text-white flex flex-col">
+      <div class="border-2 border-[#c9a55b] rounded-t-2xl shadow-md bg-white">
+        <img class="w-full p-3 rounded-t-2xl" src="IMG/5.png" alt="BMW 5 Series">
+      </div>
+      <div class="px-6 py-4 flex-1 flex flex-col">
+        <h2 class="text-xl font-bold">BMW 5 Series</h2>
+        <p class="text-gray-300 text-sm">Executive Sedan • Automatic</p>
+        <p class="text-[#c9a55b] font-semibold mt-2">₹65,00,000</p>
+        <span class="inline-block bg-gray-700 text-white text-xs font-semibold px-3 py-1 rounded mt-2">Diesel</span>
+        <div class="mt-4 flex gap-3">
+          <button class="flex-1 px-4 py-2 border rounded-lg hover:bg-[#c9a55b] hover:text-black transition" style="border-color:#C9a55b; color:#C9a55b;">Add to Wishlist</button>
+          <button class="flex-1 px-4 py-2 font-semibold rounded-lg transition" style="background-color:#C9a55b; color:black;" onmouseover="this.style.backgroundColor='#b08a3e'" onmouseout="this.style.backgroundColor='#C9a55b'">Book Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-[#181E26] rounded-2xl shadow-lg p-0 text-white flex flex-col">
+      <div class="border-2 border-[#c9a55b] rounded-t-2xl shadow-md bg-white">
+        <img class="w-full p-3 rounded-t-2xl" src="IMG/a4.png" alt="Audi A4">
+      </div>
+      <div class="px-6 py-4 flex-1 flex flex-col">
+        <h2 class="text-xl font-bold">Audi A4</h2>
+        <p class="text-gray-300 text-sm">Luxury Sedan • Automatic</p>
+        <p class="text-[#c9a55b] text-lg font-semibold mt-2">₹45,00,000</p>
+        <span class="inline-block bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded mt-2">Petrol</span>
+        <div class="mt-4 flex gap-3">
+          <button class="flex-1 px-4 py-2 border rounded-lg hover:bg-[#c9a55b] hover:text-black transition" style="border-color:#C9a55b; color:#C9a55b;">Add to Wishlist</button>
+          <button class="flex-1 px-4 py-2 font-semibold rounded-lg transition" style="background-color:#C9a55b; color:black;" onmouseover="this.style.backgroundColor='#b08a3e'" onmouseout="this.style.backgroundColor='#C9a55b'">Book Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-[#181E26] rounded-2xl shadow-lg p-0 text-white flex flex-col">
+      <div class="border-2 border-[#c9a55b] rounded-t-2xl shadow-md bg-white">
+        <img class="w-full p-3 rounded-t-2xl" src="IMG/camry.png" alt="Toyota Camry Hybrid">
+      </div>
+      <div class="px-6 py-4 flex-1 flex flex-col">
+        <h2 class="text-xl font-bold">Toyota Camry</h2>
+        <p class="text-gray-300 text-sm">Luxury Sedan • Automatic</p>
+        <p class="text-[#c9a55b] text-lg font-semibold mt-2">₹41,00,000</p>
+        <span class="inline-block bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded mt-2">Hybrid</span>
+        <div class="mt-4 flex gap-3">
+          <button class="flex-1 px-4 py-2 border rounded-lg hover:bg-[#c9a55b] hover:text-black transition" style="border-color:#C9a55b; color:#C9a55b;">Add to Wishlist</button>
+          <button class="flex-1 px-4 py-2 font-semibold rounded-lg transition" style="background-color:#C9a55b; color:black;" onmouseover="this.style.backgroundColor='#b08a3e'" onmouseout="this.style.backgroundColor='#C9a55b'">Book Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-[#181E26] rounded-2xl shadow-lg p-0 text-white flex flex-col">
+      <div class="border-2 border-[#c9a55b] rounded-t-2xl shadow-md bg-white">
+        <img class="w-full p-3 rounded-t-2xl" src="IMG/model3.png" alt="Tesla Model 3">
+      </div>
+      <div class="px-6 py-4 flex-1 flex flex-col">
+        <h2 class="text-xl font-bold">Tesla Model 3</h2>
+        <p class="text-gray-300 text-sm">Electric Sedan • Automatic</p>
+        <p class="text-[#c9a55b] text-lg font-semibold mt-2">₹60,00,000</p>
+        <span class="inline-block bg-green-600 text-white text-xs font-semibold px-3 py-1 rounded mt-2">EV</span>
+        <div class="mt-4 flex gap-3">
+          <button class="flex-1 px-4 py-2 border rounded-lg hover:bg-[#c9a55b] hover:text-black transition" style="border-color:#C9a55b; color:#C9a55b;">Add to Wishlist</button>
+          <button class="flex-1 px-4 py-2 font-semibold rounded-lg transition" style="background-color:#C9a55b; color:black;" onmouseover="this.style.backgroundColor='#b08a3e'" onmouseout="this.style.backgroundColor='#C9a55b'">Book Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- SCRIPT -->
+  <script>
+    // Navbar Toggle
+    const menuBtn = document.getElementById("menu-btn");
+    const menu = document.getElementById("menu");
+    menuBtn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+    });
+
+    // Hero Slider
+    let slideIndex = 0;
+    const slides = document.querySelectorAll(".hero-slide");
+    const dots = document.querySelectorAll(".dot");
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove("active");
+        dots[i].classList.remove("bg-[#c9a55b]");
+        dots[i].classList.add("bg-gray-300");
+        if (i === index) {
+          slide.classList.add("active");
+          dots[i].classList.remove("bg-gray-300");
+          dots[i].classList.add("bg-[#c9a55b]");
+        }
+      });
+    }
+
+    document.getElementById("prev").addEventListener("click", () => {
+      slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+      showSlide(slideIndex);
+    });
+
+    document.getElementById("next").addEventListener("click", () => {
+      slideIndex = (slideIndex + 1) % slides.length;
+      showSlide(slideIndex);
+    });
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        slideIndex = i;
+        showSlide(slideIndex);
+      });
+    });
+
+    setInterval(() => {
+      slideIndex = (slideIndex + 1) % slides.length;
+      showSlide(slideIndex);
+    }, 5000);
+  </script>
+</body>
+</html>
