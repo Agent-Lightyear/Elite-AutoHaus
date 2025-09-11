@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Elite Autohaus | Register</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="login.css">
 </head>
 <body class="font-sans bg-gray-900">
 
@@ -14,8 +15,9 @@
     <div class="absolute inset-0 bg-black bg-opacity-70"></div>
 
     <div class="relative w-full max-w-md bg-gray-900 text-white shadow-2xl rounded-2xl p-10 mx-4">
+      <!-- Logo -->
       <div class="flex justify-center mb-6">
-        <img src="IMG/logo.png" alt="Elite Autohaus Logo" class="h-12">
+        <img src="IMG/logo.png" alt="Elite Autohaus Logo" class="logo">
       </div>
 
       <h2 class="text-3xl font-bold mb-2 text-center">Create Account</h2>
@@ -24,28 +26,40 @@
       <form id="registerForm" class="space-y-4">
         <div>
           <label class="block text-sm font-medium">Full Name</label>
-          <input type="text" placeholder="John Doe" required
+          <input type="text" id="fullName" placeholder="John Doe" required
             class="w-full px-4 py-3 rounded-xl border border-gray-700 text-black focus:ring-2 focus:ring-gray-400 focus:outline-none">
         </div>
         <div>
           <label class="block text-sm font-medium">Email</label>
-          <input type="email" placeholder="you@example.com" required
+          <input type="email" id="email" placeholder="you@example.com" required
             class="w-full px-4 py-3 rounded-xl border border-gray-700 text-black focus:ring-2 focus:ring-gray-400 focus:outline-none">
         </div>
         <div>
           <label class="block text-sm font-medium">Phone Number</label>
-          <input type="tel" placeholder="+91 9876543210" required
+          <input type="tel" id="phone" placeholder="+91 9876543210" required
             class="w-full px-4 py-3 rounded-xl border border-gray-700 text-black focus:ring-2 focus:ring-gray-400 focus:outline-none">
         </div>
         <div>
           <label class="block text-sm font-medium">Password</label>
-          <input type="password" placeholder="••••••••" required
-            class="w-full px-4 py-3 rounded-xl border border-gray-700 text-black focus:ring-2 focus:ring-gray-400 focus:outline-none">
+          <div class="relative">
+            <input type="password" id="password" placeholder="••••••••" required
+              class="w-full px-4 py-3 rounded-xl border border-gray-700 text-black focus:ring-2 focus:ring-gray-400 focus:outline-none">
+            <button type="button" id="togglePassword" 
+              class="absolute inset-y-0 right-3 flex items-center text-gray-400">
+               <img id="togglePasswordIcon" src="IMG/headlight_off.png" class="h-5 w-5" alt="toggle password">
+            </button>
+          </div>
         </div>
         <div>
           <label class="block text-sm font-medium">Confirm Password</label>
-          <input type="password" placeholder="••••••••" required
-            class="w-full px-4 py-3 rounded-xl border border-gray-700 text-black focus:ring-2 focus:ring-gray-400 focus:outline-none">
+          <div class="relative">
+            <input type="password" id="confirmPassword" placeholder="••••••••" required
+              class="w-full px-4 py-3 rounded-xl border border-gray-700 text-black focus:ring-2 focus:ring-gray-400 focus:outline-none">
+            <button type="button" id="toggleConfirmPassword" 
+              class="absolute inset-y-0 right-3 flex items-center text-gray-400">
+               <img id="toggleConfirmPasswordIcon" src="IMG/headlight_off.png" class="h-5 w-5" alt="toggle password">
+            </button>
+          </div>
         </div>
         <button type="submit"
           class="w-full bg-white text-gray-900 py-3 rounded-xl font-semibold transition hover:bg-[#c9a55b] hover:text-white">Register</button>
@@ -58,49 +72,92 @@
     </div>
   </div>
 
-  <!-- Firebase v12.2.1 -->
+  <!-- Firebase & Firestore -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
+    import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
-    // Firebase config
-   const firebaseConfig = {
-  apiKey: "AIzaSyAMR69VGl2IFav9-P-rwpzaLvZh7WpwFcE",
-  authDomain: "elite-autohaus-018s.firebaseapp.com",
-  projectId: "elite-autohaus-018s",
-  storageBucket: "elite-autohaus-018s.firebasestorage.app",
-  messagingSenderId: "374828356950",
-  appId: "1:374828356950:web:04abb8bcced3f3ea02f2f7"
-};
+    const firebaseConfig = {
+      apiKey: "AIzaSyAMR69VGl2IFav9-P-rwpzaLvZh7WpwFcE",
+      authDomain: "elite-autohaus-018s.firebaseapp.com",
+      projectId: "elite-autohaus-018s",
+      storageBucket: "elite-autohaus-018s.firebasestorage.app",
+      messagingSenderId: "374828356950",
+      appId: "1:374828356950:web:04abb8bcced3f3ea02f7"
+    };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
 
-    // Register form
     const registerForm = document.getElementById('registerForm');
+
     registerForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
+  e.preventDefault();
 
-      const email = registerForm.querySelector('input[type="email"]').value.trim();
-      const password = registerForm.querySelectorAll('input[type="password"]')[0].value;
-      const confirmPassword = registerForm.querySelectorAll('input[type="password"]')[1].value;
+  // Read inputs carefully
+  const fullName = document.getElementById('fullName')?.value.trim();
+  const email = document.getElementById('email')?.value.trim();
+  const phone = document.getElementById('phone')?.value.trim();
+  const password = document.getElementById('password')?.value;
+  const confirmPassword = document.getElementById('confirmPassword')?.value;
 
-      if (password !== confirmPassword) {
-        alert("Passwords do not match!");
-        return;
-      }
+  // Debug: check values
+  console.log({ fullName, email, phone, password, confirmPassword });
 
-      try {
-        await createUserWithEmailAndPassword(auth, email, password);
-        alert("Registration successful! You can now log in.");
-        window.location.href = "login.html";
-      } catch (error) {
-        alert(error.message);
-      }
-    });
+  if (!fullName || !email || !phone || !password || !confirmPassword) {
+    alert("Please fill in all fields!");
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    alert("Passwords do not match!");
+    return;
+  }
+
+  try {
+    // Create user in Firebase Auth
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    // Update display name in Auth
+    await updateProfile(user, { displayName: fullName });
+
+    // Save user info in Firestore
+    try {
+      await setDoc(doc(db, "users", user.uid), {
+        name: fullName,
+        email: email,
+        phone: phone,
+        createdAt: serverTimestamp()
+      });
+      console.log("✅ User saved in Firestore:", { fullName, email, phone });
+    } catch (err) {
+      console.error("❌ Error writing to Firestore:", err);
+      alert("Failed to save user info. Check console for errors.");
+      return;
+    }
+
+    // Show success and redirect
+    registerForm.innerHTML = `
+      <p class="text-green-400 text-center font-semibold text-lg">
+        ✅ Registration successful! Redirecting to login...
+      </p>
+    `;
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 2000);
+
+  } catch (error) {
+    if (error.code === 'auth/email-already-in-use') {
+      alert("This email is already registered!");
+    } else {
+      alert(error.message);
+    }
+  }
+});
+
   </script>
 
 </body>

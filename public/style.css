@@ -9,18 +9,25 @@
 
 /* ================= HEADER ================= */
 header {
-  z-index: 999;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 999;
   display: flex;
-  height: 50px;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: nowrap;       /* keeps logo + nav on one line */
-  padding: 15px 50px;      /* reduced so nav fits */
-  transition: 0.5s ease;
+  flex-wrap: nowrap;
+  height: 15%;
+  padding: 5px 20px;
+  background: transparent;
+  transition: background 0.3s ease, padding 0.3s ease;
+}
+
+header.scrolled {
+  background: #181e27;
+  padding: 10px 50px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
 header .brand {
@@ -28,73 +35,72 @@ header .brand {
   align-items: center;
   color: #c9a55b;
   font-size: 1.8rem;
-  text-transform: uppercase;
   font-weight: 700;
+  text-transform: uppercase;
   text-decoration: none;
 }
 
 header .brand img {
   margin-right: 10px;
-  height: 125px;   
+  height: 225px;
   width: auto;
 }
 
 header .navigation {
   display: flex;
-  justify-content: flex-end; 
-  align-items: center;      
+  justify-content: flex-end;
+  align-items: center;
 }
-
 
 header .navigation .navigation-items a {
   position: relative;
-  color: #c9a55b;
-  font-size: 1.1rem;
-  font-weight: 500;
-  text-decoration: none;
   margin-left: 20px;
+  font-size: 1.7rem;
+  font-weight: 500;
+  color: #c9a55b;
+  text-decoration: none;
   transition: 0.3s ease;
 }
 
-header .navigation .navigation-items a:before {
+header .navigation .navigation-items a::before {
   content: '';
-  background: #ffffff;
   position: absolute;
-  width: 0;               /* FIXED typo */
-  height: 2px;
   bottom: 0;
   left: 0;
+  width: 0;
+  height: 2px;
+  background: #fff;
   transition: 0.3s ease;
 }
 
-header .navigation .navigation-items a:hover:before {
+header .navigation .navigation-items a:hover::before {
   width: 100%;
 }
 
 /* ================= SECTIONS ================= */
 section {
   padding: 100px 200px;
-}    
+}
 
 .home {
   position: relative;
   width: 100%;
   min-height: 100vh;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
   background: #181e27;
 }
 
 .home .content {
   z-index: 888;
-  color: #fff;
   width: 70%;
   margin-top: 50px;
+  color: #fff;
 }
 
 .home .content b {
-  color:#c9a55b;
+  color: #c9a55b;
 }
 
 .home .content h1 {
@@ -116,19 +122,20 @@ section {
 }
 
 .home .content a {
-  background: #ffffff;
+  display: inline-block;
   padding: 15px 35px;
   font-size: 1.1em;
   font-weight: 500;
-  color: #181E26;
+  color: #181e26;
+  background: #fff;
   text-decoration: none;
   border-radius: 2px;
+  transition: 0.3s ease;
 }
 
 .home .content a:hover {
   background: #c9a55b;
-  color: #ffffff;
-  transition: 0.3s ease;
+  color: #fff;
 }
 
 .home .media-icons {
@@ -141,14 +148,14 @@ section {
 }
 
 .home .media-icons a {
-  color: #fff;
   font-size: 1.6rem;
+  color: #fff;
   transition: 0.3s ease;
-} 
+}
 
 .home .media-icons a:not(:last-child) {
   margin-bottom: 20px;
-} 
+}
 
 .home .media-icons a:hover {
   color: #c9a55b;
@@ -156,38 +163,39 @@ section {
 }
 
 .home video {
-  z-index: 000;
+  z-index: 0;
   position: absolute;
-  top : 0;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: scale(1.2);
 }
 
-.home:before {
-  z-index: 777;
+.home::before {
   content: '';
+  z-index: 777;
   position: absolute;
-  background: #181e26c4;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  background: #181e26c4;
 }
 
 /* ================= ABOUT US ================= */
 #about-us {
-  background-color: #181e27;
+  background: #181e27;
   color: #fff;
   padding: 50px 20px;
 }
 
 .about-container {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
   gap: 20px;
 }
 
@@ -220,32 +228,33 @@ section {
 }
 
 .about-right ul {
-  list-style: none;
-  padding: 0;
   margin: 20px 0;
+  padding: 0;
+  list-style: none;
 }
 
 .about-right ul li {
-  font-size: 1.1em;
   margin-bottom: 10px;
+  font-size: 1.1em;
   font-weight: bold;
-  color:#c9a55b;
+  color: #c9a55b;
 }
 
 .about-button {
   display: inline-block;
-  padding: 10px 20px;
-  background-color: #ffffff;
-  color: #000000;
-  text-decoration: none;
-  font-size: 1em;
-  border-radius: 4px;
   margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 1em;
+  color: #000;
+  background: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: 0.3s ease;
 }
 
 .about-button:hover {
-  background-color: #c9a55b;
-  color: #ffffff;
+  background: #c9a55b;
+  color: #fff;
 }
 
 /* ================= RESPONSIVE ================= */
@@ -258,64 +267,59 @@ section {
     padding: 100px 20px;
   }
 
-  .home.media-icons {
+  .home .media-icons {
     right: 15px;
   }
 
   header .navigation {
     display: none;
-  } 
+  }
 
   header .navigation.active {
     position: fixed;
-    width: 100%;
-    height: 100vh;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background: rgba(1, 1, 1, 0.5);
-  } 
-  
+  }
+
   .menu-btn {
-    background: url(IMG/menu.png) no-repeat;
-    background-size: 30px;
-    background-position: center;
     width: 30px;
     height: 40px;
     cursor: pointer;
+    background: url(IMG/menu.png) no-repeat center/30px;
     transition: 0.3s ease;
   }
 
   .menu-btn.active {
     z-index: 999;
-    background: url(IMG/close.png) no-repeat;
-    background-size: 25px;
-    background-position: center;
-    transition: 0.3s ease;
+    background: url(IMG/close.png) no-repeat center/25px;
   }
 
   header .navigation .navigation-items a {
+    font-size: 1.8rem;
+    margin: 30px;
     color: #c9a55b;
-    font-size: 1.5rem;
-    margin: 20px;
   }
 
-  header .navigation .navigation-items a:before {
+  header .navigation .navigation-items a::before {
     background: #c9a55b;
     height: 5px;
   }
 
   header .navigation.active .navigation-items {
-    background: #fff;
-    width: 600px;
     max-width: 600px;
+    width: 100%;
     margin: 20px;
     padding: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: #fff;
     border-radius: 10px;
     box-shadow: 0 5px 25px rgba(1, 1, 1, 0.2);
   }

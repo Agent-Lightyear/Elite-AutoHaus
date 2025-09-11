@@ -1,0 +1,123 @@
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+ 
+ 
+ body 
+ {
+  
+   margin: 0;
+   font-family: "Poppins", sans-serif;
+   background-color: #1a1a1a;
+   color: #333;
+ }
+
+ header {
+    position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: center; /* Center all items */
+  align-items: center;
+  padding: 0 60px; /* Padding to make room for logout */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  z-index: 1000;
+  box-sizing: border-box;
+  position: relative; /* containing context for absolute elements */
+ }
+
+ header a {
+  font-family: "Raleway", sans-serif;
+  
+   display: flex;
+   align-items: center;
+   text-decoration: none;
+   color: #c9a55b;
+   font-weight: bold;
+   font-size: 1.5rem;
+ }
+
+ .logo-center {
+   flex: 1;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+
+ header a img {
+   height: 70px;
+   display: block;
+   margin-left:550px;
+   margin-right: 730px;
+ }
+
+ header button {
+   position: absolute;
+   right: 40px;
+   background-color: #c9a55b;
+   color: #1a1a1a;
+   border: none;
+   padding: 8px 24px;
+   border-radius: 8px;
+   cursor: pointer;
+   font-weight: bold;
+   min-width: 90px;
+   margin-right: 150px;
+   box-sizing: border-box;
+   transform: scale(1.2);
+   transition: background 0.3s, color 0.3s, transform 0.2s, box-shadow 0.2s;
+ }
+
+ header button:hover {
+   background-color: #222222;
+   color: #ffffff;
+   transform: scale(1.08) translateY(-2px);
+   box-shadow: 0 4px 12px rgba(201, 165, 91, 0.25);
+ }
+
+ .container {
+   max-width: 600px;
+   margin: 120px auto 50px auto;
+   /* leave space for fixed header */
+   background-color: #fff;
+   border-radius: 15px;
+   padding: 30px;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+   text-align: center;
+ }
+
+ .profile-pic {
+   width: 120px;
+   height: 120px;
+   border-radius: 50%;
+   object-fit: cover;
+   margin-bottom: 20px;
+ }
+
+ h2 {
+   margin: 0;
+   font-size: 2rem;
+   margin-bottom: 10px;
+ }
+
+ p {
+   margin: 5px 0;
+   color: #555;
+   font-size: 1rem;
+ }
+
+ .info {
+   margin-top: 20px;
+   text-align: left;
+ }
+
+ .info div {
+   margin-bottom: 10px;
+ }
+
+ .info label {
+   font-weight: bold;
+   display: inline-block;
+   width: 100px;
+ }
