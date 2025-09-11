@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elite Autohaus | Register</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-sans bg-gray-900">
+
+  <!-- Background -->
+  <div class="relative min-h-screen flex items-center justify-center bg-cover bg-center"
+       style="background-image: url('https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1650&q=80');">
+    <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+
+    <div class="relative w-full max-w-md bg-gray-900 text-white shadow-2xl rounded-2xl p-10 mx-4">
+      <div class="flex justify-center mb-6">
+        <img src="IMG/logo.png" alt="Elite Autohaus Logo" class="h-12">
+      </div>
+
+      <h2 class="text-3xl font-bold mb-2 text-center">Create Account</h2>
+      <p class="text-gray-300 mb-6 text-center">Join the Elite Autohaus family and unlock exclusive benefits.</p>
+
+      <form id="registerForm" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium">Full Name</label>
+          <input type="text" placeholder="John Doe" required
+            class="w-full px-4 py-3 rounded-xl border border-gray-700 text-black focus:ring-2 focus:ring-gray-400 focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Email</label>
+          <input type="email" placeholder="you@example.com" required
+            class="w-full px-4 py-3 rounded-xl border border-gray-700 text-black focus:ring-2 focus:ring-gray-400 focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Phone Number</label>
+          <input type="tel" placeholder="+91 9876543210" required
+            class="w-full px-4 py-3 rounded-xl border border-gray-700 text-black focus:ring-2 focus:ring-gray-400 focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Password</label>
+          <input type="password" placeholder="••••••••" required
+            class="w-full px-4 py-3 rounded-xl border border-gray-700 text-black focus:ring-2 focus:ring-gray-400 focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Confirm Password</label>
+          <input type="password" placeholder="••••••••" required
+            class="w-full px-4 py-3 rounded-xl border border-gray-700 text-black focus:ring-2 focus:ring-gray-400 focus:outline-none">
+        </div>
+        <button type="submit"
+          class="w-full bg-white text-gray-900 py-3 rounded-xl font-semibold transition hover:bg-[#c9a55b] hover:text-white">Register</button>
+      </form>
+
+      <p class="text-center text-sm text-gray-400 mt-6">
+        Already have an account? 
+        <a href="login.html" class="text-white font-semibold hover:underline">Login</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Firebase v12.2.1 -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
+
+    // Firebase config
+   const firebaseConfig = {
+  apiKey: "AIzaSyAMR69VGl2IFav9-P-rwpzaLvZh7WpwFcE",
+  authDomain: "elite-autohaus-018s.firebaseapp.com",
+  projectId: "elite-autohaus-018s",
+  storageBucket: "elite-autohaus-018s.firebasestorage.app",
+  messagingSenderId: "374828356950",
+  appId: "1:374828356950:web:04abb8bcced3f3ea02f2f7"
+};
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const analytics = getAnalytics(app);
+
+    // Register form
+    const registerForm = document.getElementById('registerForm');
+    registerForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = registerForm.querySelector('input[type="email"]').value.trim();
+      const password = registerForm.querySelectorAll('input[type="password"]')[0].value;
+      const confirmPassword = registerForm.querySelectorAll('input[type="password"]')[1].value;
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        alert("Registration successful! You can now log in.");
+        window.location.href = "login.html";
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+  </script>
+
+</body>
+</html>
