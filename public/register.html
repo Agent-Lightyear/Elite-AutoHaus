@@ -158,6 +158,33 @@
   }
 });
 
+// Password toggle for "Password"
+const passwordInput = document.getElementById('password');
+const togglePassword = document.getElementById('togglePassword');
+const togglePasswordIcon = document.getElementById('togglePasswordIcon');
+
+togglePassword.addEventListener('click', () => {
+  const type = passwordInput.type === 'password' ? 'text' : 'password';
+  passwordInput.type = type;
+
+  // Change icon
+  togglePasswordIcon.src = type === 'password' ? 'IMG/headlight_off.png' : 'IMG/headlight_on.png';
+});
+
+// Password toggle for "Confirm Password"
+const confirmPasswordInput = document.getElementById('confirmPassword');
+const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+const toggleConfirmPasswordIcon = document.getElementById('toggleConfirmPasswordIcon');
+
+toggleConfirmPassword.addEventListener('click', () => {
+  const type = confirmPasswordInput.type === 'password' ? 'text' : 'password';
+  confirmPasswordInput.type = type;
+
+  // Change icon
+  toggleConfirmPasswordIcon.src = type === 'password' ? 'IMG/headlight_off.png' : 'IMG/headlight_on.png';
+});
+
+
   </script>
 
 </body>
