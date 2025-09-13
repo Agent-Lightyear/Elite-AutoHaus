@@ -158,6 +158,7 @@ header .brand {
   border-radius: 0.5rem;
   font-weight: 600;
   transition: background 0.3s;
+  margin-top: 30px;
 }
 .btn-primary:hover {
   background: #b08a3e;
