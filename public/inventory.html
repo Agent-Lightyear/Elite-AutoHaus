@@ -84,6 +84,43 @@
 
     <!-- CAR GRID SECTION -->
     <section id="collection" class="pt-10 pb-20 bg-white">
+        <!-- FILTERS + SEARCH -->
+<div class="max-w-7xl mx-auto px-4 mb-8">
+  <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+    <!-- Search -->
+    <input 
+      type="text" 
+      id="searchInput" 
+      placeholder="Search cars by name..." 
+      class="w-full md:w-1/3 px-4 py-2 border border-gray-300 rounded-lg text-black"
+    >
+
+    <!-- Fuel Filter -->
+    <select 
+      id="fuelFilter" 
+      class="w-full md:w-1/4 px-4 py-2 border border-gray-300 rounded-lg text-black"
+    >
+      <option value="">All Fuel Types</option>
+      <option value="petrol">Petrol</option>
+      <option value="diesel">Diesel</option>
+      <option value="hybrid">Hybrid</option>
+      <option value="ev">EV</option>
+    </select>
+
+    <!-- Price Filter -->
+    <select 
+      id="priceFilter" 
+      class="w-full md:w-1/4 px-4 py-2 border border-gray-300 rounded-lg text-black"
+    >
+      <option value="">All Prices</option>
+      <option value="0-5000000">Below ₹50L</option>
+      <option value="5000000-10000000">₹50L – ₹1Cr</option>
+      <option value="10000000-20000000">₹1Cr – ₹2Cr</option>
+      <option value="20000000-100000000">Above ₹2Cr</option>
+    </select>
+  </div>
+</div>
+
         <h2 class="text-3xl font-bold text-center text-black mb-10">Our Collection</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4">
             <!-- Example Car Card -->
