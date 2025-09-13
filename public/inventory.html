@@ -12,11 +12,12 @@
 <body class="bg-white text-white">
 
     <!-- NAVBAR -->
-    <header class="fixed w-full bg-[#181E26] text-white shadow-md z-50">
+    <header>
+
         <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
             <a href="#" class="flex items-center gap-2 text-xl font-bold">
-                <img src="IMG/logo.png" alt="Elite AutoHaus Logo" class="h-24">
-                Élite Autohaus
+                <img src="IMG/logo_1.png" alt="Elite AutoHaus Logo" class="h-24">
+                <h1 class="brand">Élite Autohaus</h1>
             </a>
 
             <nav class="hidden md:flex items-center gap-6">
@@ -24,7 +25,7 @@
                 <a href="#collection" class="hover-link">Cars</a>
                 <a href="#about" class="hover-link">About</a>
                 <a href="#contact" class="hover-link">Contact</a>
-                <a href="login.html" class="btn-login">Login</a>
+               
             </nav>
 
             <button id="menu-btn" class="md:hidden text-2xl">☰</button>
@@ -102,115 +103,303 @@
                 </div>
             </div>
             <!-- Repeat more car cards here -->
-            <div class="bg-[#181E26] rounded-2xl shadow-lg p-0 text-white flex flex-col">
-                <div class="border-2 border-[#c9a55b] rounded-t-2xl shadow-md bg-white">
-                  <img class="w-full p-3 rounded-t-2xl" src="IMG/5.png" alt="BMW 5 Series">
+            <!-- BMW 5 Series -->
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="IMG/5.png" alt="BMW 5 Series" class="car-img">
                 </div>
-                <div class="px-6 py-4 flex-1 flex flex-col">
-                  <h2 class="text-xl font-bold">BMW 5 Series</h2>
-                  <p class="text-gray-300 text-sm">Executive Sedan • Automatic</p>
-                  <p class="text-[#c9a55b] font-semibold mt-2">₹65,00,000</p>
-                  <span class="inline-block bg-gray-700 text-white text-xs font-semibold px-3 py-1 rounded mt-2">Diesel</span>
-                  <div class="mt-4 flex gap-3">
-                    <button class="flex-1 px-4 py-2 border rounded-lg hover:bg-[#c9a55b] hover:text-black transition" style="border-color:#C9a55b; color:#C9a55b;">Add to Wishlist</button>
-                    <button class="flex-1 px-4 py-2 font-semibold rounded-lg transition" style="background-color:#C9a55b; color:black;" onmouseover="this.style.backgroundColor='#b08a3e'" onmouseout="this.style.backgroundColor='#C9a55b'">Book Now</button>
-                  </div>
+                <div class="car-info">
+                    <h2 class="car-title">BMW 5 Series</h2>
+                    <p class="car-desc">Executive Sedan • Automatic</p>
+                    <p class="car-price">₹65,00,000</p>
+                    <span class="car-tag diesel">Diesel</span>
+                    <div class="car-actions">
+                        <button class="btn-outline">Add to Wishlist</button>
+                        <button class="btn-primary">Book Now</button>
+                    </div>
                 </div>
-              </div>
-          
-              <div class="bg-[#181E26] rounded-2xl shadow-lg p-0 text-white flex flex-col">
-                <div class="border-2 border-[#c9a55b] rounded-t-2xl shadow-md bg-white">
-                  <img class="w-full p-3 rounded-t-2xl" src="IMG/a4.png" alt="Audi A4">
+            </div>
+
+            <!-- Audi A4 -->
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="IMG/a4.png" alt="Audi A4" class="car-img">
                 </div>
-                <div class="px-6 py-4 flex-1 flex flex-col">
-                  <h2 class="text-xl font-bold">Audi A4</h2>
-                  <p class="text-gray-300 text-sm">Luxury Sedan • Automatic</p>
-                  <p class="text-[#c9a55b] text-lg font-semibold mt-2">₹45,00,000</p>
-                  <span class="inline-block bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded mt-2">Petrol</span>
-                  <div class="mt-4 flex gap-3">
-                    <button class="flex-1 px-4 py-2 border rounded-lg hover:bg-[#c9a55b] hover:text-black transition" style="border-color:#C9a55b; color:#C9a55b;">Add to Wishlist</button>
-                    <button class="flex-1 px-4 py-2 font-semibold rounded-lg transition" style="background-color:#C9a55b; color:black;" onmouseover="this.style.backgroundColor='#b08a3e'" onmouseout="this.style.backgroundColor='#C9a55b'">Book Now</button>
-                  </div>
+                <div class="car-info">
+                    <h2 class="car-title">Audi A4</h2>
+                    <p class="car-desc">Luxury Sedan • Automatic</p>
+                    <p class="car-price">₹45,00,000</p>
+                    <span class="car-tag petrol">Petrol</span>
+                    <div class="car-actions">
+                        <button class="btn-outline">Add to Wishlist</button>
+                        <button class="btn-primary">Book Now</button>
+                    </div>
                 </div>
-              </div>
-          
-              <div class="bg-[#181E26] rounded-2xl shadow-lg p-0 text-white flex flex-col">
-                <div class="border-2 border-[#c9a55b] rounded-t-2xl shadow-md bg-white">
-                  <img class="w-full p-3 rounded-t-2xl" src="IMG/camry.png" alt="Toyota Camry Hybrid">
+            </div>
+
+            <!-- Toyota Camry -->
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="IMG/camry.png" alt="Toyota Camry Hybrid" class="car-img">
                 </div>
-                <div class="px-6 py-4 flex-1 flex flex-col">
-                  <h2 class="text-xl font-bold">Toyota Camry</h2>
-                  <p class="text-gray-300 text-sm">Luxury Sedan • Automatic</p>
-                  <p class="text-[#c9a55b] text-lg font-semibold mt-2">₹41,00,000</p>
-                  <span class="inline-block bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded mt-2">Hybrid</span>
-                  <div class="mt-4 flex gap-3">
-                    <button class="flex-1 px-4 py-2 border rounded-lg hover:bg-[#c9a55b] hover:text-black transition" style="border-color:#C9a55b; color:#C9a55b;">Add to Wishlist</button>
-                    <button class="flex-1 px-4 py-2 font-semibold rounded-lg transition" style="background-color:#C9a55b; color:black;" onmouseover="this.style.backgroundColor='#b08a3e'" onmouseout="this.style.backgroundColor='#C9a55b'">Book Now</button>
-                  </div>
+                <div class="car-info">
+                    <h2 class="car-title">Toyota Camry</h2>
+                    <p class="car-desc">Luxury Sedan • Automatic</p>
+                    <p class="car-price">₹41,00,000</p>
+                    <span class="car-tag hybrid">Hybrid</span>
+                    <div class="car-actions">
+                        <button class="btn-outline">Add to Wishlist</button>
+                        <button class="btn-primary">Book Now</button>
+                    </div>
                 </div>
-              </div>
-          
-              <div class="bg-[#181E26] rounded-2xl shadow-lg p-0 text-white flex flex-col">
-                <div class="border-2 border-[#c9a55b] rounded-t-2xl shadow-md bg-white">
-                  <img class="w-full p-3 rounded-t-2xl" src="IMG/model3.png" alt="Tesla Model 3">
+            </div>
+
+            <!-- Tesla Model 3 -->
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="IMG/model3.png" alt="Tesla Model 3" class="car-img">
                 </div>
-                <div class="px-6 py-4 flex-1 flex flex-col">
-                  <h2 class="text-xl font-bold">Tesla Model 3</h2>
-                  <p class="text-gray-300 text-sm">Electric Sedan • Automatic</p>
-                  <p class="text-[#c9a55b] text-lg font-semibold mt-2">₹60,00,000</p>
-                  <span class="inline-block bg-green-600 text-white text-xs font-semibold px-3 py-1 rounded mt-2">EV</span>
-                  <div class="mt-4 flex gap-3">
-                    <button class="flex-1 px-4 py-2 border rounded-lg hover:bg-[#c9a55b] hover:text-black transition" style="border-color:#C9a55b; color:#C9a55b;">Add to Wishlist</button>
-                    <button class="flex-1 px-4 py-2 font-semibold rounded-lg transition" style="background-color:#C9a55b; color:black;" onmouseover="this.style.backgroundColor='#b08a3e'" onmouseout="this.style.backgroundColor='#C9a55b'">Book Now</button>
-                  </div>
+                <div class="car-info">
+                    <h2 class="car-title">Tesla Model 3</h2>
+                    <p class="car-desc">Electric Sedan • Automatic</p>
+                    <p class="car-price">₹60,00,000</p>
+                    <span class="car-tag ev">EV</span>
+                    <div class="car-actions">
+                        <button class="btn-outline">Add to Wishlist</button>
+                        <button class="btn-primary">Book Now</button>
+                    </div>
                 </div>
-        </div>
+            </div>
+
+            <!-- Range Rover sports -->
+
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="IMG/sport.png" alt="RR-sport" class="car-img">
+                </div>
+                <div class="car-info">
+                    <h2 class="car-title">Range Rover Sport</h2>
+                    <p class="car-desc">Luxury SUV • Automatic</p>
+                    <p class="car-price">₹1,50,00,000</p>
+                    <span class="car-tag diesel">Diesel</span>
+                    <div class="car-actions">
+                        <button class="btn-outline">Add to Wishlist</button>
+                        <button class="btn-primary">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- S class -->
+
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="IMG/s class.png" alt="s-class" class="car-img">
+                </div>
+                <div class="car-info">
+                    <h2 class="car-title">Mercedes S class</h2>
+                    <p class="car-desc">Executive Sedan • Automatic</p>
+                    <p class="car-price">₹2,00,00,000</p>
+                    <span class="car-tag diesel">Diesel</span>
+                    <div class="car-actions">
+                        <button class="btn-outline">Add to Wishlist</button>
+                        <button class="btn-primary">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BMW M4 -->
+
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="IMG/m4.png" alt="m4" class="car-img">
+                </div>
+                <div class="car-info">
+                    <h2 class="car-title">BMW M4</h2>
+                    <p class="car-desc">Luxury Sedan • Automatic</p>
+                    <p class="car-price">₹1,61,00,000</p>
+                    <span class="car-tag hybrid">Hybrid</span>
+                    <div class="car-actions">
+                        <button class="btn-outline">Add to Wishlist</button>
+                        <button class="btn-primary">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- velar -->
+
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="IMG/velar.png" alt="velar" class="car-img">
+                </div>
+                <div class="car-info">
+                    <h2 class="car-title">Range Rover Velar</h2>
+                    <p class="car-desc">Luxury SUV • Automatic</p>
+                    <p class="car-price">₹85,00,000</p>
+                    <span class="car-tag diesel">Diesel</span>
+                    <div class="car-actions">
+                        <button class="btn-outline">Add to Wishlist</button>
+                        <button class="btn-primary">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- g wagon -->
+
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="IMG/gclass.png" alt="G-class" class="car-img">
+                </div>
+                <div class="car-info">
+                    <h2 class="car-title">Mercedes-Benz AMG G 63</h2>
+                    <p class="car-desc">Luxury SUV • Automatic</p>
+                    <p class="car-price">₹3,75,00,000</p>
+                    <span class="car-tag diesel">Diesel</span>
+                    <div class="car-actions">
+                        <button class="btn-outline">Add to Wishlist</button>
+                        <button class="btn-primary">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- r8 -->
+
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="IMG/r8.png" alt="Audi r8" class="car-img">
+                </div>
+                <div class="car-info">
+                    <h2 class="car-title">Audi R8</h2>
+                    <p class="car-desc">Sports • Automatic</p>
+                    <p class="car-price">₹2,41,00,000</p>
+                    <span class="car-tag hybrid">Hybrid</span>
+                    <div class="car-actions">
+                        <button class="btn-outline">Add to Wishlist</button>
+                        <button class="btn-primary">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mercedes C63 -->
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="IMG/c63.png" alt="Mercedes C63" class="car-img">
+                </div>
+                <div class="car-info">
+                    <h2 class="car-title">Mercedes C63</h2>
+                    <p class="car-desc">Sports Sedan • Automatic</p>
+                    <p class="car-price">₹1,20,00,000</p>
+                    <span class="car-tag petrol">Petrol</span>
+                    <div class="car-actions">
+                        <button class="btn-outline">Add to Wishlist</button>
+                        <button class="btn-primary">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mercedes GLC -->
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="IMG/glc.png" alt="Mercedes GLC" class="car-img">
+                </div>
+                <div class="car-info">
+                    <h2 class="car-title">Mercedes GLC</h2>
+                    <p class="car-desc">Luxury SUV • Automatic</p>
+                    <p class="car-price">₹75,00,000</p>
+                    <span class="car-tag diesel">Diesel</span>
+                    <div class="car-actions">
+                        <button class="btn-outline">Add to Wishlist</button>
+                        <button class="btn-primary">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mercedes C-Class -->
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="IMG/c-class.png" alt="Mercedes C-Class" class="car-img">
+                </div>
+                <div class="car-info">
+                    <h2 class="car-title">Mercedes C-Class</h2>
+                    <p class="car-desc">Executive Sedan • Automatic</p>
+                    <p class="car-price">₹60,00,000</p>
+                    <span class="car-tag petrol">Petrol</span>
+                    <div class="car-actions">
+                        <button class="btn-outline">Add to Wishlist</button>
+                        <button class="btn-primary">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rolls Royce Phantom -->
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="IMG/phantom.png" alt="Rolls Royce Phantom" class="car-img">
+                </div>
+                <div class="car-info">
+                    <h2 class="car-title">Rolls Royce Phantom</h2>
+                    <p class="car-desc">Ultra Luxury Sedan • Automatic</p>
+                    <p class="car-price">₹8,99,00,000</p>
+                    <span class="car-tag petrol">Petrol</span>
+                    <div class="car-actions">
+                        <button class="btn-outline">Add to Wishlist</button>
+                        <button class="btn-primary">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audi RS -->
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="IMG/rs.png" alt="Audi RS" class="car-img">
+                </div>
+                <div class="car-info">
+                    <h2 class="car-title">Audi RS Q8 Performance</h2>
+                    <p class="car-desc">Performance Sedan • Automatic</p>
+                    <p class="car-price">₹1,60,00,000</p>
+                    <span class="car-tag petrol">Petrol</span>
+                    <div class="car-actions">
+                        <button class="btn-outline">Add to Wishlist</button>
+                        <button class="btn-primary">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bentley Continental -->
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="IMG/continental.png" alt="Bentley Continental" class="car-img">
+                </div>
+                <div class="car-info">
+                    <h2 class="car-title">Bentley Continental</h2>
+                    <p class="car-desc">Luxury Coupe • Automatic</p>
+                    <p class="car-price">₹3,50,00,000</p>
+                    <span class="car-tag petrol">Petrol</span>
+                    <div class="car-actions">
+                        <button class="btn-outline">Add to Wishlist</button>
+                        <button class="btn-primary">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="IMG/e-tron.png" alt="e-tron" class="car-img">
+                </div>
+                <div class="car-info">
+                    <h2 class="car-title">Audi e-tron GT</h2>
+                    <p class="car-desc">Electric Sedan • Automatic</p>
+                    <p class="car-price">₹2,20,00,000</p>
+                    <span class="car-tag ev">EV</span>
+                    <div class="car-actions">
+                        <button class="btn-outline">Add to Wishlist</button>
+                        <button class="btn-primary">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
     </section>
 
-    <script>
-        const slides = document.querySelectorAll(".hero-slide");
-        const dots = document.querySelectorAll(".dot");
-        let currentSlide = 0;
-
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.toggle("active", i === index);
-                dots[i].classList.toggle("active", i === index);
-            });
-            currentSlide = index;
-        }
-
-        document.getElementById("next").addEventListener("click", () => {
-            let newIndex = (currentSlide + 1) % slides.length;
-            showSlide(newIndex);
-        });
-
-        document.getElementById("prev").addEventListener("click", () => {
-            let newIndex = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(newIndex);
-        });
-
-        dots.forEach((dot, i) => {
-            dot.addEventListener("click", () => showSlide(i));
-        });
-
-        setInterval(() => {
-            let newIndex = (currentSlide + 1) % slides.length;
-            showSlide(newIndex);
-        }, 5000);
-
-        showSlide(0);
-
-        // Navbar scroll effect
-        const header = document.querySelector("header");
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 50) {
-                header.classList.add("scrolled");
-            } else {
-                header.classList.remove("scrolled");
-            }
-        });
-    </script>
+    <script src="inventory.js"></script>
 
 </body>
 

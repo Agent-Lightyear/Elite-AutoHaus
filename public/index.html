@@ -20,7 +20,7 @@
         <div class="navigation-items">
           <a href="homepage.html">Home</a>
           <a href="#">About Us</a>
-          <a href="inventory.html">Inventory</a>
+          <a href="inventory.html" id="inventoryLink">Inventory</a>
           <a href="login.html">Login/Register</a>
           <a href="#">Contact Us</a>
         </div>
@@ -135,6 +135,17 @@
       header.classList.add('scrolled');
     } else {
       header.classList.remove('scrolled');
+    }
+  });
+
+    const inventoryLink = document.getElementById("inventoryLink");
+
+  inventoryLink.addEventListener("click", function (e) {
+    const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+
+    if (!isLoggedIn) {
+      e.preventDefault(); // stop normal link
+      window.location.href = "login.html"; // force login
     }
   });
 </script>

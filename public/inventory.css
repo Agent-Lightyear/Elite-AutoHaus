@@ -1,63 +1,107 @@
-/* Default: transparent */
+/* ---------------- IMPORT FONT ---------------- */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap');
+/* ---------------- GLOBAL ---------------- */
+body, header, nav, a, button {
+  font-family: "Raleway", sans-serif;
+}
+
+/* ---------------- HEADER / NAVBAR ---------------- */
+
+
+
 header {
-    background-color: transparent;
-  }
-  
-  /* Solid on scroll */
-  header.scrolled {
-    background-color: #181E26;
-  }
-  
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: transparent;        /* start transparent */
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1000;
+}
+
+header.scrolled {
+  background-color: #181e27;     /* solid background on scroll */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* optional shadow */
+}
 
 
 
+header .flex img {
+  height: 100px;        /* Logo size */
+  margin-right: 50px;
+}
+
+header nav a {
+  font-size: 1.75rem;   /* Navbar link size */
+  padding: 0.5rem 1rem; /* Extra clickable space */
+  margin-top: 50px;
+}
+header .brand {
+  font-size: 1.75rem;    /* Bigger size */
+  font-weight: 600;     /* Bold */
+  font-family: "Raleway", sans-serif; /* Premium font */
+  letter-spacing: 1px;  /* Elegant spacing */
+  color: white;         /* Or gold (#c9a55b) */
+  margin-top: 50px;
+}
 
 
+.hover-link:hover {
+  color: #c9a55b;
+}
+
+.mobile-link {
+  display: block;
+  padding: 0.5rem 0;
+}
+.mobile-link:hover {
+  color: #c9a55b;
+}
 
 /* ---------------- HERO SLIDER ---------------- */
 .hero-slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transform: translateX(20px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-    pointer-events: none;
-  }
-  
-  .hero-slide.active {
-    opacity: 1;
-    transform: translateX(0);
-    pointer-events: auto;
-    z-index: 1;
-  }
-  
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 1rem;
-    color: white;
-  }
-  
-  .hero-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    animation: fadeInUp 1s ease forwards;
-  }
-  
-  .hero-subtitle {
-    margin-top: 1rem;
-    font-size: 1.2rem;
-    animation: fadeInUp 1.2s ease forwards;
-  }
-  
-  .slider-btn {
-    position: absolute;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  pointer-events: none;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  color: white;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.hero-subtitle {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+.slider-btn {
+  position: absolute;
   top: 50%;
   transform: translateY(-50%);
   background: rgba(0, 0, 0, 0.4);
@@ -66,151 +110,133 @@ header {
   border-radius: 9999px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease;
-  z-index: 10; /* ensures buttons stay above slides */
-  font-size: 1.5rem; /* makes arrow more visible */
-  border: none; /* remove default button border */
-  }
-  .slider-btn:hover {
-    background: rgba(0, 0, 0, 0.6);
-    transform: translateY(-50%) scale(1.1);
-  }
-  
-  .slider-dots {
-    position: absolute;
-    bottom: 1.5rem;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-  }
-  
-  .dot {
-    width: 12px;
-    height: 12px;
-    background: #d1d5db; /* gray-300 */
-    border-radius: 50%;
-    cursor: pointer;
-    transition: transform 0.3s ease, background 0.3s ease;
-  }
-  .dot:hover {
-    transform: scale(1.2);
-  }
-  .dot.active {
-    background: #c9a55b;
-    transform: scale(1.3);
-  }
-  
-  /* Keyframes for text fade-up */
-  @keyframes fadeInUp {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  
-  /* ---------------- NAV LINKS ---------------- */
-  .hover-link:hover {
-    color: #c9a55b;
-  }
-  .mobile-link {
-    display: block;
-    padding: 0.5rem 0;
-  }
-  .mobile-link:hover {
-    color: #c9a55b;
-  }
-  
-  /* ---------------- BUTTONS ---------------- */
-  .btn-login {
-    background: #c9a55b;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
-  }
-  .btn-login:hover {
-    background: #b08e4c;
-  }
-  .btn-primary {
-    background: #c9a55b;
-    color: black;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    transition: background 0.3s;
-  }
-  .btn-primary:hover {
-    background: #b08a3e;
-  }
-  .btn-outline {
-    border: 1px solid #c9a55b;
-    color: #c9a55b;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    transition: all 0.3s;
-  }
-  .btn-outline:hover {
-    background: #c9a55b;
-    color: black;
-  }
-  
-  /* ---------------- CAR CARDS ---------------- */
-  .car-card {
-    background: #181E26;
-    border-radius: 1rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-  .car-img-box {
-    border: 2px solid #c9a55b;
-    background: white;
-  }
-  .car-img {
-    width: 100%;
-    padding: 0.75rem;
-    border-radius: 0.75rem 0.75rem 0 0;
-  }
-  .car-info {
-    padding: 1rem 1.5rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .car-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-  .car-desc {
-    color: #d1d5db;
-    font-size: 0.9rem;
-  }
-  .car-price {
-    color: #c9a55b;
-    font-weight: 600;
-    margin-top: 0.5rem;
-  }
-  .car-tag {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.25rem 0.75rem;
-    border-radius: 0.5rem;
-    margin-top: 0.5rem;
-  }
-  .car-tag.diesel { background: #374151; color: white; }
-  .car-tag.petrol { background: #dc2626; color: white; }
-  .car-tag.hybrid { background: #2563eb; color: white; }
-  .car-tag.ev { background: #16a34a; color: white; }
-  
-  .car-actions {
-    margin-top: 1rem;
-    display: flex;
-    gap: 0.75rem;
-  }
-  
+  z-index: 10;
+  font-size: 1.5rem;
+  border: none;
+}
+.slider-btn:hover {
+  background: rgba(0, 0, 0, 0.6);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 1.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background: #d1d5db; /* gray-300 */
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.dot:hover {
+  transform: scale(1.2);
+}
+.dot.active {
+  background: #c9a55b;
+  transform: scale(1.3);
+}
+
+/* Keyframes */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------- BUTTONS ---------------- */
+.btn-primary {
+  background: #c9a55b;
+  color: black;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+.btn-primary:hover {
+  background: #b08a3e;
+}
+
+.btn-outline {
+  border: 1px solid #c9a55b;
+  color: #c9a55b;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+}
+.btn-outline:hover {
+  background: #c9a55b;
+  color: black;
+}
+
+/* ---------------- CAR CARDS ---------------- */
+.car-card {
+  background: #181E26;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 2px solid #c9a55b;
+
+}
+
+.car-img-box {
+  background: white;
+}
+
+.car-img {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.car-info {
+  font-family: "Oswald", sans-serif;
+  padding: 1rem 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.car-title {
+ font-family: "Oswald", sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.car-desc {
+  color: #d1d5db;
+  font-size: 0.9rem;
+}
+
+.car-price {
+  color: #c9a55b;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.car-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+}
+.car-tag.diesel { background: #374151; color: white; }
+.car-tag.petrol { background: #dc2626; color: white; }
+.car-tag.hybrid { background: #2563eb; color: white; }
+.car-tag.ev { background: #16a34a; color: white; }
+
+.car-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+}
