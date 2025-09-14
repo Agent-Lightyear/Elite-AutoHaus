@@ -151,17 +151,35 @@ header .brand {
 }
 
 /* ---------------- BUTTONS ---------------- */
+.btn-hero {
+  background: #c9a55b;
+  color: black;
+  padding: 0.5rem 1rem;
+  margin-top: 25px;
+  border-radius: 0.5rem;
+  font-weight: 400;
+  transition: background 0.3s;
+  border: 1px solid #c9a55b;
+  /* margin-top: 30px; */
+}
+.btn-hero:hover {
+  background: #181E26;
+  color: #c9a55b;
+}
+
 .btn-primary {
   background: #c9a55b;
   color: black;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  font-weight: 600;
+  font-weight: 400;
   transition: background 0.3s;
-  margin-top: 30px;
+  border: 1px solid #c9a55b;
+  /* margin-top: 30px; */
 }
 .btn-primary:hover {
-  background: #b08a3e;
+  background: #181E26;
+  color: #c9a55b;
 }
 
 .btn-outline {
@@ -170,6 +188,7 @@ header .brand {
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   transition: all 0.3s;
+  font-weight: 400;
 }
 .btn-outline:hover {
   background: #c9a55b;
@@ -178,14 +197,21 @@ header .brand {
 
 /* ---------------- CAR CARDS ---------------- */
 .car-card {
-  background: #181E26;
+    background: #181E26;
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0,0,0,0.2);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   border: 2px solid #c9a55b;
+  opacity: 0;
+  transform: translateY(40px); /* slide up effect */
+  transition: all 0.8s ease;
 
+}
+.car-card.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .car-img-box {
@@ -240,4 +266,78 @@ header .brand {
   margin-top: 1rem;
   display: flex;
   gap: 0.75rem;
+}
+
+/* Animate filters container fade-in + slight slide */
+.filters-container {
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeSlideIn 0.8s ease forwards;
+}
+
+/* Search box */
+.filters-container input[type="text"] {
+  padding: 10px 15px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  min-width: 220px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.filters-container input[type="text"]:focus {
+  border-color: #d4af37;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+  transform: scale(1.05); /* subtle grow */
+}
+
+/* Dropdowns */
+.filters-container select {
+  padding: 10px 15px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filters-container select:hover {
+  border-color: #d4af37;
+  transform: translateY(-2px); /* slight lift */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Section title animation */
+h2 {
+  text-align: center;
+  margin: 30px 0 20px;
+  font-weight: 600;
+  opacity: 0;
+  animation: fadeIn 1s ease 0.5s forwards;
+}
+
+/* Keyframes */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

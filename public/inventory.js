@@ -51,46 +51,91 @@ setInterval(() => {
 showSlide(0);
 
 
-const searchInput = document.getElementById("searchInput");
-const fuelFilter = document.getElementById("fuelFilter");
-const priceFilter = document.getElementById("priceFilter");
-const carCards = document.querySelectorAll(".car-card");
 
-function parsePrice(priceText) {
-  // Example: "₹75,00,000" → 7500000
-  return parseInt(priceText.replace(/[₹,]/g, ""), 10);
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.getElementById("searchInput");
+  const fuelFilter = document.getElementById("fuelFilter");
+  const priceFilter = document.getElementById("priceFilter");
+  const sortBy = document.getElementById("sortBy");
+  const carCards = Array.from(document.querySelectorAll(".car-card")); 
 
-function filterCars() {
-  const searchText = searchInput.value.toLowerCase();
-  const selectedFuel = fuelFilter.value;
-  const selectedPrice = priceFilter.value;
+  function filterAndSort() {
+    let searchVal = searchInput.value.toLowerCase();
+    let fuelVal = fuelFilter.value;
+    let priceVal = priceFilter.value;
+    let sortVal = sortBy.value;
 
-  carCards.forEach(card => {
-    const name = card.querySelector(".car-title").textContent.toLowerCase();
-    const fuel = card.querySelector(".car-tag").classList[1]; // petrol, diesel, hybrid, ev
-    const price = parsePrice(card.querySelector(".car-price").textContent);
+    let filtered = carCards.filter(card => {
+      let name = card.querySelector(".car-title").innerText.toLowerCase();
+      let fuel = card.getAttribute("data-fuel"); 
+      let price = parseInt(card.getAttribute("data-price"));
 
-    const matchesSearch = name.includes(searchText);
-    const matchesFuel = !selectedFuel || fuel === selectedFuel;
+      // search
+      let matchSearch = name.includes(searchVal);
 
-    let matchesPrice = true;
-    if (selectedPrice) {
-      const [min, max] = selectedPrice.split("-").map(Number);
-      matchesPrice = price >= min && price <= max;
+      // fuel filter
+      let matchFuel = fuelVal === "" || fuel === fuelVal;
+
+      // price filter
+      let matchPrice = true;
+      if (priceVal === "20-50") matchPrice = price >= 2000000 && price <= 5000000;
+      if (priceVal === "50-100") matchPrice = price > 5000000 && price <= 10000000;
+      if (priceVal === "100+") matchPrice = price > 10000000;
+
+      return matchSearch && matchFuel && matchPrice;
+    });
+
+    // sorting
+    if (sortVal === "priceLowHigh") {
+      filtered.sort((a, b) => 
+        parseInt(a.getAttribute("data-price")) - parseInt(b.getAttribute("data-price"))
+      );
+    } else if (sortVal === "priceHighLow") {
+      filtered.sort((a, b) => 
+        parseInt(b.getAttribute("data-price")) - parseInt(a.getAttribute("data-price"))
+      );
+    } else if (sortVal === "nameAZ") {
+      filtered.sort((a, b) => 
+        a.querySelector(".car-title").innerText.localeCompare(b.querySelector(".car-title").innerText)
+      );
+    } else if (sortVal === "nameZA") {
+      filtered.sort((a, b) => 
+        b.querySelector(".car-title").innerText.localeCompare(a.querySelector(".car-title").innerText)
+      );
     }
 
-    if (matchesSearch && matchesFuel && matchesPrice) {
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
-    }
-  });
-}
+    // ✅ your grid container
+    const container = document.querySelector(".grid");  
+    container.innerHTML = "";
+    filtered.forEach(card => container.appendChild(card));
+  }
 
-// Event listeners
-searchInput.addEventListener("input", filterCars);
-fuelFilter.addEventListener("change", filterCars);
-priceFilter.addEventListener("change", filterCars);
+  // events
+  searchInput.addEventListener("input", filterAndSort);
+  fuelFilter.addEventListener("change", filterAndSort);
+  priceFilter.addEventListener("change", filterAndSort);
+  sortBy.addEventListener("change", filterAndSort);
+
+  filterAndSort();
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".car-card");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          observer.unobserve(entry.target); // reveal only once
+        }
+      });
+    },
+    { threshold: 0.2 } // triggers when 20% of card is visible
+  );
+
+  cards.forEach(card => observer.observe(card));
+});
 
 

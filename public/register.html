@@ -64,7 +64,7 @@
         <button type="submit"
           class="w-full bg-white text-gray-900 py-3 rounded-xl font-semibold transition hover:bg-[#c9a55b] hover:text-white">Register</button>
       </form>
-
+<div id="recaptcha-container"></div>
       <p class="text-center text-sm text-gray-400 mt-6">
         Already have an account? 
         <a href="login.html" class="text-white font-semibold hover:underline">Login</a>
@@ -73,119 +73,129 @@
   </div>
 
   <!-- Firebase & Firestore -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-    import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+ <script type="module">
+  import { 
+    initializeApp 
+  } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyAMR69VGl2IFav9-P-rwpzaLvZh7WpwFcE",
-      authDomain: "elite-autohaus-018s.firebaseapp.com",
-      projectId: "elite-autohaus-018s",
-      storageBucket: "elite-autohaus-018s.firebasestorage.app",
-      messagingSenderId: "374828356950",
-      appId: "1:374828356950:web:04abb8bcced3f3ea02f7"
-    };
+  import { 
+    getAuth, 
+    createUserWithEmailAndPassword, 
+    updateProfile,
+    sendEmailVerification,
+    RecaptchaVerifier,
+    signInWithPhoneNumber
+  } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
+  import { 
+    getFirestore, 
+    doc, 
+    setDoc, 
+    serverTimestamp 
+  } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
-    const registerForm = document.getElementById('registerForm');
+  // Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyAMR69VGl2IFav9-P-rwpzaLvZh7WpwFcE",
+    authDomain: "elite-autohaus-018s.firebaseapp.com",
+    projectId: "elite-autohaus-018s",
+    storageBucket: "elite-autohaus-018s.firebasestorage.app",
+    messagingSenderId: "374828356950",
+    appId: "1:374828356950:web:04abb8bcced3f3ea02f7"
+  };
 
-    registerForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
+  // Init
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
 
-  // Read inputs carefully
-  const fullName = document.getElementById('fullName')?.value.trim();
-  const email = document.getElementById('email')?.value.trim();
-  const phone = document.getElementById('phone')?.value.trim();
-  const password = document.getElementById('password')?.value;
-  const confirmPassword = document.getElementById('confirmPassword')?.value;
+  // Setup invisible reCAPTCHA for phone
+  window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+    'size': 'invisible',
+    'callback': (response) => {
+      console.log("Recaptcha verified");
+    }
+  });
 
-  // Debug: check values
-  console.log({ fullName, email, phone, password, confirmPassword });
+  const registerForm = document.getElementById('registerForm');
 
-  if (!fullName || !email || !phone || !password || !confirmPassword) {
-    alert("Please fill in all fields!");
-    return;
-  }
+  registerForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-  if (password !== confirmPassword) {
-    alert("Passwords do not match!");
-    return;
-  }
+    const fullName = document.getElementById('fullName')?.value.trim();
+    const email = document.getElementById('email')?.value.trim();
+    const phone = document.getElementById('phone')?.value.trim();
+    const password = document.getElementById('password')?.value;
+    const confirmPassword = document.getElementById('confirmPassword')?.value;
 
-  try {
-    // Create user in Firebase Auth
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
+    if (!fullName || !email || !phone || !password || !confirmPassword) {
+      alert("Please fill in all fields!");
+      return;
+    }
 
-    // Update display name in Auth
-    await updateProfile(user, { displayName: fullName });
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
 
-    // Save user info in Firestore
     try {
+      // ✅ Create user
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // ✅ Update display name
+      await updateProfile(user, { displayName: fullName });
+
+      // ✅ Send email verification
+      // await sendEmailVerification(user);
+      // alert("📧 Verification email sent! Please check your inbox/spam.");
+
+      // ✅ Save user info in Firestore
       await setDoc(doc(db, "users", user.uid), {
         name: fullName,
         email: email,
         phone: phone,
         createdAt: serverTimestamp()
       });
-      console.log("✅ User saved in Firestore:", { fullName, email, phone });
-    } catch (err) {
-      console.error("❌ Error writing to Firestore:", err);
-      alert("Failed to save user info. Check console for errors.");
-      return;
+
+      // ✅ Send phone OTP
+      // const appVerifier = window.recaptchaVerifier;
+      // await signInWithPhoneNumber(auth, "+91" + phone, appVerifier) // adjust country code as needed
+      //   .then((confirmationResult) => {
+      //     window.confirmationResult = confirmationResult;
+      //     const otp = prompt("Enter the OTP sent to your phone:");
+      //     return confirmationResult.confirm(otp);
+      //   })
+      //   .then(() => {
+      //     alert("📱 Phone number verified successfully!");
+      //   })
+      //   .catch((error) => {
+      //     alert("Phone verification failed: " + error.message);
+      //   });
+
+      // ✅ Success message
+      registerForm.innerHTML = `
+        <p class="text-green-400 text-center font-semibold text-lg">
+          ✅ Registration successful! Verify your email before logging in.
+        </p>
+      `;
+      setTimeout(() => {
+        window.location.href = "login.html";
+      }, 3000);
+
+    } catch (error) {
+      if (error.code === 'auth/email-already-in-use') {
+        alert("This email is already registered!");
+      } else {
+        alert(error.message);
+      }
     }
+  });
+</script>
 
-    // Show success and redirect
-    registerForm.innerHTML = `
-      <p class="text-green-400 text-center font-semibold text-lg">
-        ✅ Registration successful! Redirecting to login...
-      </p>
-    `;
-    setTimeout(() => {
-      window.location.href = "login.html";
-    }, 2000);
-
-  } catch (error) {
-    if (error.code === 'auth/email-already-in-use') {
-      alert("This email is already registered!");
-    } else {
-      alert(error.message);
-    }
-  }
-});
-
-// Password toggle for "Password"
-const passwordInput = document.getElementById('password');
-const togglePassword = document.getElementById('togglePassword');
-const togglePasswordIcon = document.getElementById('togglePasswordIcon');
-
-togglePassword.addEventListener('click', () => {
-  const type = passwordInput.type === 'password' ? 'text' : 'password';
-  passwordInput.type = type;
-
-  // Change icon
-  togglePasswordIcon.src = type === 'password' ? 'IMG/headlight_off.png' : 'IMG/headlight_on.png';
-});
-
-// Password toggle for "Confirm Password"
-const confirmPasswordInput = document.getElementById('confirmPassword');
-const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
-const toggleConfirmPasswordIcon = document.getElementById('toggleConfirmPasswordIcon');
-
-toggleConfirmPassword.addEventListener('click', () => {
-  const type = confirmPasswordInput.type === 'password' ? 'text' : 'password';
-  confirmPasswordInput.type = type;
-
-  // Change icon
-  toggleConfirmPasswordIcon.src = type === 'password' ? 'IMG/headlight_off.png' : 'IMG/headlight_on.png';
-});
+<!-- 🔑 Add this somewhere in your HTML body -->
 
 
-  </script>
 
 </body>
 </html>
