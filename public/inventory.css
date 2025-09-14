@@ -1,8 +1,14 @@
 /* ---------------- IMPORT FONT ---------------- */
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap');
+
 /* ---------------- GLOBAL ---------------- */
-body, header, nav, a, button {
+body,
+header,
+nav,
+a,
+button {
   font-family: "Raleway", sans-serif;
 }
 
@@ -14,34 +20,46 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  background: transparent;        /* start transparent */
+  background: transparent;
+  /* start transparent */
   transition: background 0.3s ease, box-shadow 0.3s ease;
   z-index: 1000;
 }
 
 header.scrolled {
-  background-color: #181e27;     /* solid background on scroll */
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* optional shadow */
+  background-color: #181e27;
+  /* solid background on scroll */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  /* optional shadow */
 }
 
 
 
 header .flex img {
-  height: 100px;        /* Logo size */
+  height: 100px;
+  /* Logo size */
   margin-right: 50px;
 }
 
 header nav a {
-  font-size: 1.75rem;   /* Navbar link size */
-  padding: 0.5rem 1rem; /* Extra clickable space */
+  font-size: 1.75rem;
+  /* Navbar link size */
+  padding: 0.5rem 1rem;
+  /* Extra clickable space */
   margin-top: 50px;
 }
+
 header .brand {
-  font-size: 1.75rem;    /* Bigger size */
-  font-weight: 600;     /* Bold */
-  font-family: "Raleway", sans-serif; /* Premium font */
-  letter-spacing: 1px;  /* Elegant spacing */
-  color: white;         /* Or gold (#c9a55b) */
+  font-size: 1.75rem;
+  /* Bigger size */
+  font-weight: 600;
+  /* Bold */
+  font-family: "Raleway", sans-serif;
+  /* Premium font */
+  letter-spacing: 1px;
+  /* Elegant spacing */
+  color: white;
+  /* Or gold (#c9a55b) */
   margin-top: 50px;
 }
 
@@ -54,6 +72,7 @@ header .brand {
   display: block;
   padding: 0.5rem 0;
 }
+
 .mobile-link:hover {
   color: #c9a55b;
 }
@@ -114,6 +133,7 @@ header .brand {
   font-size: 1.5rem;
   border: none;
 }
+
 .slider-btn:hover {
   background: rgba(0, 0, 0, 0.6);
   transform: translateY(-50%) scale(1.1);
@@ -131,14 +151,17 @@ header .brand {
 .dot {
   width: 12px;
   height: 12px;
-  background: #d1d5db; /* gray-300 */
+  background: #d1d5db;
+  /* gray-300 */
   border-radius: 50%;
   cursor: pointer;
   transition: transform 0.3s ease, background 0.3s ease;
 }
+
 .dot:hover {
   transform: scale(1.2);
 }
+
 .dot.active {
   background: #c9a55b;
   transform: scale(1.3);
@@ -146,8 +169,15 @@ header .brand {
 
 /* Keyframes */
 @keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ---------------- BUTTONS ---------------- */
@@ -162,6 +192,7 @@ header .brand {
   border: 1px solid #c9a55b;
   /* margin-top: 30px; */
 }
+
 .btn-hero:hover {
   background: #181E26;
   color: #c9a55b;
@@ -177,6 +208,7 @@ header .brand {
   border: 1px solid #c9a55b;
   /* margin-top: 30px; */
 }
+
 .btn-primary:hover {
   background: #181E26;
   color: #c9a55b;
@@ -190,6 +222,7 @@ header .brand {
   transition: all 0.3s;
   font-weight: 400;
 }
+
 .btn-outline:hover {
   background: #c9a55b;
   color: black;
@@ -197,18 +230,23 @@ header .brand {
 
 /* ---------------- CAR CARDS ---------------- */
 .car-card {
-    background: #181E26;
+  background: #181E26;
   border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   border: 2px solid #c9a55b;
   opacity: 0;
-  transform: translateY(40px); /* slide up effect */
+  transform: translateY(40px);
+  /* slide up effect */
   transition: all 0.8s ease;
-
+  position: relative;
+  /* needed for absolute positioning */
+  overflow: hidden;
 }
+
+
 .car-card.show {
   opacity: 1;
   transform: translateY(0);
@@ -233,7 +271,7 @@ header .brand {
 }
 
 .car-title {
- font-family: "Oswald", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.2rem;
   font-weight: bold;
 }
@@ -257,15 +295,64 @@ header .brand {
   border-radius: 0.5rem;
   margin-top: 0.5rem;
 }
-.car-tag.diesel { background: #374151; color: white; }
-.car-tag.petrol { background: #dc2626; color: white; }
-.car-tag.hybrid { background: #2563eb; color: white; }
-.car-tag.ev { background: #16a34a; color: white; }
+
+.car-tag.diesel {
+  background: #374151;
+  color: white;
+}
+
+.car-tag.petrol {
+  background: #dc2626;
+  color: white;
+}
+
+.car-tag.hybrid {
+  background: #2563eb;
+  color: white;
+}
+
+.car-tag.ev {
+  background: #16a34a;
+  color: white;
+}
 
 .car-actions {
   margin-top: 1rem;
   display: flex;
   gap: 0.75rem;
+}
+
+/* Greyed out effect - only on inner content */
+.car-card[data-soldout="true"] .car-img-box,
+.car-card[data-soldout="true"] .car-info {
+  filter: grayscale(100%) brightness(.85);
+}
+
+/* Slanted red ribbon */
+.car-card[data-soldout="true"]::before {
+  content: "Sold Out";
+  position: absolute;
+  top: 20px;
+  left: -45px;
+  width: 160px;
+  background: #e60000;
+  /* solid red */
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  padding: 6px 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  z-index: 10;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+
+.car-card .car-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* Animate filters container fade-in + slight slide */
@@ -296,7 +383,8 @@ header .brand {
 .filters-container input[type="text"]:focus {
   border-color: #d4af37;
   box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
-  transform: scale(1.05); /* subtle grow */
+  transform: scale(1.05);
+  /* subtle grow */
 }
 
 /* Dropdowns */
@@ -312,7 +400,8 @@ header .brand {
 
 .filters-container select:hover {
   border-color: #d4af37;
-  transform: translateY(-2px); /* slight lift */
+  transform: translateY(-2px);
+  /* slight lift */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
@@ -331,6 +420,7 @@ h2 {
     opacity: 0;
     transform: translateY(-15px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -338,6 +428,75 @@ h2 {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
+
+
+/* sold out pop-up */
+/* BACKDROP ANIMATION */
+#soldoutModal {
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+  font-family:"Inter", sans-serif;
+}
+
+#soldoutModal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* MODAL CONTENT ANIMATION */
+#soldoutModal .modal-content {
+  transform: scale(0.8);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+#soldoutModal.show .modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* BUTTON STYLE */
+#soldoutModal button {
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+#soldoutModal button:hover {
+  transform: translateY(-2px);
+}
+
+/* Modal Styling */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+

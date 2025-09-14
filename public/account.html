@@ -5,21 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Elite Autohaus | Account</title>
   <link rel="stylesheet" href="account.css">
+  <!-- jsPDF CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 </head>
 <body>
 
   <!-- Navbar -->
   <header>
     <a href="home.html" class="center-logo-link">
-    <span>Élite Autohaus</span>
-    <img src="IMG/logo_1.png" alt="Elite AutoHaus Logo">
-  </a>
+      <span>Élite Autohaus</span>
+      <img src="IMG/logo_1.png" alt="Elite AutoHaus Logo">
+    </a>
     <button id="logoutBtn">Logout</button>
   </header>
 
   <!-- Account Content -->
   <div class="container">
-    <p style="margin-top: 20px; color: #777; margin-bottom: 20px;">Welcome to your Élite Autohaus account dashboard.</p>
+    <p style="margin-top: 20px; color: #777; margin-bottom: 20px;">
+      Welcome to your Élite Autohaus account dashboard.
+    </p>
 
     <img src="IMG/user.png" alt="Profile Picture" class="profile-pic">
     <h2 id="userName">User Name</h2>
@@ -46,94 +51,28 @@
         <li style="color:#777;">No purchases yet.</li>
       </ul>
     </div>
-
-    
   </div>
 
-  <!-- Firebase -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-    import { getFirestore, doc, getDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+  <!-- Invoice Popup -->
+  <div id="invoice-popup" class="popup" style="display:none;">
+    <div class="popup-content">
+      <h2>Invoice</h2>
+      <p><strong>Customer:</strong> <span id="invoice-customer"></span></p>
+      <p><strong>Car:</strong> <span id="invoice-car"></span></p>
+      <p><strong>Price:</strong> ₹<span id="invoice-price"></span></p>
+      <p><strong>Date:</strong> <span id="invoice-date"></span></p>
+      <button id="download-pdf">Download PDF</button>
+      <button id="close-popup">Close</button>
+    </div>
+  </div>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyAMR69VGl2IFav9-P-rwpzaLvZh7WpwFcE",
-      authDomain: "elite-autohaus-018s.firebaseapp.com",
-      projectId: "elite-autohaus-018s",
-      storageBucket: "elite-autohaus-018s.appspot.com",
-      messagingSenderId: "374828356950",
-      appId: "1:374828356950:web:04abb8bcced3f3ea02f2f7"
-    };
+  <!-- JS -->
+   <!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
+<!-- autoTable plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
 
-    const userName = document.getElementById('userName');
-    const nameField = document.getElementById('nameField');
-    const emailField = document.getElementById('emailField');
-    const phoneField = document.getElementById('phoneField');
-    const purchaseList = document.getElementById('purchaseList');
-    const logoutBtn = document.getElementById('logoutBtn');
-
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        // Default values from Firebase Auth
-        let displayName = user.displayName || "Elite User";
-        let email = user.email || "Not available";
-        let phone = user.phoneNumber || "Not provided";
-
-        // Show Auth defaults
-        userName.textContent = displayName;
-        nameField.textContent = displayName;
-        emailField.textContent = email;
-        phoneField.textContent = phone;
-
-        // Try Firestore for overrides
-        const docRef = doc(db, "users", user.uid);
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          const userData = docSnap.data();
-
-          // Name: Firestore > Auth
-          displayName = userData.name || displayName;
-          // Phone: Firestore > Auth
-          phone = (userData.phone && userData.phone.trim() !== "")
-            ? userData.phone
-            : phone;
-
-          userName.textContent = displayName;
-          nameField.textContent = displayName;
-          phoneField.textContent = phone;
-        }
-
-        // Purchase history
-        const purchasesRef = collection(db, "users", user.uid, "purchases");
-        const purchaseSnap = await getDocs(purchasesRef);
-
-        purchaseList.innerHTML = ""; // clear default
-        if (!purchaseSnap.empty) {
-          purchaseSnap.forEach((doc) => {
-            const purchase = doc.data();
-            const li = document.createElement("li");
-            li.textContent = `${purchase.itemName || "Unknown Item"} - ₹${purchase.amount || "0"} (on ${purchase.date || "N/A"})`;
-            purchaseList.appendChild(li);
-          });
-        } else {
-          purchaseList.innerHTML = "<li style='color:#777;'>No purchases yet.</li>";
-        }
-
-      } else {
-        window.location.assign("login.html");
-      }
-    });
-
-    logoutBtn.addEventListener('click', async () => {
-      await signOut(auth);
-      window.location.assign("login.html");
-    });
-  </script>
-
+  <script type="module" src="account.js"></script>
 </body>
 </html>
