@@ -230,6 +230,7 @@ section {
   margin-bottom: 10px;
   font-weight: bold;
   color:#c9a55b;
+  text-decoration:none;
 }
 
 .about-button {
@@ -247,6 +248,217 @@ section {
   background-color: #c9a55b;
   color: #ffffff;
 }
+
+/* --- Testimonials Section --- */
+#testimonials {
+  background: #f8f2ea;
+  padding: 60px 0;
+}
+
+.testimonials-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #181E26;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+.testimonials-title span {
+  color: #c9a55b;
+}
+
+#slider-container {
+  max-width: 700px;
+  margin: 40px auto 0 auto;
+  text-align: center;
+  position: relative;
+}
+
+.review {
+  background: transparent;
+  border-radius: 16px;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 40px;
+}
+
+.review .quote {
+  font-size: 2rem;
+  color: #c9a55b;
+  margin-bottom: 10px;
+}
+
+.review .stars {
+  color: #ffc107;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.review p {
+  font-size: 1.15rem;
+  color: #181E26;
+  margin: 25px 0 10px 0;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.review .reviewer {
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-top: 10px;
+  color: #181E26;
+  letter-spacing: 1px;
+}
+
+#slider-container button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #ff7f2a;
+  cursor: pointer;
+  margin: 0 15px;
+  transition: color 0.2s;
+}
+
+#slider-container button:hover {
+  color: #c9a55b;
+}
+
+/* --- Review Form Section --- */
+#review-form {
+  background: #f8f2ea;
+  padding: 40px 0;
+}
+
+#review-form .form-container {
+  max-width: 500px;
+  margin: auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 30px;
+}
+
+#review-form h3 {
+  color: #181E26;
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+#review-form input[type="text"],
+#review-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #c9a55b;
+  border-radius: 5px;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+#starRating {
+  margin-left: 10px;
+  font-size: 1.7rem;
+  cursor: pointer;
+  display: inline-block;
+}
+
+#starRating .star {
+  color: #ccc;
+  transition: color 0.2s;
+  margin-right: 2px;
+}
+
+#starRating .star.selected,
+#starRating .star:hover,
+#starRating .star.active {
+  color: #ffc107;
+}
+
+#review-form button[type="submit"] {
+  background: #c9a55b;
+  color: #fff;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.2s;
+}
+
+#review-form button[type="submit"]:hover {
+  background: #b08a3e;
+}
+
+/* ================= FOOTER ================= */
+.footer {
+    background-color: #181E26;
+    color: #ffeded;
+    text-decoration: none;
+    background :181e26;
+    padding: 40px 20px;
+    margin-top: 50px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s, color 0.3s;
+
+  }
+.footer li a,
+.footer ul li a,
+.footer a {
+  color: #fff !important;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer li a:hover,
+.footer ul li a:hover,
+.footer a:hover,
+.footer li a:active,
+.footer ul li a:active,
+.footer a:active {
+  color: #c9a55b !important;
+}
+
+.footer .footer-bottom {
+  border-top: 1px solid #444;
+}
+.footer .media-icons a {
+  color: #fff;
+  font-size: 1.5rem;
+  margin: 0 10px;
+  transition: color 0.3s, transform 0.3s;
+}
+.footer .media-icons a:hover {
+  color: #c9a55b;
+  transform: scale(1.2);
+}
+
+/* ...existing code... */
+
+  .text-gold {
+    color: #c9a55b;
+  }
+  .btn-gold {
+    background-color: #c9a55b;
+    color: #fff;
+    font-weight: bold;
+  }
+  .btn-gold:hover {
+    background-color: #b38f4f;
+    color: #fff;
+  }
+
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 1040px) {
@@ -319,4 +531,35 @@ section {
     border-radius: 10px;
     box-shadow: 0 5px 25px rgba(1, 1, 1, 0.2);
   }
+
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .about-left, .about-right {
+    max-width: 100%;
+  }
+  .about-left .about-logo {
+    width: 100%;
+    max-width: 300px;
+  }
+  .about-right h2 {
+    font-size: 2em;
+  }
+  .about-right p, .about-right ul li {
+    font-size: 1em;
+  }
+  .about-button {
+    font-size: 0.9em;
+    padding: 8px 16px;
+  }
+ 
+  .footer .media-icons {
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+  }
 }
+
+
