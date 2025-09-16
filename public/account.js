@@ -109,16 +109,19 @@ onAuthStateChanged(auth, async (user) => {
           customer: displayName,
           car: btn.dataset.car,
           price: btn.dataset.price,
-          date: btn.dataset.date
+          date: btn.dataset.date,
+          phone: phone, // ✅ add phone here
+          address: "10, Adarsh Nagar, Wadi, Nagpur, 440023" // ✅ static address
         };
-
+      
         invoiceCustomer.textContent = currentInvoice.customer;
         invoiceCar.textContent = currentInvoice.car;
         invoicePrice.textContent = Number(currentInvoice.price).toLocaleString();
         invoiceDate.textContent = currentInvoice.date;
-
+      
         invoicePopup.style.display = 'flex';
       });
+      
 
       li.appendChild(btn);
       purchaseList.appendChild(li);
@@ -162,8 +165,8 @@ if (downloadPdfBtn) {
 
         doc.setFontSize(10);
         doc.setTextColor(80, 80, 80);
-        doc.text("123 Auto Street, Pune, India", 140, 80);
-        doc.text("Phone: +91 99999 88888 | Email: info@eliteautohaus.com", 140, 95);
+        doc.text("A-99, MIDC, Wadi, Nagpur, 440016", 140, 80);
+        doc.text("Phone: +91 99999 88888 | Email: eliteautohaus.helpdesk@gmail.com", 140, 95);
 
         // --- Invoice Title ---
         doc.setFontSize(16);
@@ -177,14 +180,28 @@ if (downloadPdfBtn) {
         doc.text(`Date: ${currentInvoice.date}`, 450, metaY);
 
         // --- Customer info ---
-        doc.setFontSize(12);
-        doc.setTextColor(40, 40, 40);
-        let y = 150;
-        doc.text("Bill To:", 40, y); y += 18;
-        doc.setFontSize(11);
-        doc.setTextColor(80, 80, 80);
-        doc.text(currentInvoice.customer, 40, y); y += 16;
-        doc.text(currentInvoice.car, 40, y);
+        // --- Customer info ---
+doc.setFontSize(12);
+doc.setTextColor(40, 40, 40);
+let y = 150;
+doc.text("Bill To:", 40, y); 
+y += 18;
+
+doc.setFontSize(11);
+doc.setTextColor(80, 80, 80);
+doc.text(currentInvoice.customer, 40, y); 
+y += 16;
+
+// ✅ Add phone
+doc.text(`Phone: ${currentInvoice.phone || "Not provided"}`, 40, y); 
+y += 16;
+
+// ✅ Add address
+doc.text(currentInvoice.address, 40, y, { maxWidth: 250 }); 
+y += 32;
+
+doc.text(currentInvoice.car, 40, y);
+
 
         // --- Table ---
         const basePrice = Number(currentInvoice.price);
@@ -222,7 +239,7 @@ if (downloadPdfBtn) {
         doc.text("Notes:", 40, finalY);
         doc.text("- All sales are final.", 40, finalY + 20);
         doc.text("- Warranty as per manufacturer policy.", 40, finalY + 35);
-        doc.text("- For queries: support@eliteautohaus.com", 40, finalY + 50);
+        doc.text("- For queries: eliteautohaus.helpdesk@gmail.com", 40, finalY + 50);
 
         // --- Footer ---
         doc.setDrawColor(212, 175, 55);

@@ -41,9 +41,10 @@ header .brand {
 }
 
 header .brand img {
-  margin-right: 10px;
+  margin-left: 95px;
   height: 225px;
   width: auto;
+  transform: scale(225%);
 }
 
 header .navigation {
