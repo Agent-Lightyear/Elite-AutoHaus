@@ -1,3 +1,6 @@
+// =========================
+// Imports
+// =========================
 import { auth, db } from "./firebase.js";
 import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
@@ -23,6 +26,7 @@ function showSlide(index) {
   });
   currentSlide = index;
 }
+
 document.getElementById("next").addEventListener("click", () => showSlide((currentSlide + 1) % slides.length));
 document.getElementById("prev").addEventListener("click", () => showSlide((currentSlide - 1 + slides.length) % slides.length));
 dots.forEach((dot, i) => dot.addEventListener("click", () => showSlide(i)));
@@ -37,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const fuelFilter = document.getElementById("fuelFilter");
   const priceFilter = document.getElementById("priceFilter");
   const sortBy = document.getElementById("sortBy");
-  const carCards = Array.from(document.querySelectorAll(".car-card")); 
+  const carCards = Array.from(document.querySelectorAll(".car-card"));
   const container = document.querySelector(".grid");
 
   function filterAndSort() {
@@ -48,12 +52,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let filtered = carCards.filter(card => {
       let name = card.querySelector(".car-title").innerText.toLowerCase();
-      let fuel = card.dataset.fuel; 
+      let fuel = card.dataset.fuel;
       let price = parseInt(card.dataset.price);
 
       let matchSearch = name.includes(searchVal);
       let matchFuel = fuelVal === "" || fuel === fuelVal;
       let matchPrice = true;
+
       if (priceVal === "20-50") matchPrice = price >= 2000000 && price <= 5000000;
       if (priceVal === "50-100") matchPrice = price > 5000000 && price <= 10000000;
       if (priceVal === "100+") matchPrice = price > 10000000;
@@ -61,6 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return matchSearch && matchFuel && matchPrice;
     });
 
+    // Sorting
     if (sortVal === "priceLowHigh") {
       filtered.sort((a, b) => parseInt(a.dataset.price) - parseInt(b.dataset.price));
     } else if (sortVal === "priceHighLow") {
@@ -79,6 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fuelFilter.addEventListener("change", filterAndSort);
   priceFilter.addEventListener("change", filterAndSort);
   sortBy.addEventListener("change", filterAndSort);
+
   filterAndSort();
 });
 
@@ -95,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }, { threshold: 0.2 });
+
   cards.forEach(card => observer.observe(card));
 });
 
@@ -112,29 +120,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }));
   });
 });
+
 function showSoldOutPopup(carName) {
   const modal = document.getElementById("soldoutModal");
   document.getElementById("soldoutMessage").textContent = `🚫 Sorry, ${carName} is already sold out!`;
   modal.classList.add("show");
 }
+
 function closeSoldOutModal() {
   document.getElementById("soldoutModal").classList.remove("show");
 }
 window.closeSoldOutModal = closeSoldOutModal;
 
 // =========================
-// Purchase Flow
+// Purchase Flow with EmailJS
 // =========================
 let selectedCar = null;
 const purchaseModal = document.getElementById("purchaseModal");
 const confirmBtn = document.getElementById("confirmPurchaseBtn");
 
+// ✅ Initialize EmailJS (make sure <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script> is in your HTML)
+emailjs.init("tVUeCgo92oRs5zwnq"); // 🔑 Replace with your real Public Key
+
+// Open purchase modal
 document.querySelectorAll(".car-card .btn-primary").forEach(button => {
   button.addEventListener("click", e => {
     e.preventDefault();
     const card = e.target.closest(".car-card");
 
-    // skip sold cars
     if (card.dataset.soldout === "true") return;
 
     selectedCar = {
@@ -149,46 +162,104 @@ document.querySelectorAll(".car-card .btn-primary").forEach(button => {
   });
 });
 
+const GST_RATE = 0.28; // 28%
+
+// Confirm purchase
 confirmBtn.addEventListener("click", async () => {
   if (!selectedCar) return;
+
   const user = auth.currentUser;
   if (!user) {
     alert("⚠️ Please log in first.");
     window.location.href = "login.html";
     return;
   }
+
+  const address = document.getElementById("purchaseAddress").value.trim();
+  if (!address) {
+    alert("📍 Please enter your address.");
+    return;
+  }
+
+  // 🧮 GST calculation
+  const gstAmount = Math.round(selectedCar.price * GST_RATE);
+  const totalPrice = selectedCar.price + gstAmount;
+
   try {
+    // Save purchase in Firestore
     await addDoc(collection(db, "users", user.uid, "purchases"), {
       itemName: selectedCar.name,
-      amount: selectedCar.price,
+      baseAmount: selectedCar.price,
+      gst: gstAmount,
+      totalAmount: totalPrice,
+      address,
       date: new Date().toLocaleDateString(),
       createdAt: serverTimestamp()
     });
 
-    // Success UI
-    purchaseModal.querySelector(".modal-content").innerHTML = `
-      <h2>✅ Purchase Successful!</h2>
-      <p>${selectedCar.name} has been added to your account.</p>
-    `;
-    selectedCar.element.querySelector(".btn-primary").textContent = "Booked ✅";
-    selectedCar.element.querySelector(".btn-primary").disabled = true;
-    selectedCar = null;
+    // Send confirmation email
+    await emailjs.send("service_lm77ga9", "template_245nooi", {
+      email: user.email,
+      order_id: Date.now(),
+      name: user.displayName || "Customer",
+      car_name: selectedCar.name,
+      base_price: `₹${selectedCar.price.toLocaleString()}`,
+      gst: `₹${gstAmount.toLocaleString()}`,
+      total_price: `₹${totalPrice.toLocaleString()}`,
+      address: address
+    });
 
-    setTimeout(() => closePurchaseModal(), 2000);
+    // ✅ Success UI with styled buttons
+purchaseModal.querySelector(".modal-content").innerHTML = `
+  <h2 style="color: #28a745; font-size: 22px; margin-bottom: 10px;">✅ Purchase Successful!</h2>
+  <p style="margin: 5px 0; font-size: 16px;">${selectedCar.name} has been booked.</p>
+  <p style="margin: 5px 0;">Base Price: ₹${selectedCar.price.toLocaleString()}</p>
+  <p style="margin: 5px 0;">GST (28%): ₹${gstAmount.toLocaleString()}</p>
+  <p style="margin: 5px 0; font-weight: bold;">Total: ₹${totalPrice.toLocaleString()}</p>
+  <p style="margin: 10px 0;">A confirmation email has been sent to <b>${user.email}</b>.</p>
+
+  <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center;">
+    <button id="okayBtn" 
+      style="padding: 8px 16px; background-color: #007bff; border: none; color: white; 
+             font-size: 14px; border-radius: 5px; cursor: pointer;">
+      Okay
+    </button>
+    <button id="closeSuccessModal" 
+      style="padding: 8px 16px; background-color: #6c757d; border: none; color: white; 
+             font-size: 14px; border-radius: 5px; cursor: pointer;">
+      Close
+    </button>
+  </div>
+`;
+
+// Disable car button
+selectedCar.element.querySelector(".btn-primary").textContent = "Booked ✅";
+selectedCar.element.querySelector(".btn-primary").disabled = true;
+selectedCar = null;
+
+// Add event listeners
+document.getElementById("closeSuccessModal").addEventListener("click", closePurchaseModal);
+document.getElementById("okayBtn").addEventListener("click", closePurchaseModal);
+
+
+// Disable car button
+selectedCar.element.querySelector(".btn-primary").textContent = "Booked ✅";
+selectedCar.element.querySelector(".btn-primary").disabled = true;
+selectedCar = null;
+
+// Add event listeners
+document.getElementById("closeSuccessModal").addEventListener("click", closePurchaseModal);
+document.getElementById("okayBtn").addEventListener("click", closePurchaseModal);
+
+
   } catch (err) {
     console.error(err);
     alert("❌ Something went wrong. Try again.");
   }
 });
 
+// Close modal function
 function closePurchaseModal() {
-  purchaseModal.style.display = "none";
-  purchaseModal.querySelector(".modal-content").innerHTML = `
-    <h2 id="purchaseCarName"></h2>
-    <p id="purchaseCarPrice"></p>
-    <button id="confirmPurchaseBtn">Confirm Purchase</button>
-  `;
-  // re-bind button
-  document.getElementById("confirmPurchaseBtn").addEventListener("click", confirmBtn.click);
+  if (purchaseModal) purchaseModal.style.display = "none";
 }
 window.closePurchaseModal = closePurchaseModal;

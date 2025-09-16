@@ -489,24 +489,47 @@
   </div>
 </div>
 
-<!-- Purchase Modal -->
 
+
+<!-- Purchase Modal -->
 <div id="purchaseModal" class="modal">
   <div class="modal-content">
-    <h2>Confirm Purchase</h2>
-    <p>Are you sure you want to buy this car?</p>
-    <button id="confirmPurchaseBtn">Confirm Purchase</button>
-    <button onclick="closePurchaseModal()">Cancel</button>
-    <div id="purchaseMessage"></div>
+    <span class="close" onclick="closePurchaseModal()">&times;</span>
+    
+    <!-- Purchase Form -->
+    <div id="purchaseForm">
+      <h2 id="purchaseCarName"></h2>
+      <p id="purchaseCarPrice"></p>
+      <label for="purchaseAddress">Delivery Address:</label>
+      <textarea id="purchaseAddress" placeholder="Enter your address"></textarea>
+      <button id="confirmPurchaseBtn">Confirm Purchase</button>
+    </div>
+
+    <!-- Success Message -->
+    <div id="purchaseSuccess" style="display:none; text-align:center;">
+      <h2>✅ Purchase Successful!</h2>
+      <p id="successCarMsg"></p>
+      <p id="successPrice"></p>
+      <p id="successGst"></p>
+      <p id="successTotal"></p>
+      <p id="successEmail"></p>
+      <button id="closeSuccessModal" style="padding:8px 16px; background:#007bff; color:#fff; border:none; border-radius:6px; cursor:pointer;">
+        Okay
+      </button>
+    </div>
   </div>
 </div>
 
 
 
-
-
-
   <script type="module" src="inventory.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function(){
+     emailjs.init("tVUeCgo92oRs5zwnq"); // 👈 from EmailJS dashboard
+  })();
+</script>
+
 
 
 </body>

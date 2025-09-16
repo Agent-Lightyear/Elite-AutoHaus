@@ -31,6 +31,10 @@ const invoiceCustomer = document.getElementById('invoice-customer');
 const invoiceCar = document.getElementById('invoice-car');
 const invoicePrice = document.getElementById('invoice-price');
 const invoiceDate = document.getElementById('invoice-date');
+const invoiceAddress = document.getElementById('invoice-address');
+const invoiceBase = document.getElementById('invoice-base');
+const invoiceGST = document.getElementById('invoice-gst');
+const invoiceTotal = document.getElementById('invoice-total');
 const downloadPdfBtn = document.getElementById('download-pdf');
 const closePopupBtn = document.getElementById('close-popup');
 
@@ -97,31 +101,33 @@ onAuthStateChanged(auth, async (user) => {
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'invoice-btn';
-      const displayText = `${p.itemName || "Unknown Item"} - ₹${(p.amount || 0).toLocaleString()} (on ${p.date || "N/A"})`;
+      const displayText = `${p.itemName || "Unknown Item"} - ₹${(p.totalAmount || 0).toLocaleString()} (on ${p.date || "N/A"})`;
       btn.textContent = displayText;
-
-      btn.dataset.car = p.itemName || "";
-      btn.dataset.price = p.amount || "";
-      btn.dataset.date = p.date || (p.createdAt ? new Date(p.createdAt.seconds * 1000).toLocaleDateString() : new Date().toLocaleDateString());
 
       btn.addEventListener('click', () => {
         currentInvoice = {
           customer: displayName,
-          car: btn.dataset.car,
-          price: btn.dataset.price,
-          date: btn.dataset.date,
-          phone: phone, // ✅ add phone here
-          address: "10, Adarsh Nagar, Wadi, Nagpur, 440023" // ✅ static address
+          car: p.itemName || "",
+          baseAmount: p.baseAmount || 0,
+          gst: p.gst || 0,
+          totalAmount: p.totalAmount || 0,
+          date: p.date || (p.createdAt ? new Date(p.createdAt.seconds * 1000).toLocaleDateString() : new Date().toLocaleDateString()),
+          phone: phone,
+          address: p.address || "Not provided"
         };
-      
+
+        // update popup
         invoiceCustomer.textContent = currentInvoice.customer;
         invoiceCar.textContent = currentInvoice.car;
-        invoicePrice.textContent = Number(currentInvoice.price).toLocaleString();
+        invoiceBase.textContent = currentInvoice.baseAmount.toLocaleString("en-IN");
+        invoiceGST.textContent = currentInvoice.gst.toLocaleString("en-IN");
+        invoiceTotal.textContent = currentInvoice.totalAmount.toLocaleString("en-IN");
+        // invoicePrice.textContent = currentInvoice.totalAmount.toLocaleString("en-IN");
         invoiceDate.textContent = currentInvoice.date;
-      
+        invoiceAddress.textContent = currentInvoice.address;
+
         invoicePopup.style.display = 'flex';
       });
-      
 
       li.appendChild(btn);
       purchaseList.appendChild(li);
@@ -140,7 +146,6 @@ if (logoutBtn) {
   });
 }
 
-// ---------- download PDF ----------
 // ---------- download PDF ----------
 if (downloadPdfBtn) {
   downloadPdfBtn.addEventListener('click', () => {
@@ -180,43 +185,35 @@ if (downloadPdfBtn) {
         doc.text(`Date: ${currentInvoice.date}`, 450, metaY);
 
         // --- Customer info ---
-        // --- Customer info ---
-doc.setFontSize(12);
-doc.setTextColor(40, 40, 40);
-let y = 150;
-doc.text("Bill To:", 40, y); 
-y += 18;
+        doc.setFontSize(12);
+        doc.setTextColor(40, 40, 40);
+        let y = 150;
+        doc.text("Bill To:", 40, y); 
+        y += 18;
 
-doc.setFontSize(11);
-doc.setTextColor(80, 80, 80);
-doc.text(currentInvoice.customer, 40, y); 
-y += 16;
+        doc.setFontSize(11);
+        doc.setTextColor(80, 80, 80);
+        doc.text(currentInvoice.customer, 40, y); 
+        y += 16;
 
-// ✅ Add phone
-doc.text(`Phone: ${currentInvoice.phone || "Not provided"}`, 40, y); 
-y += 16;
+        doc.text(`Phone: ${currentInvoice.phone || "Not provided"}`, 40, y); 
+        y += 16;
 
-// ✅ Add address
-doc.text(currentInvoice.address, 40, y, { maxWidth: 250 }); 
-y += 32;
+        doc.text(`Address: ${currentInvoice.address}`, 40, y, { maxWidth: 250 }); 
+        y += 32;
 
-doc.text(currentInvoice.car, 40, y);
-
+        doc.text(currentInvoice.car, 40, y);
 
         // --- Table ---
-        const basePrice = Number(currentInvoice.price);
-        const gst = basePrice * 0.18; // 18% GST
-        const total = basePrice + gst;
-
         doc.autoTable({
           startY: 250,
-          head: [['Vehicle', 'Price (INR)', 'Tax (18%)', 'Total (INR)']],
+          head: [['Vehicle', 'Base Amount (INR)', 'GST (INR)', 'Total (INR)']],
           body: [
             [
               currentInvoice.car,
-              basePrice.toLocaleString("en-IN"),
-              gst.toLocaleString("en-IN"),
-              total.toLocaleString("en-IN")
+              currentInvoice.baseAmount.toLocaleString("en-IN"),
+              currentInvoice.gst.toLocaleString("en-IN"),
+              currentInvoice.totalAmount.toLocaleString("en-IN")
             ]
           ],
           styles: { halign: 'center' },
@@ -225,13 +222,12 @@ doc.text(currentInvoice.car, 40, y);
 
         // --- Summary Section ---
         let finalY = doc.lastAutoTable.finalY + 30;
-
         doc.setFontSize(12);
-        doc.text(`Subtotal: INR ${basePrice.toLocaleString("en-IN")}`, 400, finalY);
-        doc.text(`Tax (18%): INR ${gst.toLocaleString("en-IN")}`, 400, finalY + 20);
+        doc.text(`Subtotal: INR ${currentInvoice.baseAmount.toLocaleString("en-IN")}`, 400, finalY);
+        doc.text(`GST (28%): INR ${currentInvoice.gst.toLocaleString("en-IN")}`, 400, finalY + 20);
         doc.setFontSize(14);
         doc.setFont(undefined, 'bold');
-        doc.text(`Grand Total: INR ${total.toLocaleString("en-IN")}`, 400, finalY + 50);
+        doc.text(`Grand Total: INR ${currentInvoice.totalAmount.toLocaleString("en-IN")}`, 400, finalY + 50);
 
         // --- Notes ---
         doc.setFontSize(11);

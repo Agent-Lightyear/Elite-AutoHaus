@@ -53,18 +53,24 @@
     </div>
   </div>
 
-  <!-- Invoice Popup -->
-  <div id="invoice-popup" class="popup" style="display:none;">
-    <div class="popup-content">
-      <h2>Invoice</h2>
-      <p><strong>Customer:</strong> <span id="invoice-customer"></span></p>
-      <p><strong>Car:</strong> <span id="invoice-car"></span></p>
-      <p><strong>Price:</strong> ₹<span id="invoice-price"></span></p>
-      <p><strong>Date:</strong> <span id="invoice-date"></span></p>
-      <button id="download-pdf">Download PDF</button>
-      <button id="close-popup">Close</button>
-    </div>
+<!-- Invoice Popup -->
+<div id="invoice-popup" class="popup" style="display:none;">
+  <div class="popup-content">
+    <h2>Invoice</h2>
+
+    <p><strong>Customer:</strong> <span id="invoice-customer"></span></p>
+    <p><strong>Car:</strong> <span id="invoice-car"></span></p>
+    <p><strong>Base Amount:</strong> ₹<span id="invoice-base"></span></p>
+    <p><strong>GST (28%):</strong> ₹<span id="invoice-gst"></span></p>
+    <p><strong>Total Amount:</strong> ₹<span id="invoice-total"></span></p>
+    <p><strong>Address:</strong> <span id="invoice-address"></span></p>
+    <p><strong>Date:</strong> <span id="invoice-date"></span></p>
+
+    <button id="download-pdf">Download PDF</button>
+    <button id="close-popup">Close</button>
   </div>
+</div>
+
 
   <!-- JS -->
    <!-- jsPDF -->
