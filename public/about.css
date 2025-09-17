@@ -1,0 +1,325 @@
+@import url('https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f8f9fa;
+  color: #181E26;
+}
+
+/* --- Navbar --- */
+.main-navbar {
+  position: fixed;           /* Make navbar sticky */
+  top: 0; left: 0; right: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(24,30,38,0.35); /* semi-transparent dark overlay */
+  box-shadow: none;
+  padding: 0;
+  transition: background 0.3s;
+}
+
+/* Optional: Add a solid background on scroll for better readability */
+.main-navbar.scrolled {
+  background: #181E26;
+  transition: background 0.3s;
+}
+
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px 18px 32px;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 48px;
+  width: auto;
+  transform: scale(150%);
+  margin-right: 75px;
+
+  /* filter: brightness(1) sepia(1) hue-rotate(20deg) saturate(6) brightness(0.95);
+  makes gold pop, adjust as needed */
+}
+
+.logo-text {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-family: "Raleway", sans-serif;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 48px;
+}
+
+.nav-link {
+  color: #fff;
+  font-size: 1.55rem;
+  font-family: "Raleway", sans-serif;
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: #c9a55b;
+}
+
+@media (max-width: 900px) {
+  .navbar-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 16px;
+  }
+  .navbar-menu {
+    gap: 24px;
+    margin-top: 10px;
+  }
+  .logo-text {
+    font-size: 1.3rem;
+  }
+  .logo-img {
+    height: 36px;
+  }
+}
+
+/* Header */
+.about-header {
+  background-color: #171c24;
+  background: 
+    linear-gradient(rgba(24,30,38,0.65), rgba(24, 30, 38, 0.86)), /* #181E26 tint */
+    url('IMG/hero-banner.jpg') center/cover no-repeat;
+  color: #FFF;
+  text-align: center;
+  padding: 120px 20px;
+  position: relative;
+}
+
+.about-header::after {
+  content: "";
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  /* Remove the old black overlay, as the tint is now in .about-header */
+  background: none;
+}
+
+.about-header h1 {
+  position: relative;
+  font-size: 3rem;
+  font-weight: bold;
+  z-index: 1;
+}
+
+/* Sections */
+.about-section {
+  padding: 60px 20px;
+}
+
+.about-section h2 {
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #181E26;
+}
+
+.about-section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+/* Values */
+.values-section {
+  background: linear-gradient(145deg, #181E26, #1f2532); /* Sleek gradient */
+  color: white;
+  padding: 80px 20px;
+  text-align: center;
+}
+.values-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  color: #fff;
+  position: relative;
+}
+
+.values-section h2::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: #c9a55b;
+  margin: 12px auto 0;
+  border-radius: 3px;
+}
+
+.value-box {
+  background: #222836;
+  padding: 40px 30px;
+  border-radius: 16px;
+  text-align: center;
+  transition: all 0.5s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 1s ease forwards;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+.row.g-4 > .col-md-4 {
+  display: flex;
+}
+
+.value-box:nth-child(1) { animation-delay: 0.2s; }
+.value-box:nth-child(2) { animation-delay: 0.4s; }
+.value-box:nth-child(3) { animation-delay: 0.6s; }
+
+.value-box:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(201,165,91,0.4); /* Gold glow */
+}
+
+/* Icon Circle */
+.value-box img,
+.value-box i {
+  position: relative;
+  z-index: 1;
+  font-size: 2.2rem;
+  color: #c9a55b;
+  transition: transform 0.3s ease;
+}
+
+.value-box .icon-wrapper {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #e6d29f, #c9a55b 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 18px rgba(201,165,91,0.4);
+  transition: all 0.3s ease;
+}
+.icon-wrapper img {
+  width: 45px;   /* all icons same size */
+  height: 45px;  /* force square scaling */
+  object-fit: contain;
+}
+.value-box:hover .icon-wrapper {
+  box-shadow: 0 0 28px rgba(201,165,91,0.6);
+  transform: scale(1.05);
+}
+
+/* Headings */
+.value-box h4 {
+  margin-top: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #c9a55b, #e6d29f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Raleway", sans-serif;
+}
+
+.value-box:hover img,
+.value-box:hover i {
+  transform:  scale(1.1);
+}
+
+
+
+.value-box p {
+  margin-top: 10px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #ddd;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+/* Team */
+.team-section {
+  padding: 60px 20px;
+}
+
+.team-logo-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(24,30,38,0.18), 0 1.5px 8px 0 #181E26;
+  /* Main shadow uses #181E26 tint */
+  padding: 40px 0 30px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* If you want to target just the logo image inside the card: */
+.team-logo-card img {
+  max-width: 220px;
+  margin-bottom: 18px;
+  display: block;
+}
+
+.team-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  text-align: center;
+  padding: 20px;
+  height: 100%; /* Ensures all cards in same row stretch equally */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-8px);
+}
+
+.team-card img {
+    width: 120px;
+  height: 120px;
+  object-fit: cover;   /* Keeps images neat */
+  border-radius: 50%;  /* Circle avatar */
+  margin-bottom: 15px;
+}
+
+.team-card-body {
+  padding: 20px;
+  text-align: center;
+}
+
+.team-card-body h5 {
+  font-size: 1.2rem;
+  color: #d0a756;  /* Golden */
+  margin: 0;
+}
+}
+
+/* Footer */
+footer {
+  background: #181E26;
+  color: white;
+  text-align: center;
+  padding: 20px 10px;
+  margin-top: 50px;
+}

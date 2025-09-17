@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Elite Autohaus</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./about.css">
+</head>
+<body>
+
+    <header class="main-navbar">
+  <div class="navbar-container">
+    <!-- Logo -->
+    <a href="#" class="navbar-logo">
+      <img src="IMG/logo_1.png" alt="Elite AutoHaus Logo" class="logo-img">
+      <span class="logo-text">Élite Autohaus</span>
+    </a>
+    <!-- Menu -->
+    <nav class="navbar-menu">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="inventory.html" class="nav-link">Cars</a>
+      <!-- <a href="login.html" class="nav-link">Login</a> -->
+      <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <!-- Header Banner -->
+  <section class="about-header">
+    <h1>About Elite Autohaus</h1>
+    <p>Welcome to Elite Autohaus - Driving Excellence, Delivering Trust.</p>
+  </section>
+
+  <!-- Who We Are -->
+  <section class="about-section container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <h2>Who We Are</h2>
+        <p>
+          At <strong>Elite Autohaus</strong>, we redefine the way you experience luxury and performance on the road. 
+          With a passion for automobiles and a commitment to excellence, we bring you a curated selection of 
+          premium cars that combine cutting-edge technology, unmatched comfort, and timeless design.
+        </p>
+        <p>
+          Our mission is simple: to connect driving enthusiasts with their dream cars while ensuring 
+          a smooth, transparent, and unforgettable buying journey.
+        </p>
+      </div>
+      <div class="col-lg-6">
+        <img src="IMG/logo.png" alt="Elite Autohaus Logo" class="img-fluid rounded shadow">
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Values -->
+  <section class="values-section">
+  <div class="container text-center">
+    <h2 class="mb-5">Our Core Values</h2>
+    <div class="row g-4">
+
+      <div class="col-md-4">
+        <div class="value-box">
+          <div class="icon-wrapper">
+            <img src="IMG/quality.png"  alt="Quality Icon">
+          </div>
+          <h4>Unmatched Quality</h4>
+          <p>Every car we offer goes through strict inspection, ensuring only the best for our customers.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="value-box">
+          <div class="icon-wrapper">
+            <img src="IMG/trust.png"  alt="Trust Icon">
+          </div>
+          <h4>Trust & Transparency</h4>
+          <p>We value honesty and integrity, giving you complete confidence in every purchase you make.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="value-box">
+          <div class="icon-wrapper">
+            <img src="IMG/customer.png"  alt="Service Icon">
+          </div>
+          <h4>Customer First</h4>
+          <p>Your satisfaction drives us. From inquiry to delivery, we put you at the center of everything we do.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- Meet Our Team -->
+  <section class="team-section container">
+  <h2 class="text-center mb-5">Meet Our Team</h2>
+  <div class="row g-4">
+    <div class="col-sm-6 col-lg-4">
+      <div class="team-card">
+        <img src="IMG/team1.jpg" alt="Saad Sheikh">
+        <div class="team-card-body">
+          <h5>Saad Sheikh</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-4">
+      <div class="team-card">
+        <img src="IMG/team2.jpg" alt="Sanay Pise">
+        <div class="team-card-body">
+          <h5>Sanay Pise</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-4">
+      <div class="team-card">
+        <img src="IMG/team3.jpg" alt="Vishal Waghmare">
+        <div class="team-card-body">
+          <h5>Vishal Waghmare</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-4">
+      <div class="team-card">
+        <img src="IMG/team4.jpg" alt="Kunali Bisen">
+        <div class="team-card-body">
+          <h5>Kunali Bisen</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-4">
+      <div class="team-card">
+        <img src="IMG/team5.jpg" alt="Seema Singh">
+        <div class="team-card-body">
+          <h5>Seema Singh</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-4">
+      <div class="team-card">
+        <img src="IMG/team6.jpg" alt="Kshitij Khobragade">
+        <div class="team-card-body">
+          <h5>Kshitij Khobragade</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Elite Autohaus. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".main-navbar");
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  });
+</script>
+
+
+</body>
+</html>
