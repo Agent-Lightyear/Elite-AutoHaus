@@ -8,6 +8,9 @@
 }
 
 /* ================= HEADER ================= */
+
+
+
 header {
   position: fixed;
   top: 0;
@@ -82,8 +85,13 @@ header .navigation .navigation-items a:hover::before {
 section {
   padding: 100px 200px;
 }
-#about-us {
-  background: linear-gradient(#181e27, #202630);
+
+h1, h2, h3 {
+  font-family: "Cinzel", serif;
+  letter-spacing: 2px;
+}
+p {
+  font-family: "Poppins", sans-serif;
 }
 
 .home {
@@ -94,7 +102,6 @@ section {
   flex-direction: column;
   justify-content: center;
   background: #181e27;
-  overflow: hidden;
 }
 
 .home .content {
@@ -251,14 +258,19 @@ section {
   padding: 10px 20px;
   font-size: 1em;
   color: #000;
-  background: #fff;
-  border-radius: 4px;
+ background: linear-gradient(135deg, #d4af37, #b8860b);
+  border: none;
+  color: #181e26;
+  font-weight: 600;
+  transition: 0.3s ease;
+  border-radius: 30px;
   text-decoration: none;
   transition: 0.3s ease;
+  
 }
 
 .about-button:hover {
-  background: #c9a55b;
+   background: linear-gradient(135deg, #b8860b, #d4af37);
   color: #fff;
 }
 
@@ -298,14 +310,7 @@ section {
     cursor: pointer;
     background: url(IMG/menu.png) no-repeat center/30px;
     transition: 0.3s ease;
-    display: none;
   }
-
-  @media (max-width: 1040px) {
-  .menu-btn {
-    display: block;
-  }
-}
 
   .menu-btn.active {
     z-index: 999;
@@ -337,12 +342,3 @@ section {
   }
 }
 
-.footer-links a {
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: #c9a55b; /* gold hover */
-}
