@@ -22,9 +22,9 @@
 
       <nav class="hidden md:flex items-center gap-6">
         <a href="home.html" class="hover-link">Home</a>
-        <a href="#collection" class="hover-link">Cars</a>
-        <a href="#about" class="hover-link">About</a>
-        <a href="#contact" class="hover-link">Contact</a>
+        <!-- <a href="#coll" class="hover-link">Cars</a> -->
+        <a href="about.html" class="hover-link">About</a>
+        <a href="contact.html" class="hover-link">Contact</a>
 
       </nav>
 
@@ -42,33 +42,36 @@
   </header>
 
   <!-- HERO SECTION WITH SLIDER -->
-  <section class="relative w-full h-[80vh] overflow-hidden pt-16">
-    <div class="hero-slide active">
-      <img src="IMG/luxury.png" class="w-full h-full object-cover" alt="Slide 1">
-      <div class="hero-overlay">
-        <h1 class="hero-title">Luxury Cars</h1>
-        <p class="hero-subtitle">Experience premium comfort and style</p>
-        <button class="btn-hero">Explore Now</button>
-      </div>
+   
+<section class="relative w-full h-[80vh] overflow-hidden pt-16">
+  <div class="hero-slide active">
+    <img src="IMG/luxury.png" class="w-full h-full object-cover" alt="Slide 1">
+    <div class="hero-overlay">
+      <h1 class="hero-title">Luxury Cars</h1>
+      <p class="hero-subtitle">Experience premium comfort and style</p>
+      <button class="btn-hero explore-btn">Explore Now</button>
     </div>
+  </div>
 
-    <div class="hero-slide">
-      <img src="IMG/sports.jpg" class="w-full h-full object-cover" alt="Slide 2">
-      <div class="hero-overlay">
-        <h1 class="hero-title">Sports Cars</h1>
-        <p class="hero-subtitle">Unleash speed and performance</p>
-        <button class="btn-hero">Book a Test Drive</button>
-      </div>
+  <div class="hero-slide">
+    <img src="IMG/sports.jpg" class="w-full h-full object-cover" alt="Slide 2">
+    <div class="hero-overlay">
+      <h1 class="hero-title">Sports Cars</h1>
+      <p class="hero-subtitle">Unleash speed and performance</p>
+      <button class="btn-hero explore-btn">Explore Now</button>
     </div>
+  </div>
 
-    <div class="hero-slide">
-      <img src="IMG/ev.png" class="w-full h-full object-cover" alt="Slide 3">
-      <div class="hero-overlay">
-        <h1 class="hero-title">Electric Vehicles</h1>
-        <p class="hero-subtitle">Future of sustainable driving</p>
-        <button class="btn-hero">Discover EVs</button>
-      </div>
+  <div class="hero-slide">
+    <img src="IMG/ev.png" class="w-full h-full object-cover" alt="Slide 3">
+    <div class="hero-overlay">
+      <h1 class="hero-title">Electric Vehicles</h1>
+      <p class="hero-subtitle">Future of sustainable driving</p>
+      <button class="btn-hero explore-btn">Explore Now</button>
     </div>
+  </div>
+</section>
+
 
     <!-- Controls -->
     <button id="prev" class="slider-btn left-4">❮</button>
@@ -83,82 +86,51 @@
   </section>
 
   <!-- CAR GRID SECTION -->
-  <section id="collection" class="pt-10 pb-20 bg-white">
-    <div class="filters-container">
-      <input type="text" placeholder="Search cars by name..." id="searchInput">
+  <section id="collection" class="py-20 bg-[#0f1319]">
+
+    <!-- Filters Bar -->
+    <div class="filters-wrapper">
+
+      <input type="text" placeholder="Search cars..." id="searchInput">
       <select id="fuelFilter">
-        <option value="">All Fuel Types</option>
+        <option value="">Fuel Type</option>
         <option value="Petrol">Petrol</option>
         <option value="Diesel">Diesel</option>
-        <option value="EV">Electric</option>
         <option value="Hybrid">Hybrid</option>
+        <option value="Electric">Electric</option>
       </select>
       <select id="priceFilter">
-        <option value="">All Prices</option>
+        <option value="">Price Range</option>
         <option value="20-50">₹20L – ₹50L</option>
         <option value="50-100">₹50L – ₹1Cr</option>
         <option value="100+">₹1Cr+</option>
       </select>
-
       <select id="sortBy">
         <option value="">Sort By</option>
-        <option value="priceLowHigh">Price: Low to High</option>
-        <option value="priceHighLow">Price: High to Low</option>
-        <option value="nameAZ">Name: A to Z</option>
-        <option value="nameZA">Name: Z to A</option>
+        <option value="priceLowHigh">Price: Low → High</option>
+        <option value="priceHighLow">Price: High → Low</option>
+        <option value="nameAZ">Name: A → Z</option>
+        <option value="nameZA">Name: Z → A</option>
       </select>
+      <a href="brand.html" class="btn-brand-select">
+        Browse by Brand
+      </a>
+
     </div>
 
+    <h2 class="inv-title">Premium Collection</h2>
 
-    <h2 class="text-3xl font-bold text-center text-black mb-10">Our Collection</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4">
+    <div id="carGrid" class="inv-grid">
 
-      <!-- BMW X5 -->
-      <div class="car-card" data-price="7500000" data-fuel="Diesel" data-soldout="false" data-soldout="true">
+      <!-- ================== BMW ================== -->
+      <div class="car-card" data-brand="BMW" data-price="5800000" data-fuel="Petrol" data-soldout="false">
         <div class="car-img-box">
-          <img src="IMG/x5.png" alt="BMW X5" class="car-img">
-          
+          <img src="IMG/3.png" alt="BMW 3 Series" class="car-img">
         </div>
         <div class="car-info">
-          <h2 class="car-title">BMW X5</h2>
-          <p class="car-desc">Luxury SUV • Automatic</p>
-          <p class="car-price">₹75,00,000</p>
-          <span class="car-tag diesel">Diesel</span>
-          <div class="car-actions">
-            <button class="btn-outline">Add to Wishlist</button>
-            <button class="btn-primary">Book Now</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- BMW 5 Series -->
-      <div class="car-card" data-price="6500000" data-fuel="Hybrid" data-soldout="true" data-soldout="true" data-soldout="true">
-        <div class="car-img-box">
-          <img src="IMG/5.png" alt="BMW 5 Series" class="car-img">
-          
-        </div>
-        <div class="car-info">
-          <h2 class="car-title">BMW 5 Series</h2>
-          <p class="car-desc">Executive Sedan • Automatic</p>
-          <p class="car-price">₹65,00,000</p>
-          <span class="car-tag hybrid">Hybrid</span>
-          <div class="car-actions">
-            <button class="btn-outline">Add to Wishlist</button>
-            <button class="btn-primary">Book Now</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Audi A4 -->
-      <div class="car-card" data-price="4500000" data-fuel="Petrol" data-soldout="true" data-soldout="true">
-        <div class="car-img-box">
-          <img src="IMG/a4.png" alt="Audi A4" class="car-img">
-          
-        </div>
-        <div class="car-info">
-          <h2 class="car-title">Audi A4</h2>
-          <p class="car-desc">Luxury Sedan • Automatic</p>
-          <p class="car-price">₹45,00,000</p>
+          <h2 class="car-title">BMW 3 Series</h2>
+          <p class="car-desc">Sport Sedan • Automatic</p>
+          <p class="car-price">₹58,00,000</p>
           <span class="car-tag petrol">Petrol</span>
           <div class="car-actions">
             <button class="btn-outline">Add to Wishlist</button>
@@ -167,68 +139,12 @@
         </div>
       </div>
 
-      <!-- Toyota Camry -->
-      <div class="car-card" data-price="4100000" data-fuel="Hybrid" data-soldout="true">
+      <div class="car-card" data-brand="BMW" data-price="20000000" data-fuel="Diesel" data-soldout="false">
         <div class="car-img-box">
-          <img src="IMG/camry.png" alt="Toyota Camry Hybrid" class="car-img">
-          
+          <img src="IMG/m5.png" alt="BMW m5" class="car-img">
         </div>
         <div class="car-info">
-          <h2 class="car-title">Toyota Camry</h2>
-          <p class="car-desc">Luxury Sedan • Automatic</p>
-          <p class="car-price">₹41,00,000</p>
-          <span class="car-tag hybrid">Hybrid</span>
-          <div class="car-actions">
-            <button class="btn-outline">Add to Wishlist</button>
-            <button class="btn-primary">Book Now</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tesla Model 3 -->
-      <div class="car-card" data-price="6000000" data-fuel="EV" data-soldout="true">
-        <div class="car-img-box">
-          <img src="IMG/model3.png" alt="Tesla Model 3" class="car-img">
-          
-        </div>
-        <div class="car-info">
-          <h2 class="car-title">Tesla Model 3</h2>
-          <p class="car-desc">Electric Sedan • Automatic</p>
-          <p class="car-price">₹60,00,000</p>
-          <span class="car-tag ev">EV</span>
-          <div class="car-actions">
-            <button class="btn-outline">Add to Wishlist</button>
-            <button class="btn-primary">Book Now</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Range Rover Sport -->
-      <div class="car-card" data-price="15000000" data-fuel="Diesel" data-soldout="true" data-soldout="true">
-        <div class="car-img-box">
-          <img src="IMG/sport.png" alt="RR-sport" class="car-img">
-          
-        </div>
-        <div class="car-info">
-          <h2 class="car-title">Range Rover Sport</h2>
-          <p class="car-desc">Luxury SUV • Automatic</p>
-          <p class="car-price">₹1,50,00,000</p>
-          <span class="car-tag diesel">Diesel</span>
-          <div class="car-actions">
-            <button class="btn-outline">Add to Wishlist</button>
-            <button class="btn-primary">Book Now</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mercedes S-Class -->
-      <div class="car-card" data-price="20000000" data-fuel="Diesel" data-soldout="true" data-soldout="true">
-        <div class="car-img-box">
-          <img src="IMG/s class.png" alt="s-class" class="car-img">
-          
-        </div>
-        <div class="car-info">
-          <h2 class="car-title">Mercedes S class</h2>
+          <h2 class="car-title">BMW M5</h2>
           <p class="car-desc">Executive Sedan • Automatic</p>
           <p class="car-price">₹2,00,00,000</p>
           <span class="car-tag diesel">Diesel</span>
@@ -239,16 +155,14 @@
         </div>
       </div>
 
-      <!-- BMW M4 -->
-      <div class="car-card" data-price="16100000" data-fuel="Hybrid" data-soldout="true" data-soldout="true">
+      <div class="car-card" data-brand="BMW" data-price="6500000" data-fuel="Hybrid" data-soldout="true">
         <div class="car-img-box">
-          <img src="IMG/m4.png" alt="m4" class="car-img">
-          
+          <img src="IMG/5.png" alt="BMW 5 Series Hybrid" class="car-img">
         </div>
         <div class="car-info">
-          <h2 class="car-title">BMW M4</h2>
+          <h2 class="car-title">BMW 5 Series Hybrid</h2>
           <p class="car-desc">Luxury Sedan • Automatic</p>
-          <p class="car-price">₹1,61,00,000</p>
+          <p class="car-price">₹65,00,000</p>
           <span class="car-tag hybrid">Hybrid</span>
           <div class="car-actions">
             <button class="btn-outline">Add to Wishlist</button>
@@ -257,17 +171,15 @@
         </div>
       </div>
 
-      <!-- Range Rover Velar -->
-      <div class="car-card" data-price="8500000" data-fuel="Diesel" data-soldout="true" data-soldout="true">
+      <div class="car-card" data-brand="BMW" data-price="12500000" data-fuel="Electric" data-soldout="false">
         <div class="car-img-box">
-          <img src="IMG/velar.png" alt="velar" class="car-img">
-          
+          <img src="IMG/i5a.jpg" alt="BMW i5" class="car-img">
         </div>
         <div class="car-info">
-          <h2 class="car-title">Range Rover Velar</h2>
-          <p class="car-desc">Luxury SUV • Automatic</p>
-          <p class="car-price">₹85,00,000</p>
-          <span class="car-tag diesel">Diesel</span>
+          <h2 class="car-title">BMW i5</h2>
+          <p class="car-desc">Electric Luxury Sedan • Automatic</p>
+          <p class="car-price">₹1,25,00,000</p>
+          <span class="car-tag electric">Electric</span>
           <div class="car-actions">
             <button class="btn-outline">Add to Wishlist</button>
             <button class="btn-primary">Book Now</button>
@@ -275,52 +187,16 @@
         </div>
       </div>
 
-      <!-- G-Wagon -->
-      <div class="car-card" data-price="37500000" data-fuel="Diesel" data-soldout="true" data-soldout="true">
-        <div class="car-img-box">
-          <img src="IMG/gclass.png" alt="G-class" class="car-img">
-          
-        </div>
-        <div class="car-info">
-          <h2 class="car-title">Mercedes-Benz AMG G 63</h2>
-          <p class="car-desc">Luxury SUV • Automatic</p>
-          <p class="car-price">₹3,75,00,000</p>
-          <span class="car-tag diesel">Diesel</span>
-          <div class="car-actions">
-            <button class="btn-outline">Add to Wishlist</button>
-            <button class="btn-primary">Book Now</button>
-          </div>
-        </div>
-      </div>
 
-      <!-- Audi R8 -->
-      <div class="car-card" data-price="24100000" data-fuel="Hybrid" data-soldout="true" data-soldout="true">
+      <!-- ================== AUDI ================== -->
+      <div class="car-card" data-brand="Audi" data-price="5200000" data-fuel="Petrol" data-soldout="false">
         <div class="car-img-box">
-          <img src="IMG/r8.png" alt="Audi r8" class="car-img">
-          
+          <img src="IMG/a4.png" alt="Audi A4" class="car-img">
         </div>
         <div class="car-info">
-          <h2 class="car-title">Audi R8</h2>
-          <p class="car-desc">Sports • Automatic</p>
-          <p class="car-price">₹2,41,00,000</p>
-          <span class="car-tag hybrid">Hybrid</span>
-          <div class="car-actions">
-            <button class="btn-outline">Add to Wishlist</button>
-            <button class="btn-primary">Book Now</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mercedes C63 -->
-      <div class="car-card" data-price="12000000" data-fuel="Petrol" data-soldout="true" data-soldout="true" data-soldout="true">
-        <div class="car-img-box">
-          <img src="IMG/c63.png" alt="Mercedes C63" class="car-img">
-          
-        </div>
-        <div class="car-info">
-          <h2 class="car-title">Mercedes C63</h2>
-          <p class="car-desc">Sports Sedan • Automatic</p>
-          <p class="car-price">₹1,20,00,000</p>
+          <h2 class="car-title">Audi A4</h2>
+          <p class="car-desc">Premium Sedan • Automatic</p>
+          <p class="car-price">₹52,00,000</p>
           <span class="car-tag petrol">Petrol</span>
           <div class="car-actions">
             <button class="btn-outline">Add to Wishlist</button>
@@ -329,16 +205,14 @@
         </div>
       </div>
 
-      <!-- Mercedes GLC -->
-      <div class="car-card" data-price="7500000" data-fuel="Diesel" data-soldout="true" data-soldout="true">
+      <div class="car-card" data-brand="Audi" data-price="7800000" data-fuel="Diesel" data-soldout="false">
         <div class="car-img-box">
-          <img src="IMG/glc.png" alt="Mercedes GLC" class="car-img">
-          
+          <img src="IMG/q7.png" alt="Audi Q7" class="car-img">
         </div>
         <div class="car-info">
-          <h2 class="car-title">Mercedes GLC</h2>
+          <h2 class="car-title">Audi Q7</h2>
           <p class="car-desc">Luxury SUV • Automatic</p>
-          <p class="car-price">₹75,00,000</p>
+          <p class="car-price">₹78,00,000</p>
           <span class="car-tag diesel">Diesel</span>
           <div class="car-actions">
             <button class="btn-outline">Add to Wishlist</button>
@@ -347,15 +221,46 @@
         </div>
       </div>
 
-      <!-- Mercedes C-Class -->
-      <div class="car-card" data-price="6000000" data-fuel="Petrol" data-soldout="true" data-soldout="true" data-soldout="true">
+      <div class="car-card" data-brand="Audi" data-price="6800000" data-fuel="Hybrid" data-soldout="false">
         <div class="car-img-box">
-          <img src="IMG/c-class.png" alt="Mercedes C-Class" class="car-img">
-          
+          <img src="IMG/a6.png" alt="Audi A6 Hybrid" class="car-img">
         </div>
         <div class="car-info">
-          <h2 class="car-title">Mercedes C-Class</h2>
+          <h2 class="car-title">Audi A6 Hybrid</h2>
           <p class="car-desc">Executive Sedan • Automatic</p>
+          <p class="car-price">₹68,00,000</p>
+          <span class="car-tag hybrid">Hybrid</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card" data-brand="Audi" data-price="9000000" data-fuel="Electric" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/e-tron.png" alt="Audi e-tron" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Audi e-tron</h2>
+          <p class="car-desc">Electric SUV • Automatic</p>
+          <p class="car-price">₹90,00,000</p>
+          <span class="car-tag electric">Electric</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================== MERCEDES-BENZ ================== -->
+      <div class="car-card" data-brand="Mercedes-Benz" data-price="6000000" data-fuel="Petrol" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/c200.png" alt="Mercedes C 200" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Mercedes C 200</h2>
+          <p class="car-desc">Luxury Sedan • Automatic</p>
           <p class="car-price">₹60,00,000</p>
           <span class="car-tag petrol">Petrol</span>
           <div class="car-actions">
@@ -365,16 +270,261 @@
         </div>
       </div>
 
-      <!-- Rolls Royce Phantom -->
-      <div class="car-card" data-price="89900000" data-fuel="Petrol" data-soldout="true" data-soldout="true" data-soldout="true">
+      <div class="car-card" data-brand="Mercedes-Benz" data-price="17000000" data-fuel="Diesel" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/s.png" alt="Mercedes S-Class" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Mercedes S-Class</h2>
+          <p class="car-desc">Flagship Luxury Sedan • Automatic</p>
+          <p class="car-price">₹1,70,00,000</p>
+          <span class="car-tag diesel">Diesel</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="car-card" data-brand="Mercedes-Benz" data-price="7800000" data-fuel="Hybrid" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/gle.png" alt="Mercedes GLE 350e" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Mercedes GLE 350e</h2>
+          <p class="car-desc">Luxury SUV • Automatic</p>
+          <p class="car-price">₹78,00,000</p>
+          <span class="car-tag hybrid">Hybrid</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card" data-brand="Mercedes-Benz" data-price="18000000" data-fuel="Electric" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/eqs.png" alt="Mercedes EQS" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Mercedes EQS</h2>
+          <p class="car-desc">Electric Luxury Sedan • Automatic</p>
+          <p class="car-price">₹1,80,00,000</p>
+          <span class="car-tag electric">Electric</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ================== RANGE ROVER ================== -->
+      <div class="car-card" data-brand="Range Rover" data-price="9000000" data-fuel="Petrol" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/evoque.png" alt="Range Rover Evoque" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Range Rover Evoque</h2>
+          <p class="car-desc">Compact Luxury SUV • Automatic</p>
+          <p class="car-price">₹90,00,000</p>
+          <span class="car-tag petrol">Petrol</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card" data-brand="Range Rover" data-price="14000000" data-fuel="Diesel" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/sport.png" alt="Range Rover Sport" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Range Rover Sport</h2>
+          <p class="car-desc">Performance SUV • Automatic</p>
+          <p class="car-price">₹1,40,00,000</p>
+          <span class="car-tag diesel">Diesel</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card" data-brand="Range Rover" data-price="13500000" data-fuel="Hybrid" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/velar.png" alt="Range Rover Velar PHEV" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Range Rover Velar PHEV</h2>
+          <p class="car-desc">Luxury SUV • Automatic</p>
+          <p class="car-price">₹1,35,00,000</p>
+          <span class="car-tag hybrid">Hybrid</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================== TESLA ================== -->
+      <div class="car-card" data-brand="Tesla" data-price="6500000" data-fuel="Electric" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/model3.png" alt="Tesla Model 3" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Tesla Model 3</h2>
+          <p class="car-desc">Electric Sedan • Autopilot</p>
+          <p class="car-price">₹65,00,000</p>
+          <span class="car-tag electric">Electric</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card" data-brand="Tesla" data-price="7200000" data-fuel="Electric" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/modely.png" alt="Tesla Model Y" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Tesla Model Y</h2>
+          <p class="car-desc">Electric SUV • Autopilot</p>
+          <p class="car-price">₹72,00,000</p>
+          <span class="car-tag electric">Electric</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card" data-brand="Tesla" data-price="9500000" data-fuel="Electric" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/models.png" alt="Tesla Model S" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Tesla Model S</h2>
+          <p class="car-desc">Performance EV • Autopilot</p>
+          <p class="car-price">₹95,00,000</p>
+          <span class="car-tag electric">Electric</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================== BENTLEY ================== -->
+      <div class="car-card" data-brand="Bentley" data-price="30000000" data-fuel="Petrol" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/continental.png" alt="Bentley Continental GT" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Bentley Continental GT</h2>
+          <p class="car-desc">Grand Tourer • Automatic</p>
+          <p class="car-price">₹3,00,00,000</p>
+          <span class="car-tag petrol">Petrol</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card" data-brand="Bentley" data-price="32000000" data-fuel="Diesel" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/bentayga.png" alt="Bentley Bentayga Diesel" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Bentley Bentayga Diesel</h2>
+          <p class="car-desc">Ultra-Luxury SUV • Automatic</p>
+          <p class="car-price">₹3,20,00,000</p>
+          <span class="car-tag diesel">Diesel</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card" data-brand="Bentley" data-price="34000000" data-fuel="Hybrid" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/spurm.png" alt="Bentley Flying Spur Hybrid" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Bentley Flying Spur Hybrid</h2>
+          <p class="car-desc">Luxury Sedan • Automatic</p>
+          <p class="car-price">₹3,40,00,000</p>
+          <span class="car-tag hybrid">Hybrid</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================== KIA ================== -->
+      <!-- <div class="car-card" data-brand="Kia" data-price="2000000" data-fuel="Petrol" data-soldout="false">
+  <div class="car-img-box">
+    <img src="IMG/kia-seltos.png" alt="Kia Seltos" class="car-img">
+  </div>
+  <div class="car-info">
+    <h2 class="car-title">Kia Seltos</h2>
+    <p class="car-desc">Compact SUV • Automatic</p>
+    <p class="car-price">₹20,00,000</p>
+    <span class="car-tag petrol">Petrol</span>
+    <div class="car-actions">
+      <button class="btn-outline">Add to Wishlist</button>
+      <button class="btn-primary">Book Now</button>
+    </div>
+  </div>
+</div>
+
+<div class="car-card" data-brand="Kia" data-price="1700000" data-fuel="Diesel" data-soldout="false">
+  <div class="car-img-box">
+    <img src="IMG/kia-sonet-diesel.png" alt="Kia Sonet Diesel" class="car-img">
+  </div>
+  <div class="car-info">
+    <h2 class="car-title">Kia Sonet Diesel</h2>
+    <p class="car-desc">Subcompact SUV • Manual</p>
+    <p class="car-price">₹17,00,000</p>
+    <span class="car-tag diesel">Diesel</span>
+    <div class="car-actions">
+      <button class="btn-outline">Add to Wishlist</button>
+      <button class="btn-primary">Book Now</button>
+    </div>
+  </div>
+</div> -->
+
+      <div class="car-card" data-brand="Kia" data-price="5500000" data-fuel="Electric" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/ev6.png" alt="Kia EV6" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Kia EV6</h2>
+          <p class="car-desc">Electric Crossover • Automatic</p>
+          <p class="car-price">₹55,00,000</p>
+          <span class="car-tag electric">Electric</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================== ROLLS ROYCE ================== -->
+      <div class="car-card" data-brand="Rolls Royce" data-price="65000000" data-fuel="Petrol" data-soldout="false">
         <div class="car-img-box">
           <img src="IMG/phantom.png" alt="Rolls Royce Phantom" class="car-img">
-          
         </div>
         <div class="car-info">
           <h2 class="car-title">Rolls Royce Phantom</h2>
-          <p class="car-desc">Ultra Luxury Sedan • Automatic</p>
-          <p class="car-price">₹8,99,00,000</p>
+          <p class="car-desc">Ultra-Luxury Sedan • Automatic</p>
+          <p class="car-price">₹6,50,00,000</p>
           <span class="car-tag petrol">Petrol</span>
           <div class="car-actions">
             <button class="btn-outline">Add to Wishlist</button>
@@ -383,16 +533,14 @@
         </div>
       </div>
 
-      <!-- Audi RS Q8 Performance -->
-      <div class="car-card" data-price="16000000" data-fuel="Petrol" data-soldout="true" data-soldout="true" data-soldout="true">
+      <div class="car-card" data-brand="Rolls Royce" data-price="55000000" data-fuel="Petrol" data-soldout="false">
         <div class="car-img-box">
-          <img src="IMG/rs.png" alt="Audi RS" class="car-img">
-          
+          <img src="IMG/ghostII.jpg" alt="Rolls Royce Ghost" class="car-img">
         </div>
         <div class="car-info">
-          <h2 class="car-title">Audi RS Q8 Performance</h2>
-          <p class="car-desc">Performance Sedan • Automatic</p>
-          <p class="car-price">₹1,60,00,000</p>
+          <h2 class="car-title">Rolls Royce Ghost</h2>
+          <p class="car-desc">Luxury Sedan • Automatic</p>
+          <p class="car-price">₹5,50,00,000</p>
           <span class="car-tag petrol">Petrol</span>
           <div class="car-actions">
             <button class="btn-outline">Add to Wishlist</button>
@@ -401,15 +549,30 @@
         </div>
       </div>
 
-      <!-- Bentley Continental -->
-      <div class="car-card" data-price="35000000" data-fuel="Petrol" data-soldout="true" data-soldout="true">
+      <div class="car-card" data-brand="Rolls Royce" data-price="70000000" data-fuel="Electric" data-soldout="false">
         <div class="car-img-box">
-          <img src="IMG/continental.png" alt="Bentley Continental" class="car-img">
-          
+          <img src="IMG/spectre.png" alt="Rolls Royce Spectre" class="car-img">
         </div>
         <div class="car-info">
-          <h2 class="car-title">Bentley Continental</h2>
-          <p class="car-desc">Luxury Coupe • Automatic</p>
+          <h2 class="car-title">Rolls Royce Spectre</h2>
+          <p class="car-desc">Electric Super Coupé • Automatic</p>
+          <p class="car-price">₹7,00,00,000</p>
+          <span class="car-tag electric">Electric</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================== LAMBORGHINI ================== -->
+      <div class="car-card" data-brand="Lamborghini" data-price="35000000" data-fuel="Petrol" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/huracan.png" alt="Lamborghini Huracán" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Lamborghini Huracán</h2>
+          <p class="car-desc">Supercar • Automatic</p>
           <p class="car-price">₹3,50,00,000</p>
           <span class="car-tag petrol">Petrol</span>
           <div class="car-actions">
@@ -419,17 +582,15 @@
         </div>
       </div>
 
-      <!-- Audi e-tron GT -->
-      <div class="car-card" data-price="22000000" data-fuel="EV" data-soldout="true">
+      <div class="car-card" data-brand="Lamborghini" data-price="40000000" data-fuel="Petrol" data-soldout="false">
         <div class="car-img-box">
-          <img src="IMG/e-tron.png" alt="e-tron" class="car-img">
-          
+          <img src="IMG/urus.png" alt="Lamborghini Urus S" class="car-img">
         </div>
         <div class="car-info">
-          <h2 class="car-title">Audi e-tron GT</h2>
-          <p class="car-desc">Electric Sedan • Automatic</p>
-          <p class="car-price">₹2,20,00,000</p>
-          <span class="car-tag ev">EV</span>
+          <h2 class="car-title">Lamborghini Urus S</h2>
+          <p class="car-desc">Super SUV • Automatic</p>
+          <p class="car-price">₹4,00,00,000</p>
+          <span class="car-tag petrol">Petrol</span>
           <div class="car-actions">
             <button class="btn-outline">Add to Wishlist</button>
             <button class="btn-primary">Book Now</button>
@@ -437,16 +598,64 @@
         </div>
       </div>
 
-      <div class="car-card" data-price="6700000" data-fuel="EV" data-soldout="true">
+      <div class="car-card" data-brand="Lamborghini" data-price="50000000" data-fuel="Hybrid" data-soldout="false">
         <div class="car-img-box">
-          <img src="IMG/ev6.png" alt="ev6" class="car-img">
-          
+          <img src="IMG/revuelto.jpg" alt="Lamborghini Revuelto" class="car-img">
         </div>
         <div class="car-info">
-          <h2 class="car-title">Kia EV6</h2>
-          <p class="car-desc">Electric Sedan • Automatic</p>
-          <p class="car-price">₹67,00,000</p>
-          <span class="car-tag ev">EV</span>
+          <h2 class="car-title">Lamborghini Revuelto</h2>
+          <p class="car-desc">V12 Hybrid Supercar • Automatic</p>
+          <p class="car-price">₹5,00,00,000</p>
+          <span class="car-tag hybrid">Hybrid</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================== TOYOTA ================== -->
+      <div class="car-card" data-brand="Toyota" data-price="3800000" data-fuel="Diesel" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/fortuner.png" alt="Toyota Fortuner" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Toyota Fortuner</h2>
+          <p class="car-desc">Full-Size SUV • Automatic</p>
+          <p class="car-price">₹38,00,000</p>
+          <span class="car-tag diesel">Diesel</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card" data-brand="Toyota" data-price="4500000" data-fuel="Hybrid" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/camry.png" alt="Toyota Camry Hybrid" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Toyota Camry Hybrid</h2>
+          <p class="car-desc">Executive Sedan • Automatic</p>
+          <p class="car-price">₹45,00,000</p>
+          <span class="car-tag hybrid">Hybrid</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card" data-brand="Toyota" data-price="12500000" data-fuel="Petrol" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/vellfire.png" alt="Toyota Vellfire" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Toyota Vellfire</h2>
+          <p class="car-desc">Luxury MPV • Automatic</p>
+          <p class="car-price">₹1,25,00,000</p>
+          <span class="car-tag petrol">Petrol</span>
           <div class="car-actions">
             <button class="btn-outline">Add to Wishlist</button>
             <button class="btn-primary">Book Now</button>
@@ -455,83 +664,214 @@
       </div>
 
 
-      <div class="car-card" data-price="16700000" data-fuel="EV" data-soldout="true">
+      <div class="car-card" data-brand="Toyota" data-price="4500000" data-fuel="Electric" data-soldout="false">
         <div class="car-img-box">
-          <img src="IMG/eqs.png" alt="eqs" class="car-img">
-          
+          <img src="IMG/bz4x.png" alt="Toyota bZ4X" class="car-img">
         </div>
         <div class="car-info">
-          <h2 class="car-title">Mercedes-Benz EQS</h2>
-          <p class="car-desc">Electric Sedan • Automatic</p>
-          <p class="car-price">₹1,67,00,000</p>
-          <span class="car-tag ev">EV</span>
+          <h2 class="car-title">Toyota bZ4X</h2>
+          <p class="car-desc">Electric SUV • Automatic</p>
+          <p class="car-price">₹45,00,000</p>
+          <span class="car-tag electric">Electric</span>
           <div class="car-actions">
             <button class="btn-outline">Add to Wishlist</button>
             <button class="btn-primary">Book Now</button>
           </div>
         </div>
       </div>
+
+      <!-- ================== PORSCHE ================== -->
+      <div class="car-card" data-brand="Porsche" data-price="12000000" data-fuel="Petrol" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/911.png" alt="Porsche 911 Carrera" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Porsche 911 Carrera</h2>
+          <p class="car-desc">Iconic Sports Car • Automatic</p>
+          <p class="car-price">₹1,20,00,000</p>
+          <span class="car-tag petrol">Petrol</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card" data-brand="Porsche" data-price="11000000" data-fuel="Diesel" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/cayenne.png" alt="Porsche Cayenne Diesel" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Porsche Cayenne Diesel</h2>
+          <p class="car-desc">Performance SUV • Automatic</p>
+          <p class="car-price">₹1,10,00,000</p>
+          <span class="car-tag diesel">Diesel</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card" data-brand="Porsche" data-price="13000000" data-fuel="Hybrid" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/panamera.png" alt="Porsche Panamera Hybrid" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Porsche Panamera Hybrid</h2>
+          <p class="car-desc">Luxury Sports Sedan • Automatic</p>
+          <p class="car-price">₹1,30,00,000</p>
+          <span class="car-tag hybrid">Hybrid</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card" data-brand="Porsche" data-price="15000000" data-fuel="Electric" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/taycan.png" alt="Porsche Taycan" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Porsche Taycan</h2>
+          <p class="car-desc">Electric Sports Sedan • Automatic</p>
+          <p class="car-price">₹1,50,00,000</p>
+          <span class="car-tag electric">Electric</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================== VOLVO ================== -->
+      <div class="car-card" data-brand="Volvo" data-price="3500000" data-fuel="Petrol" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/xc40.png" alt="Volvo XC40" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Volvo XC40</h2>
+          <p class="car-desc">Compact Luxury SUV • Automatic</p>
+          <p class="car-price">₹35,00,000</p>
+          <span class="car-tag petrol">Petrol</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card" data-brand="Volvo" data-price="4500000" data-fuel="Diesel" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/xc60.png" alt="Volvo XC60" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Volvo XC60</h2>
+          <p class="car-desc">Luxury SUV • Automatic</p>
+          <p class="car-price">₹45,00,000</p>
+          <span class="car-tag diesel">Diesel</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card" data-brand="Volvo" data-price="6500000" data-fuel="Hybrid" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/xc90.png" alt="Volvo XC90 Recharge" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Volvo XC90 Recharge</h2>
+          <p class="car-desc">Plug-in Hybrid SUV • Automatic</p>
+          <p class="car-price">₹65,00,000</p>
+          <span class="car-tag hybrid">Hybrid</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card" data-brand="Volvo" data-price="6800000" data-fuel="Petrol" data-soldout="false">
+        <div class="car-img-box">
+          <img src="IMG/s90.png" alt="Volvo S90" class="car-img">
+        </div>
+        <div class="car-info">
+          <h2 class="car-title">Volvo S90</h2>
+          <p class="car-desc">Luxury Sedan • Automatic</p>
+          <p class="car-price">₹68,00,000</p>
+          <span class="car-tag petrol">Petrol</span>
+          <div class="car-actions">
+            <button class="btn-outline">Add to Wishlist</button>
+            <button class="btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
     </div>
-
-    
-    
-
-
   </section>
 
-    <!-- 🔴 SOLD OUT MODAL -->
+  <!-- 🔴 SOLD OUT MODAL -->
   <div id="soldoutModal" class="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-  <div class="modal-content bg-white text-black p-6 rounded-lg shadow-lg w-80 text-center">
-    <p id="soldoutMessage" class="mb-4 font-semibold text-lg">
-      🚫 Sorry, this vehicle is sold out!
-    </p>
-    <button onclick="closeSoldOutModal()" 
-            class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">
-      Okay
-    </button>
-  </div>
-</div>
-
-
-
-<!-- Purchase Modal -->
-<div id="purchaseModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closePurchaseModal()">&times;</span>
-    
-    <!-- Purchase Form -->
-    <div id="purchaseForm">
-      <h2 id="purchaseCarName"></h2>
-      <p id="purchaseCarPrice"></p>
-      <label for="purchaseAddress">Delivery Address:</label>
-      <textarea id="purchaseAddress" placeholder="Enter your address"></textarea>
-      <button id="confirmPurchaseBtn">Confirm Purchase</button>
-    </div>
-
-    <!-- Success Message -->
-    <div id="purchaseSuccess" style="display:none; text-align:center;">
-      <h2>✅ Purchase Successful!</h2>
-      <p id="successCarMsg"></p>
-      <p id="successPrice"></p>
-      <p id="successGst"></p>
-      <p id="successTotal"></p>
-      <p id="successEmail"></p>
-      <button id="closeSuccessModal" style="padding:8px 16px; background:#007bff; color:#fff; border:none; border-radius:6px; cursor:pointer;">
+    <div class="modal-content bg-white text-black p-6 rounded-lg shadow-lg w-80 text-center">
+      <p id="soldoutMessage" class="mb-4 font-semibold text-lg">
+        🚫 Sorry, this vehicle is sold out!
+      </p>
+      <button onclick="closeSoldOutModal()" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">
         Okay
       </button>
     </div>
   </div>
-</div>
+
+
+
+  <!-- Purchase Modal -->
+  <div id="purchaseModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closePurchaseModal()">&times;</span>
+
+      <!-- Purchase Form -->
+      <div id="purchaseForm">
+        <h2 id="purchaseCarName"></h2>
+        <p id="purchaseCarPrice"></p>
+        <label for="purchaseAddress">Delivery Address:</label>
+        <textarea id="purchaseAddress" placeholder="Enter your address"></textarea>
+        <button id="confirmPurchaseBtn">Confirm Purchase</button>
+      </div>
+
+      <!-- Success Message -->
+      <div id="purchaseSuccess" style="display:none; text-align:center;">
+        <h2>✅ Purchase Successful!</h2>
+        <p id="successCarMsg"></p>
+        <p id="successPrice"></p>
+        <p id="successGst"></p>
+        <p id="successTotal"></p>
+        <p id="successEmail"></p>
+        <button id="closeSuccessModal"
+          style="padding:8px 16px; background:#007bff; color:#fff; border:none; border-radius:6px; cursor:pointer;">
+          Okay
+        </button>
+      </div>
+    </div>
+  </div>
 
 
 
   <script type="module" src="inventory.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script type="text/javascript">
-  (function(){
-     emailjs.init("tVUeCgo92oRs5zwnq"); // 👈 from EmailJS dashboard
-  })();
-</script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init("tVUeCgo92oRs5zwnq"); // 👈 from EmailJS dashboard
+    })();
+  </script>
 
 
 

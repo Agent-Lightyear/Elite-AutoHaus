@@ -12,8 +12,9 @@
 
     <header>
      <a href="index.html" class="brand"> 
-    <img src="IMG/logo.png" alt="Elite AutoHaus Logo" style="height:100px; vertical-align:middle; margin-right:8px;">
-  </a>
+  <img src="IMG/logo.png" alt="Elite AutoHaus Logo" class="header-logo">
+</a>
+
       <div class="menu-btn"></div>
       <div class="navigation">
         <div class="navigation-items">
@@ -27,7 +28,7 @@
     </header>
 
     <section class="home">
-      <video class="video-slide active" src="Video/1.mp4" autoplay muted loop></video>
+      <video class="video-slide active" src="Video/2.mp4" autoplay muted loop></video>
       <div class="content">
         <h1>Welcome to <br>Élite Autohaus</span></h1>
         <p>At Elite Autohaus, we don’t just sell cars — we curate driving experiences. With a deep-rooted passion for luxury,
@@ -115,7 +116,7 @@
                 <li>World Wide Brands - One Destination !</li>
                 <li>Customize Your Ride Your Way !</li>
             </ul>
-            <a href="about.html" class="about-button">Know More</a>
+            <a href="about.html" class="btn-gold">Know More</a>
         </div>
     </div>
 </section>
@@ -124,37 +125,59 @@
 <!-- ...existing code... -->
 <!-- Testimonials Section with Slider -->
 <script src="JS/review.js"></script>
-<section id="testimonials" style="background:#f8f2ea; padding:60px 0;">
-  <div style="max-width:700px; margin:auto; text-align:center;">
-    <h2 style="font-size:2.5rem; font-weight:600; color:#181E26;">
-      What Clients Say <span style="color:#c9a55b;">About Us</span>
-    </h2>
-    <div id="slider-container" style="position:relative; margin-top:40px;">
-      <div id="reviews-slider">
-        <!-- Reviews will be injected here -->
-      </div>
-      <div style="margin-top:30px;">
-        <button id="prevReview" style="background:none; border:none; font-size:2rem; color:#ff7f2a; cursor:pointer; margin-right:30px;">&#10094;</button>
-        <button id="nextReview" style="background:none; border:none; font-size:2rem; color:#ff7f2a; cursor:pointer;">&#10095;</button>
-      </div>
+<section id="testimonials">
+  <h2>What Clients Say <span>About Us</span></h2>
+
+  <div class="reviews-wrapper">
+
+    <div class="review-card">
+      <img src="review1.png" alt="Reviewer 1">
+      <h3>Rohit Mehta</h3>
+      <div class="stars">★★★★★</div>
+      <p>Awesome collection. I have an Audi Q5 from here... Highly Recommended ✨</p>
     </div>
+
+    <div class="review-card">
+      <img src="review2.png" alt="Reviewer 2">
+      <h3>Diksha Thakur</h3>
+      <div class="stars">★★★★★</div>
+      <p>Elite Autohaus made buying my BMW M5 a seamless experience. Classy team!</p>
+    </div>
+
+    <div class="review-card">
+      <img src="review3.png" alt="Reviewer 3">
+      <h3>Arjun Kapoor</h3>
+      <div class="stars">★★★★☆</div>
+      <p>Great selection and premium vibes. Would have loved faster delivery!</p>
+    </div>
+
   </div>
 </section>
 
+
 <!-- Review Form Section with Clickable Stars -->
-<section id="review-form" style="background:#f8f2ea; padding:40px 0;">
-  <div style="max-width:500px; margin:auto; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.07); padding:30px;">
-    <h3 style="color:#181E26; font-weight:600; margin-bottom:20px;">Share Your Review</h3>
+<section id="review-form">
+  <div class="review-box">
+    <h3>Share Your Review</h3>
+
     <form id="userReviewForm">
-      <div style="margin-bottom:15px;">
-        <input type="text" id="reviewerName" placeholder="Your Name" required style="width:100%; padding:10px; border:1px solid #c9a55b; border-radius:5px;">
-      </div>
-      <div style="margin-bottom:15px;">
-        <textarea id="reviewText" rows="3" placeholder="Your Review" required style="width:100%; padding:10px; border:1px solid #c9a55b; border-radius:5px;"></textarea>
-      </div>
-      <div style="margin-bottom:15px;">
-        <label style="color:#181E26; font-weight:500;">Rating:</label>
-        <span id="starRating" style="margin-left:10px; font-size:1.7rem; cursor:pointer;">
+      <input
+        type="text"
+        id="reviewerName"
+        placeholder="Your Name"
+        required
+      >
+
+      <textarea
+        id="reviewText"
+        rows="3"
+        placeholder="Your Review"
+        required
+      ></textarea>
+
+      <div class="rating-row">
+        <label>Rating:</label>
+        <span id="starRating" class="stars">
           <span class="star" data-value="1">&#9734;</span>
           <span class="star" data-value="2">&#9734;</span>
           <span class="star" data-value="3">&#9734;</span>
@@ -163,79 +186,76 @@
         </span>
         <input type="hidden" id="reviewRating" value="0" required>
       </div>
-      <button type="submit" style="background:#c9a55b; color:#fff; border:none; padding:10px 25px; border-radius:5px; font-weight:600; cursor:pointer;">
-        Submit Review
-      </button>
+
+      <button type="submit" class="btn-gold">Submit Review</button>
     </form>
   </div>
-  </section>
+</section>
+
+
   
 
 
 </body>
 
- <footer class="footer bg-dark text-light pt-5 pb-3">
-  <div class="container">
-    <div class="row">
+ <footer class="footer">
+  <div class="container footer-inner">
+    <div class="row gy-4">
 
       <!-- Logo & Opening Hours -->
-      <div class="col-md-3 mb-4">
-        <img src="IMG/logo.png" alt="Elite Autohaus Logo" style="height:50px; margin-bottom:15px;">
-        <p class="fw-bold">OPEN HOURS:</p>
-        <p>Monday - Sunday:<br>
-         <span class="text-gold">10am - 8pm</span></p>
+      <div class="col-md-3 footer-col">
+        <img src="IMG/logo.png" alt="Elite Autohaus Logo" class="footer-logo">
+        <p class="footer-title">Open Hours</p>
+        <p class="mb-0">Monday – Friday:<br><span class="text-gold">10am – 8pm</span></p>
       </div>
 
       <!-- Contact -->
-      <div class="col-md-3 mb-4">
-        <p class="text-gold fw-bold">Call Us On</p>
-        <p class="fw-bold">+91 9999999 681</p>
-        <p class="text-gold fw-bold mt-3">E-mail</p>
-        <p class="fw-bold">eliteautohaus.helpdesk@gmail.com</p>
+      <div class="col-md-3 footer-col">
+        <p class="footer-title">Call Us On</p>
+        <p class="mb-2 fw-semibold">+91 9999999 681</p>
+
+        <p class="footer-title mt-3">E-mail</p>
+        <p class="mb-0 fw-semibold">eliteautohaus.helpdesk@gmail.com</p>
       </div>
 
       <!-- Useful Links -->
-     <div class="col-md-3 mb-4 footer-links">
-  <p class="fw-bold">USEFUL LINKS</p>
-  <ul class="list-unstyled">
-    <li><a href="inventory.html">▶ New Luxury Cars</a></li>
-    <li><a href="#">▶ Pre-Owned Cars</a></li>
-    <li><a href="#">▶ Used Sports Cars</a></li>
-  </ul>
+      <div class="col-md-3 footer-col footer-links">
+        <p class="footer-title">Useful Links</p>
+        <ul class="list-unstyled mb-3">
+          <li><a href="inventory.html">▶ New Luxury Cars</a></li>
+          <li><a href="#">▶ Pre-Owned Cars</a></li>
+          <li><a href="#">▶ Used Sports Cars</a></li>
+        </ul>
 
-  <p class="fw-bold mt-3">OUR INFO</p>
-  <ul class="list-unstyled">
-    <li><a href="about.html">▶ About Us</a></li>
-    <li><a href="inventory.html">▶ Collections</a></li>
-    <li><a href="#">▶ Virtual Showrooms</a></li>
-  </ul>
-</div>
+        <p class="footer-title">Our Info</p>
+        <ul class="list-unstyled mb-0">
+          <li><a href="about.html">▶ About Us</a></li>
+          <li><a href="inventory.html">▶ Collections</a></li>
+          <li><a href="#">▶ Virtual Showrooms</a></li>
+        </ul>
+      </div>
 
-
-
-
-
-
-      <!-- Address -->
-      <div class="col-md-3 mb-4">
-        <a href="#" class="btn btn-gold w-100 mb-3">📍Elite Autohaus On Map</a>
-        <p class="fw-bold">Address</p>
-        <p>▶ A-99, MIDC<br>Wadi, Nagpur, 440016</p>
+      <!-- Address & Map -->
+      <div class="col-md-3 footer-col footer-address">
+        <a href="https://maps.app.goo.gl/yMktHhRxNKzhQV4y6" class="btn-gold w-100 mb-3">📍 Elite Autohaus On Map</a>
+        <p class="footer-title">Address</p>
+        <p class="mb-0">▶ A-99, MIDC<br>Wadi, Nagpur, 440016</p>
       </div>
 
     </div>
 
-    <!-- Bottom Bar -->
-    <div class="footer-bottom text-center pt-3 mt-3 border-top border-light">
-      <p class="mb-1">© 2025 EliteAutohaus.com | All rights reserved.</p>
-      <p class="mb-1">A Project By<span class="text-gold"> SVK Team</span></p>
+    <div class="footer-bottom text-center pt-3 mt-4">
+      <hr class="footer-divider">
+      <p class="mb-1 small">© 2025 elite-autohaus-018s.web.app | All rights reserved.</p>
+      <p class="mb-2 small">A Project By <span class="text-gold">SVK Team</span></p>
       <div class="media-icons">
         <a href="#"><i class="fab fa-facebook-f"></i></a>
-             <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
       </div>
     </div>
   </div>
 </footer>
+
 
 </html>

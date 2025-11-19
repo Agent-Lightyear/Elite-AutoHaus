@@ -30,55 +30,59 @@ function showSlide(index) {
 document.getElementById("next").addEventListener("click", () => showSlide((currentSlide + 1) % slides.length));
 document.getElementById("prev").addEventListener("click", () => showSlide((currentSlide - 1 + slides.length) % slides.length));
 dots.forEach((dot, i) => dot.addEventListener("click", () => showSlide(i)));
+
 setInterval(() => showSlide((currentSlide + 1) % slides.length), 5000);
 showSlide(0);
 
+
+
 // =========================
-// Car filter + sort
+// Car Filter + Sort
 // =========================
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchInput");
   const fuelFilter = document.getElementById("fuelFilter");
   const priceFilter = document.getElementById("priceFilter");
   const sortBy = document.getElementById("sortBy");
-  const carCards = Array.from(document.querySelectorAll(".car-card"));
-  const container = document.querySelector(".grid");
+  const carCards = [...document.querySelectorAll(".car-card")];
+  const container = document.querySelector(".inv-grid");
 
   function filterAndSort() {
-    let searchVal = searchInput.value.toLowerCase();
-    let fuelVal = fuelFilter.value;
-    let priceVal = priceFilter.value;
-    let sortVal = sortBy.value;
+    const searchVal = searchInput.value.toLowerCase();
+    const fuelVal = fuelFilter.value;
+    const priceVal = priceFilter.value;
+    const sortVal = sortBy.value;
 
     let filtered = carCards.filter(card => {
-      let name = card.querySelector(".car-title").innerText.toLowerCase();
-      let fuel = card.dataset.fuel;
-      let price = parseInt(card.dataset.price);
+      const name = card.querySelector(".car-title").innerText.toLowerCase();
+      const price = +card.dataset.price;
+      const fuel = card.dataset.fuel;
 
-      let matchSearch = name.includes(searchVal);
-      let matchFuel = fuelVal === "" || fuel === fuelVal;
-      let matchPrice = true;
-
-      if (priceVal === "20-50") matchPrice = price >= 2000000 && price <= 5000000;
-      if (priceVal === "50-100") matchPrice = price > 5000000 && price <= 10000000;
-      if (priceVal === "100+") matchPrice = price > 10000000;
-
-      return matchSearch && matchFuel && matchPrice;
+      return (
+        name.includes(searchVal) &&
+        (fuelVal === "" || fuel === fuelVal) &&
+        (
+          priceVal === "" ||
+          (priceVal === "20-50" && price >= 2000000 && price <= 5000000) ||
+          (priceVal === "50-100" && price > 5000000 && price <= 10000000) ||
+          (priceVal === "100+" && price > 10000000)
+        )
+      );
     });
 
-    // Sorting
-    if (sortVal === "priceLowHigh") {
-      filtered.sort((a, b) => parseInt(a.dataset.price) - parseInt(b.dataset.price));
-    } else if (sortVal === "priceHighLow") {
-      filtered.sort((a, b) => parseInt(b.dataset.price) - parseInt(a.dataset.price));
-    } else if (sortVal === "nameAZ") {
-      filtered.sort((a, b) => a.querySelector(".car-title").innerText.localeCompare(b.querySelector(".car-title").innerText));
-    } else if (sortVal === "nameZA") {
-      filtered.sort((a, b) => b.querySelector(".car-title").innerText.localeCompare(a.querySelector(".car-title").innerText));
-    }
 
+    // Sorting rules
+    filtered.sort((a, b) => {
+      if (sortVal === "priceLowHigh") return +a.dataset.price - +b.dataset.price;
+      if (sortVal === "priceHighLow") return +b.dataset.price - +a.dataset.price;
+      if (sortVal === "nameAZ") return a.querySelector(".car-title").innerText.localeCompare(b.querySelector(".car-title").innerText);
+      if (sortVal === "nameZA") return b.querySelector(".car-title").innerText.localeCompare(a.querySelector(".car-title").innerText);
+      return 0;
+    });
+
+    // Re-attach
     container.innerHTML = "";
-    filtered.forEach(card => container.appendChild(card));
+    filtered.forEach(c => container.appendChild(c));
   }
 
   searchInput.addEventListener("input", filterAndSort);
@@ -87,37 +91,65 @@ document.addEventListener("DOMContentLoaded", () => {
   sortBy.addEventListener("change", filterAndSort);
 
   filterAndSort();
-});
 
-// =========================
-// Reveal cards on scroll
-// =========================
-document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll(".car-card");
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show");
-        observer.unobserve(entry.target);
-      }
+  const carListSection = document.getElementById("carGrid");
+  const exploreButtons = document.querySelectorAll(".explore-btn");
+
+  if (carListSection) {
+    exploreButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        carListSection.scrollIntoView({ behavior: "smooth" });
+      });
     });
-  }, { threshold: 0.2 });
+  }
+});
 
-  cards.forEach(card => observer.observe(card));
+// Brand sorting
+document.addEventListener("DOMContentLoaded", function () {
+  const params = new URLSearchParams(window.location.search);
+  const brandParam = params.get("brand");
+
+  if (!brandParam) return; // no brand selected → show all
+
+  const selectedBrand = brandParam.toLowerCase();
+  const cards = document.querySelectorAll(".car-card");
+
+  cards.forEach(card => {
+    const cardBrand = (card.dataset.brand || "").toLowerCase();
+
+    if (cardBrand === selectedBrand) {
+      card.style.display = ""; // keep default (flex/grid/block depending on your CSS)
+    } else {
+      card.style.display = "none";
+    }
+  });
 });
 
 // =========================
-// Sold-out cars popup
+// Card animations
 // =========================
-document.addEventListener("DOMContentLoaded", () => {
-  const soldCards = document.querySelectorAll('.car-card[data-soldout="true"]');
-  soldCards.forEach(card => {
-    const buttons = card.querySelectorAll(".btn-outline, .btn-primary");
-    const carName = card.querySelector(".car-title")?.textContent || "This vehicle";
-    buttons.forEach(btn => btn.addEventListener("click", e => {
+const observer = new IntersectionObserver(
+  entries => entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add("show");
+      observer.unobserve(e.target);
+    }
+  }),
+  { threshold: 0.2 }
+);
+
+document.querySelectorAll(".car-card").forEach(card => observer.observe(card));
+
+// =========================
+// Sold-out Handler
+// =========================
+document.querySelectorAll('.car-card[data-soldout="true"]').forEach(card => {
+  const carName = card.querySelector(".car-title")?.textContent ?? "This vehicle";
+  card.querySelectorAll(".btn-outline, .btn-primary").forEach(btn => {
+    btn.addEventListener("click", e => {
       e.preventDefault();
       showSoldOutPopup(carName);
-    }));
+    });
   });
 });
 
@@ -127,33 +159,32 @@ function showSoldOutPopup(carName) {
   modal.classList.add("show");
 }
 
-function closeSoldOutModal() {
+window.closeSoldOutModal = () => {
   document.getElementById("soldoutModal").classList.remove("show");
-}
-window.closeSoldOutModal = closeSoldOutModal;
+};
 
 // =========================
-// Purchase Flow with EmailJS
+// Purchase Flow + EmailJS
 // =========================
+
+// Init EmailJS safely
+document.addEventListener("DOMContentLoaded", () => {
+  if (emailjs && !emailjs._init) emailjs.init("tVUeCgo92oRs5zwnq");
+});
+
 let selectedCar = null;
 const purchaseModal = document.getElementById("purchaseModal");
-const confirmBtn = document.getElementById("confirmPurchaseBtn");
 
-// ✅ Initialize EmailJS (make sure <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script> is in your HTML)
-emailjs.init("tVUeCgo92oRs5zwnq"); // 🔑 Replace with your real Public Key
-
-// Open purchase modal
 document.querySelectorAll(".car-card .btn-primary").forEach(button => {
   button.addEventListener("click", e => {
-    e.preventDefault();
     const card = e.target.closest(".car-card");
 
     if (card.dataset.soldout === "true") return;
 
     selectedCar = {
-      name: card.querySelector(".car-title")?.textContent,
-      price: parseInt(card.dataset.price) || 0,
-      element: card
+      name: card.querySelector(".car-title").textContent,
+      price: +card.dataset.price,
+      cardEl: card
     };
 
     document.getElementById("purchaseCarName").textContent = `Book ${selectedCar.name}?`;
@@ -162,31 +193,24 @@ document.querySelectorAll(".car-card .btn-primary").forEach(button => {
   });
 });
 
-const GST_RATE = 0.28; // 28%
+const GST_RATE = 0.28;
 
-// Confirm purchase
-confirmBtn.addEventListener("click", async () => {
+document.getElementById("confirmPurchaseBtn").addEventListener("click", async () => {
   if (!selectedCar) return;
 
   const user = auth.currentUser;
   if (!user) {
-    alert("⚠️ Please log in first.");
-    window.location.href = "login.html";
-    return;
+    alert("⚠️ Login required.");
+    return (window.location.href = "login.html");
   }
 
   const address = document.getElementById("purchaseAddress").value.trim();
-  if (!address) {
-    alert("📍 Please enter your address.");
-    return;
-  }
+  if (!address) return alert("📍 Enter your delivery address.");
 
-  // 🧮 GST calculation
   const gstAmount = Math.round(selectedCar.price * GST_RATE);
   const totalPrice = selectedCar.price + gstAmount;
 
   try {
-    // Save purchase in Firestore
     await addDoc(collection(db, "users", user.uid, "purchases"), {
       itemName: selectedCar.name,
       baseAmount: selectedCar.price,
@@ -197,69 +221,53 @@ confirmBtn.addEventListener("click", async () => {
       createdAt: serverTimestamp()
     });
 
-    // Send confirmation email
     await emailjs.send("service_lm77ga9", "template_245nooi", {
+      name: user.displayName ?? "Customer",
       email: user.email,
-      order_id: Date.now(),
-      name: user.displayName || "Customer",
       car_name: selectedCar.name,
       base_price: `₹${selectedCar.price.toLocaleString()}`,
       gst: `₹${gstAmount.toLocaleString()}`,
       total_price: `₹${totalPrice.toLocaleString()}`,
-      address: address
+      address
     });
 
-    // ✅ Success UI with styled buttons
-purchaseModal.querySelector(".modal-content").innerHTML = `
-  <h2 style="color: #28a745; font-size: 22px; margin-bottom: 10px;">✅ Purchase Successful!</h2>
-  <p style="margin: 5px 0; font-size: 16px;">${selectedCar.name} has been booked.</p>
-  <p style="margin: 5px 0;">Base Price: ₹${selectedCar.price.toLocaleString()}</p>
-  <p style="margin: 5px 0;">GST (28%): ₹${gstAmount.toLocaleString()}</p>
-  <p style="margin: 5px 0; font-weight: bold;">Total: ₹${totalPrice.toLocaleString()}</p>
-  <p style="margin: 10px 0;">A confirmation email has been sent to <b>${user.email}</b>.</p>
-
-  <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center;">
-    <button id="okayBtn" 
-      style="padding: 8px 16px; background-color: #007bff; border: none; color: white; 
-             font-size: 14px; border-radius: 5px; cursor: pointer;">
-      Okay
-    </button>
-    <button id="closeSuccessModal" 
-      style="padding: 8px 16px; background-color: #6c757d; border: none; color: white; 
-             font-size: 14px; border-radius: 5px; cursor: pointer;">
-      Close
-    </button>
-  </div>
-`;
-
-// Disable car button
-selectedCar.element.querySelector(".btn-primary").textContent = "Booked ✅";
-selectedCar.element.querySelector(".btn-primary").disabled = true;
-selectedCar = null;
-
-// Add event listeners
-document.getElementById("closeSuccessModal").addEventListener("click", closePurchaseModal);
-document.getElementById("okayBtn").addEventListener("click", closePurchaseModal);
-
-
-// Disable car button
-selectedCar.element.querySelector(".btn-primary").textContent = "Booked ✅";
-selectedCar.element.querySelector(".btn-primary").disabled = true;
-selectedCar = null;
-
-// Add event listeners
-document.getElementById("closeSuccessModal").addEventListener("click", closePurchaseModal);
-document.getElementById("okayBtn").addEventListener("click", closePurchaseModal);
-
+    successUI(user.email, selectedCar, gstAmount, totalPrice);
 
   } catch (err) {
     console.error(err);
-    alert("❌ Something went wrong. Try again.");
+    alert("❌ Error processing purchase.");
   }
 });
 
-// Close modal function
-function closePurchaseModal() {
-  if (purchaseModal) purchaseModal.style.display = "none";
+function successUI(email, car, gstAmount, totalPrice) {
+  purchaseModal.querySelector(".modal-content").innerHTML = `
+    <h2 style="color:#28a745;">✅ Purchase Successful!</h2>
+    <p>${car.name} has been booked.</p>
+    <p>Base Price: ₹${car.price.toLocaleString()}</p>
+    <p>GST (28%): ₹${gstAmount.toLocaleString()}</p>
+    <p><b>Total: ₹${totalPrice.toLocaleString()}</b></p>
+    <p>Email sent to <b>${email}</b></p>
+
+    <button id="okBtn" class="btn-primary w-full mt-3">Okay</button>
+  `;
+
+  const btn = car.cardEl.querySelector(".btn-primary");
+  btn.textContent = "Booked ✔";
+  btn.disabled = true;
+
+  document.getElementById("okBtn").onclick = closePurchaseModal;
+  selectedCar = null;
 }
+
+function closePurchaseModal() {
+  purchaseModal.style.display = "none";
+}
+
 window.closePurchaseModal = closePurchaseModal;
+
+
+function scrollToCars() {
+  document.getElementById("carGrid").scrollIntoView({
+    behavior: "smooth"
+  });
+}
