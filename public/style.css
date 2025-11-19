@@ -26,6 +26,54 @@ h1, h2, h3 {
 
 /* ================= HEADER ================= */
 
+
+.nav-icon {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none !important;
+}
+/* Fix vertical alignment of the user icon in the navbar */
+.nav-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  /* adjust this number if needed */
+}
+
+
+.user-icon {
+  width: 36px;
+  height: 36px;
+  transition: transform 0.3s ease;
+  filter: invert();
+}
+
+/* Golden circle generated automatically */
+.nav-icon::after {
+  content: "";
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  border: 2px solid #D4AF37;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.3s ease;
+}
+
+/* Hover animation */
+.nav-icon:hover .user-icon {
+  transform: scale(1.12);
+}
+
+.nav-icon:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
 header {
   position: fixed;
   top: 0;
@@ -110,6 +158,14 @@ header .navigation .navigation-items a:hover {
 
 header .navigation .navigation-items a:hover::before {
   width: 100%;
+}
+header .navigation .navigation-items a img + span,
+header .navigation .navigation-items a img {
+  text-decoration: none !important;
+}
+
+header .navigation .navigation-items a:has(img)::before {
+  display: none !important;
 }
 
 /* ================= HOME / HERO ================= */

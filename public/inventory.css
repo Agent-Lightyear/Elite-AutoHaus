@@ -19,6 +19,61 @@ button {
 /* =========================
    NAVBAR (smooth fade, same as index)
    ========================= */
+
+   /* make container a fixed square so ring centers reliably */
+.nav-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 46px;        /* same as ring size */
+  height: 46px;       /* same as ring size */
+  text-decoration: none !important;
+  vertical-align: middle;
+  filter: invert();
+}
+
+/* icon sits above the ring */
+.user-icon {
+  width: 34px;
+  height: 34px;
+  z-index: 2;
+  transition: transform 0.28s ease;
+  pointer-events: none;
+   /* keep hover on the anchor, not the image */
+}
+
+/* centered golden ring behind the icon */
+.nav-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 46px;
+  height: 46px;
+  border: 2px solid #2B50C8;
+  background-color: transparent;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0.55);
+  opacity: 0;
+  transition: transform 0.28s ease, opacity 0.28s ease;
+  z-index: 1;           /* behind the icon */
+  pointer-events: none; /* don't block clicks */
+  box-shadow: 0 6px 18px rgba(212,175,55,0.08); /* subtle glow */
+}
+
+/* hover behaviour */
+.nav-icon:hover .user-icon {
+  transform: scale(1.12);
+}
+
+.nav-icon:hover::after {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  
+}
+
+
 header {
   position: fixed;
   top: 0;
@@ -124,6 +179,14 @@ nav a:hover::after {
   nav.mobile-active a {
     padding: 10px 0;
   }
+}
+header .navigation .navigation-items a img + span,
+header .navigation .navigation-items a img {
+  text-decoration: none !important;
+}
+
+header .navigation .navigation-items a:has(img)::before {
+  display: none !important;
 }
 
 
