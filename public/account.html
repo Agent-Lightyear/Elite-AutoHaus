@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Elite Autohaus | Account</title>
-  <link rel="stylesheet" href="account.css">
-  <!-- jsPDF CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
+  <link rel="stylesheet" href="account.css" />
+  <!-- jsPDF CDN (kept) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
@@ -15,70 +14,121 @@
   <header>
     <a href="home.html" class="center-logo-link">
       <span>Élite Autohaus Dashboard</span>
-      <!-- <img src="IMG/logo_1.png" alt="Elite AutoHaus Logo"> -->
     </a>
     <button id="logoutBtn">Logout</button>
   </header>
 
   <!-- Account Content -->
   <div class="container">
-    <p style="margin-top: 20px; color: #777; margin-bottom: 20px;">
-      Welcome to your Élite Autohaus account dashboard.
-    </p>
 
-    <img src="IMG/user.png" alt="Profile Picture" class="profile-pic">
-    <h2 id="userName">User Name</h2>
+    <div class="container-top">
+      <button id="backHomeBtn" class="back-home" title="Back to Home">← Back to Home</button>
+      <div class="container-title">Welcome to your Élite Autohaus account</div>
+      <!-- spacing element so title stays centered -->
+      <div style="width:110px"></div>
+    </div>
 
-    <div class="info">
+    <div class="profile-row">
+      <img src="IMG/user.png" alt="Profile Picture" class="profile-pic" />
       <div>
-        <label>Name:</label>
-        <span id="nameField">User Name</span>
-      </div>
-      <div>
-        <label>Email:</label>
-        <span id="emailField">user@example.com</span>
-      </div>
-      <div>
-        <label>Phone:</label>
-        <span id="phoneField">+91 9876543210</span>
+        <h2 id="userName">User Name</h2>
+        <div class="info">
+          <div><label>Name:</label><span id="nameField">User Name</span></div>
+          <div><label>Email:</label><span id="emailField">user@example.com</span></div>
+          <div><label>Phone:</label><span id="phoneField">+91 9876543210</span></div>
+        </div>
       </div>
     </div>
 
-    <!-- Purchase History -->
-    <div class="purchase-history">
-      <h3>Purchase History</h3>
-      <ul id="purchaseList">
-        <li style="color:#777;">No purchases yet.</li>
-      </ul>
+    <!-- Grid: Purchase History (left) + Review (right) -->
+    <div class="account-grid">
+      <!-- PURCHASE HISTORY CARD -->
+      <section class="card purchase-history" aria-labelledby="historyHeading">
+        <h3 id="historyHeading">Purchase History</h3>
+        <ul id="purchaseList">
+          <li style="color:#777;">No purchases yet.</li>
+        </ul>
+      </section>
+
+      <!-- REVIEW CARD -->
+      <section class="card review-section" aria-labelledby="reviewHeading">
+        <h3 id="reviewHeading">Share Your Review</h3>
+
+        <form id="reviewForm">
+          <label for="reviewText" class="review-label">Your Review</label>
+          <textarea id="reviewText" class="review-input" placeholder="Write your experience with Elite Autohaus..." required></textarea>
+
+          <label class="review-label">Rating</label>
+          <div class="stars" id="ratingStars" role="radiogroup" aria-label="Rating">
+            <span data-value="1" role="radio" tabindex="0">★</span>
+            <span data-value="2" role="radio" tabindex="0">★</span>
+            <span data-value="3" role="radio" tabindex="0">★</span>
+            <span data-value="4" role="radio" tabindex="0">★</span>
+            <span data-value="5" role="radio" tabindex="0">★</span>
+          </div>
+          <input type="hidden" id="ratingValue" value="5" />
+
+          <button type="submit" id="submitReview" class="review-btn">Submit Review</button>
+          <p id="reviewMessage" class="review-message" aria-live="polite"></p>
+        </form>
+      </section>
+    </div>
+
+  </div>
+
+  <!-- Invoice Popup (unchanged) -->
+  <div id="invoice-popup" class="popup" style="display:none;">
+    <div class="popup-content">
+      <h2>Invoice</h2>
+      <p><strong>Customer:</strong> <span id="invoice-customer"></span></p>
+      <p><strong>Car:</strong> <span id="invoice-car"></span></p>
+      <p><strong>Base Amount:</strong> ₹<span id="invoice-base"></span></p>
+      <p><strong>GST (28%):</strong> ₹<span id="invoice-gst"></span></p>
+      <p><strong>Total Amount:</strong> ₹<span id="invoice-total"></span></p>
+      <p><strong>Address:</strong> <span id="invoice-address"></span></p>
+      <p><strong>Date:</strong> <span id="invoice-date"></span></p>
+
+      <button id="download-pdf">Download PDF</button>
+      <button id="close-popup">Close</button>
     </div>
   </div>
 
-<!-- Invoice Popup -->
-<div id="invoice-popup" class="popup" style="display:none;">
-  <div class="popup-content">
-    <h2>Invoice</h2>
+  <!-- existing app script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
 
-    <p><strong>Customer:</strong> <span id="invoice-customer"></span></p>
-    <p><strong>Car:</strong> <span id="invoice-car"></span></p>
-    <p><strong>Base Amount:</strong> ₹<span id="invoice-base"></span></p>
-    <p><strong>GST (28%):</strong> ₹<span id="invoice-gst"></span></p>
-    <p><strong>Total Amount:</strong> ₹<span id="invoice-total"></span></p>
-    <p><strong>Address:</strong> <span id="invoice-address"></span></p>
-    <p><strong>Date:</strong> <span id="invoice-date"></span></p>
-
-    <button id="download-pdf">Download PDF</button>
-    <button id="close-popup">Close</button>
-  </div>
-</div>
-
-
-  <!-- JS -->
-   <!-- jsPDF -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-<!-- autoTable plugin -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
-
+  <!-- your account logic (keeps using account.js) -->
   <script type="module" src="account.js"></script>
+
+  <!-- small inline script for Back to Home behavior and star interactions (non-invasive) -->
+  <script>
+    document.getElementById('backHomeBtn').addEventListener('click', () => {
+      // go back to home page
+      window.location.href = 'home.html';
+    });
+
+    // Small star rating UI so it works out of the box even if account.js doesn't handle it
+    const stars = document.querySelectorAll('#ratingStars span');
+    const ratingInput = document.getElementById('ratingValue');
+    function setActiveStars(value){
+      stars.forEach(s => {
+        s.classList.toggle('active', Number(s.dataset.value) <= Number(value));
+      });
+    }
+    stars.forEach(s => {
+      s.addEventListener('click', () => {
+        ratingInput.value = s.dataset.value;
+        setActiveStars(s.dataset.value);
+      });
+      s.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          s.click();
+        }
+      });
+    });
+    // initialize
+    setActiveStars(ratingInput.value);
+  </script>
 </body>
 </html>

@@ -7,6 +7,9 @@
   <title>Elite AutoHaus | Cars</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="inventory.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
 </head>
 
 <body class="bg-white text-white">
@@ -25,7 +28,7 @@
         <!-- <a href="#coll" class="hover-link">Cars</a> -->
         <!-- <a href="about.html" class="hover-link">About</a>
         <a href="contact.html" class="hover-link">Contact</a> -->
-<a href="account.html" class="nav-icon">
+        <a href="account.html" class="nav-icon">
           <img src="IMG/user.svg" class="user-icon" />
         </a>
       </nav>
@@ -36,56 +39,56 @@
     <!-- Mobile Dropdown -->
     <div id="menu" class="hidden flex-col bg-[#181E26] md:hidden px-4 pb-4">
       <a href="home.html" class="mobile-link">Home</a>
-      <a href="#collection" class="mobile-link">Cars</a>
+      <!-- <a href="#collection" class="mobile-link">Cars</a> -->
       <a href="#about" class="mobile-link">About</a>
-      <a href="#contact" class="mobile-link">Contact</a>
+      <a href="contact.html" class="mobile-link">Contact</a>
       <a href="login.html" class="btn-login block mt-2 text-center">Login</a>
     </div>
   </header>
 
   <!-- HERO SECTION WITH SLIDER -->
-   
-<section class="relative w-full h-[80vh] overflow-hidden pt-16">
-  <div class="hero-slide active">
-    <img src="IMG/luxury.png" class="w-full h-full object-cover" alt="Slide 1">
-    <div class="hero-overlay">
-      <h1 class="hero-title">Luxury Cars</h1>
-      <p class="hero-subtitle">Experience premium comfort and style</p>
-      <button class="btn-hero explore-btn">Explore Now</button>
+
+  <section class="relative w-full h-[80vh] overflow-hidden pt-16">
+    <div class="hero-slide active">
+      <img src="IMG/luxury.png" class="w-full h-full object-cover" alt="Slide 1">
+      <div class="hero-overlay">
+        <h1 class="hero-title">Luxury Cars</h1>
+        <p class="hero-subtitle">Experience premium comfort and style</p>
+        <button class="btn-hero explore-btn">Explore Now</button>
+      </div>
     </div>
-  </div>
 
-  <div class="hero-slide">
-    <img src="IMG/sports.jpg" class="w-full h-full object-cover" alt="Slide 2">
-    <div class="hero-overlay">
-      <h1 class="hero-title">Sports Cars</h1>
-      <p class="hero-subtitle">Unleash speed and performance</p>
-      <button class="btn-hero explore-btn">Explore Now</button>
+    <div class="hero-slide">
+      <img src="IMG/sports.jpg" class="w-full h-full object-cover" alt="Slide 2">
+      <div class="hero-overlay">
+        <h1 class="hero-title">Sports Cars</h1>
+        <p class="hero-subtitle">Unleash speed and performance</p>
+        <button class="btn-hero explore-btn">Explore Now</button>
+      </div>
     </div>
-  </div>
 
-  <div class="hero-slide">
-    <img src="IMG/ev.png" class="w-full h-full object-cover" alt="Slide 3">
-    <div class="hero-overlay">
-      <h1 class="hero-title">Electric Vehicles</h1>
-      <p class="hero-subtitle">Future of sustainable driving</p>
-      <button class="btn-hero explore-btn">Explore Now</button>
-    </div>
-  </div>
-</section>
-
-
-    <!-- Controls -->
-    <button id="prev" class="slider-btn left-4">❮</button>
-    <button id="next" class="slider-btn right-4">❯</button>
-
-    <!-- Dots -->
-    <div class="slider-dots">
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
+    <div class="hero-slide">
+      <img src="IMG/ev.png" class="w-full h-full object-cover" alt="Slide 3">
+      <div class="hero-overlay">
+        <h1 class="hero-title">Electric Vehicles</h1>
+        <p class="hero-subtitle">Future of sustainable driving</p>
+        <button class="btn-hero explore-btn">Explore Now</button>
+      </div>
     </div>
   </section>
+
+
+  <!-- Controls -->
+  <button id="prev" class="slider-btn left-4">❮</button>
+  <button id="next" class="slider-btn right-4">❯</button>
+
+  <!-- Dots -->
+  <div class="slider-dots">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+  
 
   <!-- CAR GRID SECTION -->
   <section id="collection" class="py-20 bg-[#0f1319]">
@@ -113,6 +116,8 @@
         <option value="priceHighLow">Price: High → Low</option>
         <option value="nameAZ">Name: A → Z</option>
         <option value="nameZA">Name: Z → A</option>
+         <option value="bestSelling">Best Selling</option>
+         <option value="availability">Availability</option>
       </select>
       <a href="brand.html" class="btn-brand-select">
         Browse by Brand
@@ -125,7 +130,7 @@
     <div id="carGrid" class="inv-grid">
 
       <!-- ================== BMW ================== -->
-      <div class="car-card" data-brand="BMW" data-price="5800000" data-fuel="Petrol" data-soldout="false">
+      <div class="car-card" data-brand="BMW" data-price="5800000" data-fuel="Petrol" data-soldout="true"> 
         <div class="car-img-box">
           <img src="IMG/3.png" alt="BMW 3 Series" class="car-img">
         </div>
@@ -141,7 +146,7 @@
         </div>
       </div>
 
-      <div class="car-card" data-brand="BMW" data-price="20000000" data-fuel="Diesel" data-soldout="false">
+      <div class="car-card" data-brand="BMW" data-price="20000000" data-fuel="Diesel" data-soldout="false" data-bestseller="true">
         <div class="car-img-box">
           <img src="IMG/m5.png" alt="BMW m5" class="car-img">
         </div>
@@ -191,7 +196,7 @@
 
 
       <!-- ================== AUDI ================== -->
-      <div class="car-card" data-brand="Audi" data-price="5200000" data-fuel="Petrol" data-soldout="false">
+      <div class="car-card" data-brand="Audi" data-price="5200000" data-fuel="Petrol" data-soldout="true" >
         <div class="car-img-box">
           <img src="IMG/a4.png" alt="Audi A4" class="car-img">
         </div>
@@ -207,7 +212,7 @@
         </div>
       </div>
 
-      <div class="car-card" data-brand="Audi" data-price="7800000" data-fuel="Diesel" data-soldout="false">
+      <div class="car-card" data-brand="Audi" data-price="7800000" data-fuel="Diesel" data-soldout="true">
         <div class="car-img-box">
           <img src="IMG/q7.png" alt="Audi Q7" class="car-img">
         </div>
@@ -256,7 +261,7 @@
       </div>
 
       <!-- ================== MERCEDES-BENZ ================== -->
-      <div class="car-card" data-brand="Mercedes-Benz" data-price="6000000" data-fuel="Petrol" data-soldout="false">
+      <div class="car-card" data-brand="Mercedes-Benz" data-price="6000000" data-fuel="Petrol" data-soldout="false" data-bestseller="true">
         <div class="car-img-box">
           <img src="IMG/c200.png" alt="Mercedes C 200" class="car-img">
         </div>
@@ -289,7 +294,7 @@
       </div>
 
 
-      <div class="car-card" data-brand="Mercedes-Benz" data-price="7800000" data-fuel="Hybrid" data-soldout="false">
+      <div class="car-card" data-brand="Mercedes-Benz" data-price="7800000" data-fuel="Hybrid" data-soldout="true">
         <div class="car-img-box">
           <img src="IMG/gle.png" alt="Mercedes GLE 350e" class="car-img">
         </div>
@@ -323,7 +328,7 @@
 
 
       <!-- ================== RANGE ROVER ================== -->
-      <div class="car-card" data-brand="Range Rover" data-price="9000000" data-fuel="Petrol" data-soldout="false">
+      <div class="car-card" data-brand="Range Rover" data-price="9000000" data-fuel="Petrol" data-soldout="true" >
         <div class="car-img-box">
           <img src="IMG/evoque.png" alt="Range Rover Evoque" class="car-img">
         </div>
@@ -372,7 +377,7 @@
       </div>
 
       <!-- ================== TESLA ================== -->
-      <div class="car-card" data-brand="Tesla" data-price="6500000" data-fuel="Electric" data-soldout="false">
+      <div class="car-card" data-brand="Tesla" data-price="6500000" data-fuel="Electric" data-soldout="false" data-bestseller="true">
         <div class="car-img-box">
           <img src="IMG/model3.png" alt="Tesla Model 3" class="car-img">
         </div>
@@ -388,7 +393,7 @@
         </div>
       </div>
 
-      <div class="car-card" data-brand="Tesla" data-price="7200000" data-fuel="Electric" data-soldout="false">
+      <div class="car-card" data-brand="Tesla" data-price="7200000" data-fuel="Electric" data-soldout="true">
         <div class="car-img-box">
           <img src="IMG/modely.png" alt="Tesla Model Y" class="car-img">
         </div>
@@ -470,39 +475,8 @@
       </div>
 
       <!-- ================== KIA ================== -->
-      <!-- <div class="car-card" data-brand="Kia" data-price="2000000" data-fuel="Petrol" data-soldout="false">
-  <div class="car-img-box">
-    <img src="IMG/kia-seltos.png" alt="Kia Seltos" class="car-img">
-  </div>
-  <div class="car-info">
-    <h2 class="car-title">Kia Seltos</h2>
-    <p class="car-desc">Compact SUV • Automatic</p>
-    <p class="car-price">₹20,00,000</p>
-    <span class="car-tag petrol">Petrol</span>
-    <div class="car-actions">
-      <button class="btn-outline">Add to Wishlist</button>
-      <button class="btn-primary">Book Now</button>
-    </div>
-  </div>
-</div>
 
-<div class="car-card" data-brand="Kia" data-price="1700000" data-fuel="Diesel" data-soldout="false">
-  <div class="car-img-box">
-    <img src="IMG/kia-sonet-diesel.png" alt="Kia Sonet Diesel" class="car-img">
-  </div>
-  <div class="car-info">
-    <h2 class="car-title">Kia Sonet Diesel</h2>
-    <p class="car-desc">Subcompact SUV • Manual</p>
-    <p class="car-price">₹17,00,000</p>
-    <span class="car-tag diesel">Diesel</span>
-    <div class="car-actions">
-      <button class="btn-outline">Add to Wishlist</button>
-      <button class="btn-primary">Book Now</button>
-    </div>
-  </div>
-</div> -->
-
-      <div class="car-card" data-brand="Kia" data-price="5500000" data-fuel="Electric" data-soldout="false">
+      <div class="car-card" data-brand="Kia" data-price="5500000" data-fuel="Electric" data-soldout="false" data-bestseller="true">
         <div class="car-img-box">
           <img src="IMG/ev6.png" alt="Kia EV6" class="car-img">
         </div>
@@ -535,7 +509,7 @@
         </div>
       </div>
 
-      <div class="car-card" data-brand="Rolls Royce" data-price="55000000" data-fuel="Petrol" data-soldout="false">
+      <div class="car-card" data-brand="Rolls Royce" data-price="55000000" data-fuel="Petrol" data-soldout="true">
         <div class="car-img-box">
           <img src="IMG/ghostII.jpg" alt="Rolls Royce Ghost" class="car-img">
         </div>
@@ -584,7 +558,7 @@
         </div>
       </div>
 
-      <div class="car-card" data-brand="Lamborghini" data-price="40000000" data-fuel="Petrol" data-soldout="false">
+      <div class="car-card" data-brand="Lamborghini" data-price="40000000" data-fuel="Petrol" data-soldout="true">
         <div class="car-img-box">
           <img src="IMG/urus.png" alt="Lamborghini Urus S" class="car-img">
         </div>
@@ -633,7 +607,7 @@
         </div>
       </div>
 
-      <div class="car-card" data-brand="Toyota" data-price="4500000" data-fuel="Hybrid" data-soldout="false">
+      <div class="car-card" data-brand="Toyota" data-price="4500000" data-fuel="Hybrid" data-soldout="false" data-bestseller="true">
         <div class="car-img-box">
           <img src="IMG/camry.png" alt="Toyota Camry Hybrid" class="car-img">
         </div>
@@ -649,7 +623,7 @@
         </div>
       </div>
 
-      <div class="car-card" data-brand="Toyota" data-price="12500000" data-fuel="Petrol" data-soldout="false">
+      <div class="car-card" data-brand="Toyota" data-price="12500000" data-fuel="Petrol" data-soldout="true">
         <div class="car-img-box">
           <img src="IMG/vellfire.png" alt="Toyota Vellfire" class="car-img">
         </div>
@@ -664,7 +638,6 @@
           </div>
         </div>
       </div>
-
 
       <div class="car-card" data-brand="Toyota" data-price="4500000" data-fuel="Electric" data-soldout="false">
         <div class="car-img-box">
@@ -683,7 +656,7 @@
       </div>
 
       <!-- ================== PORSCHE ================== -->
-      <div class="car-card" data-brand="Porsche" data-price="12000000" data-fuel="Petrol" data-soldout="false">
+      <div class="car-card" data-brand="Porsche" data-price="12000000" data-fuel="Petrol" data-soldout="false" data-bestseller="true">
         <div class="car-img-box">
           <img src="IMG/911.png" alt="Porsche 911 Carrera" class="car-img">
         </div>
@@ -731,7 +704,7 @@
         </div>
       </div>
 
-      <div class="car-card" data-brand="Porsche" data-price="15000000" data-fuel="Electric" data-soldout="false">
+      <div class="car-card" data-brand="Porsche" data-price="15000000" data-fuel="Electric" data-soldout="true">
         <div class="car-img-box">
           <img src="IMG/taycan.png" alt="Porsche Taycan" class="car-img">
         </div>
@@ -796,7 +769,7 @@
         </div>
       </div>
 
-      <div class="car-card" data-brand="Volvo" data-price="6800000" data-fuel="Petrol" data-soldout="false">
+      <div class="car-card" data-brand="Volvo" data-price="6800000" data-fuel="Petrol" data-soldout="true">
         <div class="car-img-box">
           <img src="IMG/s90.png" alt="Volvo S90" class="car-img">
         </div>
@@ -815,9 +788,6 @@
 
 
 
-
-
-
     </div>
   </section>
 
@@ -832,6 +802,7 @@
       </button>
     </div>
   </div>
+
 
 
 
@@ -867,6 +838,7 @@
 
 
 
+
   <script type="module" src="inventory.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script type="text/javascript">
@@ -877,68 +849,68 @@
 
 
 
-</body>
-
-
-
-  
-
 
 </body>
 
-<footer class="ea-footer">
-  <div class="ea-footer-inner">
 
-    <div class="ea-footer-col">
-      <img src="IMG/logo.png" alt="Elite Autohaus Logo" class="ea-footer-logo">
-      <p class="ea-footer-title">Open Hours</p>
-      <p class="ea-footer-text">Monday – Friday:<br><span class="text-gold">10am – 8pm</span></p>
+
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <!-- Logo & Opening Hours -->
+    <div class="footer-col">
+      <img src="IMG/logo.png" alt="Elite Autohaus Logo" class="footer-logo">
+      <p class="footer-title">Open Hours</p>
+      <p class="mb-0">Monday – Friday:<br><span class="text-gold">10am – 8pm</span></p>
     </div>
 
-    <div class="ea-footer-col">
-      <p class="ea-footer-title">Call Us On</p>
-      <p class="ea-footer-text fw-semibold">+91 9999999 681</p>
+    <!-- Contact -->
+    <div class="footer-col">
+      <p class="footer-title">Call Us On</p>
+      <p class="mb-2 fw-semibold">+91 9999999 681</p>
 
-      <p class="ea-footer-title mt-3">E-mail</p>
-      <p class="ea-footer-text fw-semibold">eliteautohaus.helpdesk@gmail.com</p>
+      <p class="footer-title mt-3">E-mail</p>
+      <p class="mb-0 fw-semibold">eliteautohaus.helpdesk@gmail.com</p>
     </div>
 
-    <div class="ea-footer-col">
-      <p class="ea-footer-title">Useful Links</p>
-      <ul class="ea-footer-links">
+    <!-- Useful Links -->
+    <div class="footer-col footer-links">
+      <p class="footer-title">Useful Links</p>
+      <ul class="list-unstyled mb-3">
         <li><a href="inventory.html">▶ New Luxury Cars</a></li>
         <li><a href="coming.html">▶ Pre-Owned Cars</a></li>
         <li><a href="coming.html">▶ Used Sports Cars</a></li>
       </ul>
 
-      <p class="ea-footer-title">Our Info</p>
-      <ul class="ea-footer-links">
+      <p class="footer-title">Our Info</p>
+      <ul class="list-unstyled mb-0">
         <li><a href="about.html">▶ About Us</a></li>
         <li><a href="inventory.html">▶ Collections</a></li>
         <li><a href="coming.html">▶ Virtual Showrooms</a></li>
       </ul>
     </div>
 
-    <div class="ea-footer-col">
-      <a href="https://maps.app.goo.gl/yMktHhRxNKzhQV4y6" class="btn-gold w-100 mb-3">📍 Elite Autohaus On Map</a>
-      <p class="ea-footer-title">Address</p>
-      <p class="ea-footer-text">▶ A-99, MIDC<br>Wadi, Nagpur, 440016</p>
+    <!-- Address & Map -->
+    <div class="footer-col footer-address">
+      <a href="https://maps.app.goo.gl/yMktHhRxNKzhQV4y6" class="btn-gold">📍 Elite Autohaus On Map</a>
+      <p class="footer-title mt-3">Address</p>
+      <p class="mb-0">▶ A-99, MIDC<br>Wadi, Nagpur, 440016</p>
     </div>
-
   </div>
 
-  <div class="ea-footer-bottom">
-    <hr class="ea-footer-divider">
-    <p class="small">© 2025 elite-autohaus-018s.web.app | All rights reserved.</p>
-    <p class="small">A Project By <span class="text-gold">SVK Team</span></p>
-
-    <div class="ea-footer-socials">
+  <div class="footer-bottom">
+    <hr class="footer-divider">
+    <p class="mb-1 small">© 2025 elite-autohaus-018s.web.app | All rights reserved.</p>
+    <p class="mb-2 small">A Project By <span class="text-gold">SVK Team</span></p>
+    <div class="media-icons">
       <a href="coming.html"><i class="fab fa-facebook-f"></i></a>
       <a href="https://www.instagram.com/eliteautohausindia/"><i class="fab fa-instagram"></i></a>
       <a href="coming.html"><i class="fab fa-twitter"></i></a>
     </div>
   </div>
 </footer>
+</body>
+
 
 
 

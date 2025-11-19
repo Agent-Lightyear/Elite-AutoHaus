@@ -1,172 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Elite Autohaus | Login</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="login.css">
 </head>
 
-<body class="font-sans bg-gray-900">
+<body class="page-body">
 
-  <!-- Background -->
-  <div class="relative min-h-screen flex items-center justify-center bg-cover bg-center"
-    style="background-image: url('https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1650&q=80');">
+  <!-- Background / Container -->
+  <div class="page-container">
 
     <!-- Overlay -->
-    <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+    <div class="overlay"></div>
+
+ <!-- Back button here -->
+    <a href="home.html" class="back-home-btn">← Back to Home</a>
 
     <!-- Card -->
-    <div class="relative w-full max-w-md bg-white shadow-2xl rounded-2xl p-5 mx-1">
-      <!-- Logo -->
-      <div class="flex justify-center ">
-        <img src="IMG/logo.png" alt="Elite Autohaus Logo" class="logo">
+    <div class="card">
 
+      <!-- Logo -->
+      <div class="logo-wrap">
+        <img src="IMG/logo.png" alt="Elite Autohaus Logo" class="logo">
       </div>
 
-      <h2 class="text-3xl font-bold text-gray-800 mb-2 text-center">Welcome Back</h2>
-      <p class="text-gray-500 mb-6 text-center">Login to continue your journey with <span class="font-semibold">Elite
-          Autohaus</span>.</p>
+      <h2 class="title">Welcome Back</h2>
+      <p class="subtitle">
+        Login to continue your journey with
+        <span class="brand">Elite Autohaus</span>.
+      </p>
 
-      <form id="loginForm" class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium text-gray-700">Email</label>
+      <form id="loginForm" class="form">
+        <div class="field">
+          <label class="label">Email</label>
           <input type="email" placeholder="you@example.com" required
-            class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-gray-800 focus:outline-none">
+            class="input input-email">
         </div>
-        <div>
-  <label class="block text-sm font-medium text-gray-700">Password</label>
-  <div class="relative">
-    <input type="password" id="password" placeholder="••••••••" required
-      class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-gray-800 focus:outline-none">
-    <button type="button" id="togglePassword" 
-      class="absolute inset-y-0 right-3 flex items-center">
-      <img id="toggleIcon" src="IMG/headlight_off.png" class="h-5 w-5" alt="toggle password">
-    </button>
-  </div>
-</div>
 
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="password-wrap">
+            <input type="password" id="password" placeholder="••••••••" required
+              class="input input-password">
+            <button type="button" id="togglePassword" class="toggle-btn" aria-label="toggle password">
+              <img id="toggleIcon" src="IMG/headlight_off.png" class="toggle-icon" alt="toggle password">
+            </button>
+          </div>
+        </div>
 
-        <div class="flex items-center justify-between">
-          <label class="flex items-center text-sm text-gray-600">
-            <input type="checkbox" id="rememberMe" class="mr-2"> Remember Me
+        <div class="controls">
+          <label class="remember">
+            <input type="checkbox" id="rememberMe" class="checkbox"> Remember Me
           </label>
-          <a href="#" id="forgotPasswordLink" class="text-sm text-gray-800 hover:underline">Forgot Password?</a>
 
+          <a href="#" id="forgotPasswordLink" class="forgot-link">Forgot Password?</a>
         </div>
-        <button type="submit"
-          class="w-full bg-gray-900 text-white py-3 rounded-xl transition hover:bg-[#c9a55b]">Login</button>
+
+        <button type="submit" class="btn">Login</button>
       </form>
 
-      <p class="text-center text-sm text-gray-600 mt-6">
+      <p class="register-note">
         Don’t have an account?
-        <a href="register.html" class="text-gray-900 font-semibold hover:underline">Register</a>
+        <a href="register.html" class="register-link">Register</a>
       </p>
+
     </div>
   </div>
 
   <!-- Firebase v12.2.1 -->
   <script type="module">
-  import {
-    initializeApp
-  } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
-  import {
-    getAuth,
-    setPersistence,
-    browserLocalPersistence,
-    browserSessionPersistence,
-    signInWithEmailAndPassword,
-    sendPasswordResetEmail
-  } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+    import {
+      getAuth,
+      setPersistence,
+      browserLocalPersistence,
+      browserSessionPersistence,
+      signInWithEmailAndPassword,
+      sendPasswordResetEmail
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
-  import {
-    getAnalytics
-  } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
+    import {
+      getAnalytics
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
 
-  // Firebase config
-  const firebaseConfig = {
-    apiKey: "AIzaSyAMR69VGl2IFav9-P-rwpzaLvZh7WpwFcE",
-    authDomain: "elite-autohaus-018s.web.app",
-    projectId: "elite-autohaus-018s",
-    storageBucket: "elite-autohaus-018s.firebasestorage.app",
-    messagingSenderId: "374828356950",
-    appId: "1:374828356950:web:04abb8bcced3f3ea02f2f7"
-  };
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyAMR69VGl2IFav9-P-rwpzaLvZh7WpwFcE",
+      authDomain: "elite-autohaus-018s.web.app",
+      projectId: "elite-autohaus-018s",
+      storageBucket: "elite-autohaus-018s.firebasestorage.app",
+      messagingSenderId: "374828356950",
+      appId: "1:374828356950:web:04abb8bcced3f3ea02f2f7"
+    };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const analytics = getAnalytics(app);
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const analytics = getAnalytics(app);
 
-  // Elements
-  const loginForm = document.getElementById('loginForm');
-  const rememberMe = document.getElementById('rememberMe');
-  const passwordInput = document.getElementById('password');
-  const togglePassword = document.getElementById('togglePassword');
-  const toggleIcon = document.getElementById('toggleIcon');
-  const forgotPasswordLink = document.getElementById("forgotPasswordLink");
+    // Elements
+    const loginForm = document.getElementById('loginForm');
+    const rememberMe = document.getElementById('rememberMe');
+    const passwordInput = document.getElementById('password');
+    const togglePassword = document.getElementById('togglePassword');
+    const toggleIcon = document.getElementById('toggleIcon');
+    const forgotPasswordLink = document.getElementById("forgotPasswordLink");
 
-  // Handle Login
-  loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = loginForm.querySelector('input[type="email"]').value.trim();
-    const password = passwordInput.value;
+    // Handle Login
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = loginForm.querySelector('input[type="email"]').value.trim();
+      const password = passwordInput.value;
 
-    try {
-      // Remember me persistence
-      const persistence = rememberMe.checked
-        ? browserLocalPersistence
-        : browserSessionPersistence;
+      try {
+        // Remember me persistence
+        const persistence = rememberMe.checked
+          ? browserLocalPersistence
+          : browserSessionPersistence;
 
-      await setPersistence(auth, persistence);
+        await setPersistence(auth, persistence);
 
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
 
-      // Check email verification
-      // if (!user.emailVerified) {
-      //   alert("Please verify your email before logging in. Check your inbox.");
-      //   return;
-      // }
+        alert("Login successful!");
+        window.location.assign("home.html");
 
-      alert("Login successful!");
-      window.location.assign("home.html");
+      } catch (err) {
+        alert("Login failed: " + err.message);
+      }
+    });
 
-    } catch (err) {
-      alert("Login failed: " + err.message);
-    }
-  });
+    // Toggle password visibility
+    togglePassword.addEventListener('click', () => {
+      const type = passwordInput.type === 'password' ? 'text' : 'password';
+      passwordInput.type = type;
+      toggleIcon.src = type === 'password' ? 'IMG/headlight_off.png' : 'IMG/headlight_on.png';
+    });
 
-  // Toggle password visibility
-  togglePassword.addEventListener('click', () => {
-    const type = passwordInput.type === 'password' ? 'text' : 'password';
-    passwordInput.type = type;
-    toggleIcon.src = type === 'password' ? 'IMG/headlight_off.png' : 'IMG/headlight_on.png';
-  });
+    // Forgot Password
+    forgotPasswordLink.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const email = loginForm.querySelector("input[type='email']").value.trim();
 
-  // Forgot Password
-  forgotPasswordLink.addEventListener("click", async (e) => {
-    e.preventDefault();
-    const email = loginForm.querySelector("input[type='email']").value.trim();
+      if (!email) {
+        alert("⚠️ Please enter your email address first.");
+        return;
+      }
 
-    if (!email) {
-      alert("⚠️ Please enter your email address first.");
-      return;
-    }
-
-    try {
-      await sendPasswordResetEmail(auth, email);
-      alert("📧 Password reset email sent! Please check your inbox (sometimes in Spam).");
-    } catch (error) {
-      alert("Error: " + error.message);
-    }
-  });
-</script>
-
-
+      try {
+        await sendPasswordResetEmail(auth, email);
+        alert("📧 Password reset email sent! Please check your inbox (sometimes in Spam).");
+      } catch (error) {
+        alert("Error: " + error.message);
+      }
+    });
+  </script>
 </body>
-
 </html>

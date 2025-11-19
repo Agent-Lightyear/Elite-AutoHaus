@@ -4,70 +4,61 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Elite Autohaus | Register</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="login.css">
 </head>
-<body class="font-sans bg-gray-900">
+<body class="page-body">
 
   <!-- Background -->
-  <div class="relative min-h-screen flex items-center justify-center bg-cover bg-center"
-       style="background-image: url('https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1650&q=80');">
-    <div class="absolute inset-0 bg-black bg-opacity-70"></div>
-
-    <div class="relative w-full max-w-md bg-gray-900 text-white shadow-2xl rounded-2xl p-10 mx-4">
+  <div class="page-container register-page">
+    <div class="overlay"></div>
+<!-- Back button here -->
+    <a href="home.html" class="back-home-btn">← Back to Home</a>
+    <div class="card register-card">
       <!-- Logo -->
-      <div class="flex justify-center mb-6">
+      <div class="logo-wrap">
         <img src="IMG/logo.png" alt="Elite Autohaus Logo" class="logo">
       </div>
 
-      <h2 class="text-3xl font-bold mb-2 text-center">Create Account</h2>
-      <p class="text-gray-300 mb-6 text-center">Join the Elite Autohaus family and unlock exclusive benefits.</p>
+      <h2 class="title register-title">Create Account</h2>
+      <p class="subtitle">Join the Elite Autohaus family and unlock exclusive benefits.</p>
 
-      <form id="registerForm" class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium">Full Name</label>
-          <input type="text" id="fullName" placeholder="John Doe" required
-            class="w-full px-4 py-3 rounded-xl border border-gray-700 text-black focus:ring-2 focus:ring-gray-400 focus:outline-none">
+      <form id="registerForm" class="form register-form">
+        <div class="field">
+          <label class="label">Full Name</label>
+          <input type="text" id="fullName" placeholder="John Doe" required class="input">
         </div>
-        <div>
-          <label class="block text-sm font-medium">Email</label>
-          <input type="email" id="email" placeholder="you@example.com" required
-            class="w-full px-4 py-3 rounded-xl border border-gray-700 text-black focus:ring-2 focus:ring-gray-400 focus:outline-none">
+        <div class="field">
+          <label class="label">Email</label>
+          <input type="email" id="email" placeholder="you@example.com" required class="input">
         </div>
-        <div>
-          <label class="block text-sm font-medium">Phone Number</label>
-          <input type="tel" id="phone" placeholder="+91 9876543210" required
-            class="w-full px-4 py-3 rounded-xl border border-gray-700 text-black focus:ring-2 focus:ring-gray-400 focus:outline-none">
+        <div class="field">
+          <label class="label">Phone Number</label>
+          <input type="tel" id="phone" placeholder="+91 9876543210" required class="input">
         </div>
-        <div>
-          <label class="block text-sm font-medium">Password</label>
-          <div class="relative">
-            <input type="password" id="password" placeholder="••••••••" required
-              class="w-full px-4 py-3 rounded-xl border border-gray-700 text-black focus:ring-2 focus:ring-gray-400 focus:outline-none">
-            <button type="button" id="togglePassword" 
-              class="absolute inset-y-0 right-3 flex items-center text-gray-400">
-               <img id="togglePasswordIcon" src="IMG/headlight_off.png" class="h-5 w-5" alt="toggle password">
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="password-wrap">
+            <input type="password" id="password" placeholder="••••••••" required class="input input-password">
+            <button type="button" id="togglePassword" class="toggle-btn">
+               <img id="togglePasswordIcon" src="IMG/headlight_off.png" class="toggle-icon" alt="toggle password">
             </button>
           </div>
         </div>
-        <div>
-          <label class="block text-sm font-medium">Confirm Password</label>
-          <div class="relative">
-            <input type="password" id="confirmPassword" placeholder="••••••••" required
-              class="w-full px-4 py-3 rounded-xl border border-gray-700 text-black focus:ring-2 focus:ring-gray-400 focus:outline-none">
-            <button type="button" id="toggleConfirmPassword" 
-              class="absolute inset-y-0 right-3 flex items-center text-gray-400">
-               <img id="toggleConfirmPasswordIcon" src="IMG/headlight_off.png" class="h-5 w-5" alt="toggle password">
+        <div class="field">
+          <label class="label">Confirm Password</label>
+          <div class="password-wrap">
+            <input type="password" id="confirmPassword" placeholder="••••••••" required class="input input-password">
+            <button type="button" id="toggleConfirmPassword" class="toggle-btn">
+               <img id="toggleConfirmPasswordIcon" src="IMG/headlight_off.png" class="toggle-icon" alt="toggle password">
             </button>
           </div>
         </div>
-        <button type="submit"
-          class="w-full bg-white text-gray-900 py-3 rounded-xl font-semibold transition hover:bg-[#c9a55b] hover:text-white">Register</button>
+        <button type="submit" class="btn">Register</button>
       </form>
-<div id="recaptcha-container"></div>
-      <p class="text-center text-sm text-gray-400 mt-6">
+      <div id="recaptcha-container"></div>
+      <p class="register-note">
         Already have an account? 
-        <a href="login.html" class="text-white font-semibold hover:underline">Login</a>
+        <a href="login.html" class="register-link">Login</a>
       </p>
     </div>
   </div>
@@ -115,6 +106,29 @@
     'callback': (response) => {
       console.log("Recaptcha verified");
     }
+  });
+
+  // Password toggle functionality
+  const passwordInput = document.getElementById('password');
+  const togglePassword = document.getElementById('togglePassword');
+  const togglePasswordIcon = document.getElementById('togglePasswordIcon');
+  
+  const confirmPasswordInput = document.getElementById('confirmPassword');
+  const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+  const toggleConfirmPasswordIcon = document.getElementById('toggleConfirmPasswordIcon');
+
+  // Toggle password visibility
+  togglePassword.addEventListener('click', () => {
+    const type = passwordInput.type === 'password' ? 'text' : 'password';
+    passwordInput.type = type;
+    togglePasswordIcon.src = type === 'password' ? 'IMG/headlight_off.png' : 'IMG/headlight_on.png';
+  });
+
+  // Toggle confirm password visibility
+  toggleConfirmPassword.addEventListener('click', () => {
+    const type = confirmPasswordInput.type === 'password' ? 'text' : 'password';
+    confirmPasswordInput.type = type;
+    toggleConfirmPasswordIcon.src = type === 'password' ? 'IMG/headlight_off.png' : 'IMG/headlight_on.png';
   });
 
   const registerForm = document.getElementById('registerForm');
@@ -192,10 +206,6 @@
     }
   });
 </script>
-
-<!-- 🔑 Add this somewhere in your HTML body -->
-
-
 
 </body>
 </html>
