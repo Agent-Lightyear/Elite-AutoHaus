@@ -959,3 +959,131 @@ body {
 
 
 
+/* ================================
+   ELITE AUTOHAUS GLOBAL FOOTER
+   ================================ */
+
+.ea-footer {
+  background: #181E26;
+  color: #ffffff;
+  padding: 55px 25px 35px;
+  margin-top: 50px;
+  font-family: "Poppins", sans-serif;
+  border-radius: 6px 6px 0 0;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.35);
+}
+
+.ea-footer-inner {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+}
+
+.ea-footer-col {
+  min-width: 230px;
+}
+
+.ea-footer-logo {
+  height: 80px;
+  margin-bottom: 14px;
+  filter: brightness(1.2);
+}
+
+.ea-footer-title {
+  text-transform: uppercase;
+  color: #d4af37;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.ea-footer-text {
+  color: #e8e8e8;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.ea-footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.ea-footer-links li {
+  margin-bottom: 6px;
+}
+
+.ea-footer-links a {
+  color: #d0d9ff;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.ea-footer-links a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.ea-footer-divider {
+  border-color: rgba(255, 255, 255, 0.1);
+  margin-bottom: 10px;
+}
+
+.ea-footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.ea-footer-bottom p {
+  margin: 4px 0;
+}
+
+.ea-footer-socials a {
+  color: #ffffff;
+  margin: 0 6px;
+  font-size: 1.2rem;
+  transition: 0.25s ease;
+}
+
+.ea-footer-socials a:hover {
+  color: #d4af37;
+  transform: scale(1.15);
+}
+
+/* responsive */
+@media (max-width: 780px) {
+  .ea-footer-inner {
+    text-align: center;
+    justify-content: center;
+  }
+  .ea-footer-col {
+    min-width: 100%;
+  }
+}
+
+/* FIX gold button inside footer */
+.ea-footer .btn-gold {
+  background: linear-gradient(135deg, #e7c15b, #c89b2b, #b8840d) !important;
+  color: #181e27 !important;
+  font-weight: 600;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 38px;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.ea-footer .btn-gold:hover {
+  color: #ffffff !important;
+  background-position: 100% 0 !important;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+  transform: translateY(-2px);
+}
+
+
